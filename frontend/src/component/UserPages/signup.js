@@ -16,14 +16,14 @@ const SignUp = () => {
                     </Typography>
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="filled-basic" label="First Name" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                    <TextField id="filled-basic" label="Last Name" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" label="Last Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="filled-basic" label="Email" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="filled-basic" label="Password" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
 
                 <div className="buttonmargin style">
