@@ -41,6 +41,8 @@
     color: #FFFFFF;
     font-family: 'Seasons', 'Calibri', 'Arial';
     border-radius: 15px;
+    height: 80px;
+    width: 280px;
 }
 
 .button.MuiButton-root {
