@@ -1,0 +1,54 @@
+.style {
+    justify-content: left;
+    color: #000000;
+    text-align: center;
+    font-size: 44px !important;
+    font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.buttonmargin {
+    margin: 10px;
+}
+
+.link {
+    font-size: 14px;
+    margin: 10px;
+    text-align: left;
+}
+
+.bgcolor {
+
+    background-color: #e6eff2;
+}
+
+.align {
+    margin: 9.7%
+}
+
+.textbox.MuiTextField-root {
+    margin-left: 10px;
+    background: #e6eff2;
+    font-family: 'Seasons', 'Calibri', 'Arial';
+    height: 80px;
+    width: 280px;
+
+}
+
+.button.MuiButton-root {
+    color: white;
+    background: black;
+    border-radius: 30px;
+
+}
+
+.size {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+@media (max-width: 1000px) {
+    .hide {
+        display: none;
+    }
+}
