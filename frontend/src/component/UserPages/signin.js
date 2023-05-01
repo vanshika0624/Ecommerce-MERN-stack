@@ -19,12 +19,13 @@ const SignIn = () => {
         event.preventDefault()
         if (user != "" && pass != "") {
             setEmptyfields(false);
-            axios.get("http://localhost:2000", {
+            axios.get("http://localhost:2000/user/login", {
                 "email": user,
                 "password": pass,
             })
                 .then((response) => {
-                    if (response.status == 201) {
+                    console.log(response);
+                    if (response.status == 200) {
                         setSuccessmsg(true);
                         console.log("success")
                     }
@@ -59,7 +60,7 @@ const SignIn = () => {
 
                 <div className="buttonmargin style">
                     <Typography align='center'>
-                        <Button variant="contained" type="submit" size="large" className="button" >Sign In</Button>
+                        <Button variant="contained" onClick={getData} size="large" className="button" >Sign In</Button>
                     </Typography>
                     {successmsg && !emptyfields && <Typography className="successmsg">
                         Account Created Succesfully!

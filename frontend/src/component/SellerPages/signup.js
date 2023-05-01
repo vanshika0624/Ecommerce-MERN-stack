@@ -157,7 +157,7 @@ const SellerSignUp = () => {
         }
     }
     const validatePno = (pno) => {
-        const pnoRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+        const pnoRegex = /^(\+\d{1,2}\s)\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
         return pnoRegex.test(pno)
 
     }
