@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+const axios = require('axios');
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -71,6 +72,20 @@ const SignUp = () => {
         return nameRegex.test(name)
     }
 
+    const sendData=()=>{
+        const obj= {
+"firstname": fname,
+"lastname": lname,
+"email":email,
+"password":password
+        }
+       
+        axios
+        .post("http://localhost:2000/register",obj)
+        .then((response) => console.log(response))
+        .catch((err) => console.log(err));    
+
+    }
 
     return (<Grid container direction="row" className="bgcolor">
         <Grid item xs={8}  >
@@ -81,14 +96,6 @@ const SignUp = () => {
                     </Typography>
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="outlined-basic" label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                    <TextField id="outlined-basic" label="Last Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                </div>
-                <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="outlined-basic" label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                </div>
-                <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     <TextField id="outlined-basic" value={lname} onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} label="Last Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
@@ -102,7 +109,7 @@ const SignUp = () => {
 
                 <div className="buttonmargin style">
                     <Typography align='left'>
-                        <Button variant="contained" size="large" className="button" >Sign Up</Button>
+                        <Button variant="contained" size="large" onClick={sendData} className="button" >Sign Up</Button>
                     </Typography>
                     <div className="link" >
                         <Link href="#" color="inherit"  >
