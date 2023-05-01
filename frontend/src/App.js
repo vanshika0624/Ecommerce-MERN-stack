@@ -8,14 +8,14 @@ import SignUp from './component/UserPages/signup.js';
 // import Address  from './component/address';
 function App() {
   return (
-    <div>  
-     {/* <DisplayPage /> */}
-     {/* <SignIn />
+    <div>
+      {/* <DisplayPage /> */}
+      {/* <SignIn />
      */}
-     <SignUp /> 
-     {/* <SellerSignUp></SellerSignUp>  */}
-     {/* <Address/> */}
-     </div>
+      <SignUp />
+      {/* <SellerSignUp></SellerSignUp>  */}
+      {/* <Address/> */}
+    </div>
 
   );
 }
