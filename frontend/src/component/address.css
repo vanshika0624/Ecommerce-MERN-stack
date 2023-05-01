@@ -1,0 +1,89 @@
+.style {
+    /* justify-content: center; */
+    position: relative;
+    top: 45%;
+    padding-top: 10vh;
+    padding-left: 10vh;
+    color: white;
+    text-align: center;
+    font-size: 45px !important;
+    /* font-size: 65px; */
+    font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-color: #C4AD88; */
+    /* position: relative; */
+
+}
+
+.imgstyle {
+    /* height: 750px;
+    width: 1440px; */
+    justify-content: center;
+    background: url('../images/address.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* }
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; */
+
+}
+
+.buttonmargin {
+    margin: 10px;
+}
+
+/* .width{
+ MuiButton:{
+    root:
+    min-width: 200px;
+}
+} */
+.link {
+    font-size: 14px;
+    margin: 10px;
+}
+
+/* 
+.bgcolor {
+
+    background-color: #1B201E;
+} */
+
+.align {
+    margin: 30%;
+}
+
+.textbox.MuiTextField-root {
+    margin-left: 10px;
+    background: white;
+    font-family: 'Seasons', 'Calibri', 'Arial';
+    height: 80px;
+    width: 380px;
+
+}
+
+.button.MuiButton-root {
+    color: black;
+    background-color: rgb(234, 117, 200);
+    border-radius: 30px;
+
+}
+
+.size {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+/* @media (max-width: 1000px) {
+    .hide {
+        display: none;
+    }
+} */
+
+.cardStyle {
+    display: inline-block;
+}

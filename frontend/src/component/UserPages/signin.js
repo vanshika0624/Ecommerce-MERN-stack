@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signin.css";
 import signinimg from "../../images/Jewelry.png";
 import { TextField } from "@mui/material";
@@ -7,6 +7,8 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 const SignIn = () => {
+    const [pass, setPass] = useState("");
+    const [user, setUser] = useState("");
     return (<Grid container direction="row" className="bgcolor">
         <Grid item xs={8}  >
             <div className="align">
@@ -16,10 +18,10 @@ const SignIn = () => {
                     </Typography>
                 </div>
                 <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField id="filled-basic" label="Username" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField id="filled-basic" value={user} onChange={(e) => setUser(e.target.value)} error={!user} helperText={!user ? "Require" : ""} label="Username" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
                 <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField id="filled-basic" label="Password" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField type='password' value={pass} onChange={(e) => setPass(e.target.value)} error={!pass} helperText={!pass ? "Require" : ""} id="filled-basic" label="Password" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
 
                 <div className="buttonmargin style">
