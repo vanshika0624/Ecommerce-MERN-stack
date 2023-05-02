@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
   }],
   phone: {
     type: String,
-    unique: true,
+    // unique: true,
     validate: [validator.isMobilePhone, "Please Enter a valid Phone number"],
   },
   EIN: {
