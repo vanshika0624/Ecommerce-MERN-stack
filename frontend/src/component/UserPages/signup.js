@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +20,7 @@ const SignUp = () => {
     const [successmsg, setSuccessmsg] = useState(false);
     const [errmsg, setErrmsg] = useState(false);
     const [emptyfields, setEmptyfields] = useState(false);
-
+    const navigate= useNavigate();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
@@ -107,6 +108,14 @@ else{
     }
   }
 
+  const goToSignin=()=>
+  {
+      navigate('/signin')
+  }
+  const goToSellerSignup=()=>
+  {
+      navigate('/seller-signup')
+  }
 
     return (
         
@@ -136,9 +145,13 @@ else{
                     <Typography align='left'>
                         <Button variant="contained" size="large" type="submit" className="button" >Sign Up</Button>
                     </Typography>
-                   { successmsg && !emptyfields && <Typography className="successmsg">
+                   { successmsg && !emptyfields && <div><Typography className="successmsg">
     Account Created Succesfully!
-  </Typography>}
+  </Typography>
+  
+   <Button variant="contained" size="large"  onClick={goToSignin} className="button" >Click here to Sign In</Button>
+   </div>
+  }
                    {
                     errmsg &&  <Typography className="errmsg">
                     Something went Wrong!! Please try again after sometime.
@@ -154,7 +167,7 @@ else{
                    }
 
                     <div className="link" >
-                        <Link href="#" color="inherit"  >
+                        <Link color="inherit"  onClick={goToSellerSignup} >
                             Interested in selling?<br />
                             Click here to join !
                         </Link>
