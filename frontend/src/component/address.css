@@ -1,11 +1,12 @@
 .style {
-    justify-content: left;
-    margin-bottom: 55px;
-    /* position: relative;
-    top:30%; */
-    color: #000000;
+    /* justify-content: center; */
+    position: relative;
+    top: 45%;
+    padding-top: 10vh;
+    padding-left: 10vh;
+    color: white;
     text-align: center;
-    font-size: 44px !important;
+    font-size: 45px !important;
     /* font-size: 65px; */
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /* background-color: #C4AD88; */
@@ -13,10 +14,17 @@
 
 }
 
+.imgstyle {
+    justify-content: center;
+    background: url('../images/address.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+}
+
 .buttonmargin {
     margin: 10px;
-    /* margin-top: 55px; */
-
 }
 
 /* .width{
@@ -28,31 +36,30 @@
 .link {
     font-size: 14px;
     margin: 10px;
-    text-align: left;
 }
 
+/* 
 .bgcolor {
 
-    background: linear-gradient(0.45turn, #e1a578, #c9cacb, #eeba89);
-}
+    background-color: #1B201E;
+} */
 
 .align {
-    margin: 15%;
+    margin: 30%;
 }
 
 .textbox.MuiTextField-root {
     margin-left: 10px;
-    background: transparent;
+    background: white;
     font-family: 'Seasons', 'Calibri', 'Arial';
     height: 80px;
-    width: 280px;
-   
+    width: 380px;
 
 }
 
 .button.MuiButton-root {
-    color: white;
-    background: black;
+    color: black;
+    background-color: rgb(234, 117, 200);
     border-radius: 30px;
 
 }
@@ -62,15 +69,12 @@
     height: -webkit-fill-available;
 }
 
-.errmsg {
- color:rgb(161, 16, 16) ;
-}
-
-.successmsg {
- color: rgb(3, 58, 3);
-}
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
     .hide {
         display: none;
     }
+} */
+
+.cardStyle {
+    display: inline-block;
 }
