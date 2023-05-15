@@ -5,7 +5,7 @@ import DisplayPage from "./component/DisplayPage.js";
 import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
 import SellerSignUp from './component/SellerPages/signup.js'
-import Address  from './component/address';
+import Address  from './component/UserPages/address.js';
 function App() {
   return (
     <Router>
