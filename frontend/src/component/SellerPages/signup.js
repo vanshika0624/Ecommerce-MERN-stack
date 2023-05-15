@@ -7,8 +7,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Carousel from 'react-material-ui-carousel';
 import axios from "axios";
 // const axios = require('axios');
 
@@ -249,9 +247,13 @@ const SellerSignUp = () => {
                         <Typography align='center'>
                             <Button variant="contained" size="large" type="submit" className="button" >Sign Up</Button>
                         </Typography>
-                        {successmsg && !emptyfields && <Typography className="successmsg">
+                        {successmsg && !emptyfields && 
+                        <div>
+                            <Typography className="successmsg">
                             Account Created Succesfully!
-                        </Typography>}
+                        </Typography>
+                        <Button variant="contained" size="large"  onClick={goToSignin} className="button" >Click here to Sign In</Button>
+                        </div>}
                         {
                             errmsg && <Typography className="errmsg">
                                 Something went Wrong!! Please try again after sometime.

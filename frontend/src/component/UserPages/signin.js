@@ -42,6 +42,11 @@ const SignIn = () => {
             setEmptyfields(true);
 
         }
+
+    }
+    const goToUserSignup=()=>
+    {
+        navigate('/user-signup')
     }
     return (<Grid container direction="row" className="bgcolor">
         <Grid item xs={8}  >
@@ -79,7 +84,7 @@ const SignIn = () => {
                         </div>
                     }
                     <div className="link">
-                        <Link href="#" color="inherit" >
+                        <Link  color="inherit" onClick={goToUserSignup} >
                             Don't have an account ?<br />
                             Sign up here !
                         </Link>
