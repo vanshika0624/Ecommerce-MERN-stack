@@ -11,6 +11,10 @@ const goToSignin=()=>
 {
     navigate('/signin')
 }
+const goToHome=()=>
+{
+    navigate('/home')
+}
     return <div className="imgstyle"> 
 
         <img src={bg} alt="Background" className="imgstyle"/>
@@ -25,7 +29,7 @@ const goToSignin=()=>
         </div>
         <div className="buttonmargin style">
         <Typography align='center'>
-        <Button variant="outlined" size="large" onClick ={navigate("/") }color="inherit">Shop Now</Button>
+        <Button variant="outlined" size="large" onClick ={goToHome }color="inherit">Shop Now</Button>
         </Typography>
         </div>
         

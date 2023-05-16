@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 // const axios = require('axios');
 
 const SellerSignUp = () => {
@@ -37,6 +38,7 @@ const SellerSignUp = () => {
     const [errmsg, setErrmsg] = useState(false);
     const [emptyfields, setEmptyfields] = useState(false);
 
+    
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
         if (!validateEmail(e.target.value)) {
@@ -90,6 +92,11 @@ const SellerSignUp = () => {
     const validatename = (name) => {
         const nameRegex = /^[a-zA-Z ]+$/i;
         return nameRegex.test(name)
+    }
+    const navigate= useNavigate();
+    const goToSignin=()=>
+    {
+        navigate('/signin')
     }
 
     // const handleStreetChange = (e) => {

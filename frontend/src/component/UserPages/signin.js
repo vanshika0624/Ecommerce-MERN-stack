@@ -6,9 +6,11 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const SignIn = () => {
-
+    const navigate= useNavigate();
+ 
     const [pass, setPass] = useState("");
     const [user, setUser] = useState("");
     const [successmsg, setSuccessmsg] = useState(false);
