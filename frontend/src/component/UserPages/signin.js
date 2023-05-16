@@ -50,24 +50,24 @@ const SignIn = () => {
     {
         navigate('/user-signup')
     }
-    return (<Grid container direction="row" className="bgcolor">
+    return (<Grid container direction="row" className="userSignin_bgcolor">
         <Grid item xs={8}  >
-            <div className="align">
+            <div className="userSignin_align">
                 <div >
-                    <Typography align="center" className="style" >
+                    <Typography align="center" className="userSignin_style" >
                         Sign In
                     </Typography>
                 </div>
                 <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField id="filled-basic" value={user} onChange={(e) => setUser(e.target.value)} error={!user} helperText={!user ? "Require" : ""} label="Username" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField id="filled-basic" value={user} onChange={(e) => setUser(e.target.value)} error={!user} helperText={!user ? "Require" : ""} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
                 <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField type='password' value={pass} onChange={(e) => setPass(e.target.value)} error={!pass} helperText={!pass ? "Require" : ""} id="filled-basic" label="Password" variant="filled" className=" textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField type='password' value={pass} onChange={(e) => setPass(e.target.value)} error={!pass} helperText={!pass ? "Require" : ""} id="filled-basic" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
 
-                <div className="buttonmargin style">
+                <div className="userSignin_buttonmargin">
                     <Typography align='center'>
-                        <Button variant="contained" onClick={getData} size="large" className="button" >Sign In</Button>
+                        <Button variant="contained" onClick={getData} size="large" className="userSignin_button" >Sign In</Button>
                     </Typography>
                     {successmsg && !emptyfields && <Typography className="successmsg">
                         Account Created Succesfully!
@@ -95,8 +95,8 @@ const SignIn = () => {
             </div>
 
         </Grid>
-        <Grid item xs={4} className="hide">
-            <img src={signinimg} alt="Background" className="size" />
+        <Grid item xs={4} className="userSignin_hide">
+            <img src={signinimg} alt="Background" className="userSignin_size" />
         </Grid>
     </Grid>)
 };

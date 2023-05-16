@@ -1,11 +1,11 @@
 
 .imgstyle{
-    /* height: 750px;
-    width: 1440px; */
+    /* height: 750px; */
+    /* width: 1440px; */
     justify-content: center;
     /* background-image: url('../images/bg.jpg'); */
     height:100%;
-    width: 100%;
+    width: 100%; 
     position: absolute;
     top: 0;
     left: 0;

@@ -162,7 +162,9 @@ const SellerSignUp = () => {
         }
     }
     const validatePno = (pno) => {
+
         const pnoRegex = /^(\+\d{1,2}\s)\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+
         return pnoRegex.test(pno)
 
     }
@@ -226,7 +228,7 @@ const SellerSignUp = () => {
             <form autoComplete="off" onSubmit={sendData}>
                 <div className="align">
                     <div >
-                        <Typography align="center" className="style" >
+                        <Typography align="center" className="sellerSignup_style" >
                             Register as a Seller
                         </Typography>
                     </div>

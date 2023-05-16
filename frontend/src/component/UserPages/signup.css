@@ -1,4 +1,4 @@
-.style {
+.userSignup_style {
     justify-content: left;
     margin-bottom: 55px;
     /* position: relative;
@@ -13,34 +13,34 @@
 
 }
 
-.buttonmargin {
+.userSignup_buttonmargin {
     margin: 10px;
     justify-content: center;
 
 }
 
-/* .width{
+/* .userSignup_width{
  MuiButton:{
     root:
     min-width: 200px;
 }
 } */
-.link {
+.userSignup_link {
     font-size: 14px;
     margin: 10px;
     text-align: left;
 }
 
-.bgcolor {
+/* .userSignup_bgcolor {
 
     background: linear-gradient(0.45turn, #e1a578, #c9cacb, #eeba89);
-}
+} */
 
-.align {
+.userSignup_align {
     margin: 15%;
 }
 
-.textbox.MuiTextField-root {
+.userSignup_textbox.MuiTextField-root {
     margin-left: 10px;
     background: transparent;
     font-family: 'Seasons', 'Calibri', 'Arial';
@@ -50,27 +50,28 @@
 
 }
 
-.button.MuiButton-root {
+.userSignup_button{
     color: white;
     background: black;
     border-radius: 30px;
 
 }
 
-.size {
+.userSignup_size {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
 
-.errmsg {
+.userSignup_errmsg {
  color:rgb(161, 16, 16) ;
 }
 
-.successmsg {
+.userSignup_successmsg {
  color: rgb(3, 58, 3);
 }
 @media (max-width: 1000px) {
-    .hide {
+    .userSignup_hide {
         display: none;
     }
 }
+

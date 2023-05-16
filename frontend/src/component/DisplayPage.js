@@ -1,6 +1,6 @@
 import React from "react";
 import  "./DisplayPage.css"
-import bg from "../images/bg.jpg";
+import landing_page from "../images/landing.png";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const goToHome=()=>
 }
     return <div className="imgstyle"> 
 
-        <img src={bg} alt="Background" className="imgstyle"/>
+        <img src={landing_page} alt="Background" className="imgstyle"/>
         <div className="buttonmargin">
         <Typography align="right" color="yellow" >
         <Button variant="outlined" size="large" color="inherit" onClick={goToSignin}> Sign In</Button>
