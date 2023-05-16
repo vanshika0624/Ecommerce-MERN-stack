@@ -15,8 +15,8 @@ const goToSignin=()=>
 
         <img src={landing_page} alt="Background" className="imgstyle"/>
         <div className="buttonmargin">
-        <Typography align="right" color="yellow" >
-        <Button variant="outlined" size="large" color="inherit" onClick={goToSignin}> Sign In</Button>
+        <Typography align="right"  >
+        <Button className="buttonStyle" variant="outlined" size="large" color="inherit" onClick={goToSignin}> Sign In</Button>
         </Typography>
         </div>
         <div className='style'>
@@ -25,7 +25,7 @@ const goToSignin=()=>
         </div>
         <div className="buttonmargin style">
         <Typography align='center'>
-        <Button variant="outlined" size="large" onClick ={navigate("/") }color="inherit">Shop Now</Button>
+        <Button className="buttonStyle" variant="outlined" size="large" onClick ={navigate("/") }color="inherit">Shop Now</Button>
         </Typography>
         </div>
         

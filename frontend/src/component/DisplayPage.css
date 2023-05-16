@@ -15,9 +15,9 @@
     justify-content: center;
     position: relative;
     top:30%;
-    color:yellow;
+    color:rgb(49,51,69);
     text-align: center;
-    color: yellow;
+    /* color: black; */
     font-size: 65px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     position: relative;
@@ -25,6 +25,11 @@
 }
 .buttonmargin{
     margin:10px;
+    
+}
+.buttonStyle.MuiButton-root{
+    background-color: rgb(49,51,69);
+    color: beige;
 }
 /* .width{
  MuiButton:{

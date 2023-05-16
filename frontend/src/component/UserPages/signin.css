@@ -65,3 +65,13 @@
         display: none;
     }
 }
+
+.userSignin_successmsg {
+    color: white;
+    position: flex;
+   }
+
+.userSignin_errmsg {
+    color:rgb(161, 16, 16) ;
+    align-items: center;
+   }
