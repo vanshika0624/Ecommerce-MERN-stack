@@ -119,54 +119,54 @@ else{
 
     return (
         
-            <Grid container direction="row" className="bgcolor">
+            <Grid container direction="row" className="userSignup_bgcolor">
                 
         <Grid item xs={8}  >
         <form autoComplete="off" onSubmit={sendData}>
-            <div className="align">
+            <div className="userSignup_align">
                 <div >
-                    <Typography align="left" className="style" >
+                    <Typography align="left" className="userSignup_style" >
                         Create an Account
                     </Typography>
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                    <TextField id="outlined-basic" value={lname} onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} label="Last Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className="userSignup_textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" value={lname} onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} label="Last Name" variant="outlined" className="userSignup_textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
                 <div style={{ margin: "5px", textAlign: "left" }}>
-                    <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                    <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className="userSignup_textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                    <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className="userSignup_textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                 </div>
                 {/* <div style={{ margin: "5px", textAlign: "left" }}>
                     
                 </div> */}
 
-                <div className="buttonmargin style">
-                    <Typography align='left'>
-                        <Button variant="contained" size="large" type="submit" className="button" >Sign Up</Button>
+                <div className="userSignup_buttonmargin ">
+                    <Typography  align='left'>
+                        <Button variant="contained" size="large" type="submit" className="userSignup__button" >Sign Up</Button>
                     </Typography>
-                   { successmsg && !emptyfields && <div><Typography className="successmsg">
+                   { successmsg && !emptyfields && <div><Typography className="userSignup_successmsg">
     Account Created Succesfully!
   </Typography>
   
-   <Button variant="contained" size="large"  onClick={goToSignin} className="button" >Click here to Sign In</Button>
+   <Button variant="contained" size="large"  onClick={goToSignin} className="userSignup_button" >Click here to Sign In</Button>
    </div>
   }
                    {
-                    errmsg &&  <Typography className="errmsg">
+                    errmsg &&  <Typography className="userSignup_errmsg">
                     Something went Wrong!! Please try again after sometime.
                   </Typography>
                    
                    }
                    {
                     emptyfields && <div>
-                    <Typography className="errmsg">
+                    <Typography className="userSignup_errmsg">
                     Please fill all the required fields.
                     </Typography>
                     </div>
                    }
 
-                    <div className="link" >
+                    <div className="userSignup_link" >
                         <Link color="inherit"  onClick={goToSellerSignup} >
                             Interested in selling?<br />
                             Click here to join !
@@ -177,8 +177,8 @@ else{
             </form>
         </Grid>
        
-        <Grid item xs={4} className="hide">
-            <img src={signupimg} alt="Background" className="size" />
+        <Grid item xs={4} className="userSignup_hide">
+            <img src={signupimg} alt="Background" className="userSignup_size" />
         </Grid>
        
     </Grid>

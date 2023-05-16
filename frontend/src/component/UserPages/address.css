@@ -1,4 +1,4 @@
-.style {
+.add_style {
     /* justify-content: center; */
     position: relative;
     top: 45%;
@@ -14,41 +14,40 @@
 
 }
 
-.imgstyle {
+.add_imgstyle {
     justify-content: center;
     background: url('../../images/address.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;  
+    height:100%;
+    width: 100%; 
+    position: absolute;
 }
 
-.buttonmargin {
+.add_buttonmargin {
     margin: 10px;
 }
 
-/* .width{
+/* .add_width{
  MuiButton:{
     root:
     min-width: 200px;
 }
 } */
-.link {
+/* .add_link {
     font-size: 14px;
     margin: 10px;
-}
+} */
 
 /* 
-.bgcolor {
+.add_bgcolor {
 
     background-color: #1B201E;
 } */
 
-.align {
+.add_align {
     margin: 30%;
 }
 
-.textbox.MuiTextField-root {
+.add_textbox.MuiTextField-root {
     margin-left: 10px;
     background: white;
     font-family: 'Seasons', 'Calibri', 'Arial';
@@ -57,24 +56,24 @@
 
 }
 
-.button.MuiButton-root {
+.add_button.MuiButton-root {
     color: black;
     background-color: rgb(234, 117, 200);
     border-radius: 30px;
 
 }
 
-.size {
+.add_size {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
 
-/* @media (max-width: 1000px) {
-    .hide {
+@media (max-width: 1000px) {
+    .add_hide {
         display: none;
     }
-} */
+}
 
-.cardStyle {
+.add_cardStyle {
     display: inline-block;
 }
