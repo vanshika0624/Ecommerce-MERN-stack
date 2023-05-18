@@ -233,7 +233,7 @@ const SellerSignUp = () => {
                         </Typography>
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField  id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={lname} label="Last Name" onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
@@ -241,11 +241,11 @@ const SellerSignUp = () => {
                         <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={street} onChange={(e) => setstreet(e.target.value)} error={!street} helperText={!street ? "Require" : ""} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                        <TextField id="outlined-basic" value={city} onChange={(e) => setcity(e.target.value)} error={!city} helperText={!city ? "Require" : ""} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField id="outlined-basic" value={street} onChange={(e) => setstreet(e.target.value)} error={!street} helperText={!street ? "" : ""} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField id="outlined-basic" value={city} onChange={(e) => setcity(e.target.value)} error={!city} helperText={!city ? "" : ""} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "Require" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={zip} label="ZipCode" onChange={handleZipChange} error={Boolean(zipError)} helperText={zipError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>

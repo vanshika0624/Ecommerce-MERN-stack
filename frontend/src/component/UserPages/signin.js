@@ -69,18 +69,18 @@ const SignIn = () => {
                     <Typography align='center'>
                         <Button variant="contained" onClick={getData} size="large" className="userSignin_button" >Sign In</Button>
                     </Typography>
-                    {successmsg && !emptyfields && <Typography className="successmsg">
-                        Account Created Succesfully!
+                    {successmsg && !emptyfields && <Typography className="userSignin_successmsg">
+                      Signed In Successfully!
                     </Typography>}
                     {
-                        errmsg && <Typography className="errmsg">
+                        errmsg && <Typography className="userSignin_errmsg">
                             Something went Wrong!! Please try again after sometime.
                         </Typography>
 
                     }
                     {
                         emptyfields && <div>
-                            <Typography className="errmsg">
+                            <Typography className="userSignin_errmsg">
                                 Please fill all the required fields.
                             </Typography>
                         </div>
