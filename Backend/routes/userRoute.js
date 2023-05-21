@@ -12,7 +12,6 @@ const {
   getSingleUser,
   //updateUserRole,
   deleteUser,
-  testUserGet,
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 

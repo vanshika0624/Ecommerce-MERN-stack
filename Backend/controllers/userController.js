@@ -71,11 +71,20 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
+  const userDetails = {
+    _id: user.id,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    email: user.email,
+    address: user.address,
+    role: user.role
+  }
+
   //sendToken(user, 200, res);
   res.status(200).json({
     success: true,
-    message: "User Added Successfully",
-    user,
+    message: "Login Successful",
+    userDetails
   });
 });
 
