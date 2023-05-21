@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Grid from '@mui/material/Grid';
 const Navigation = () => {
 const navigate= useNavigate();
- 
+
 const goToJewelry=()=>
 {
     navigate('/jewelry')
@@ -54,7 +54,8 @@ const goToToys=()=>
         
         <Grid container  item  xs={12}md={5}  alignContent="flex-end" justifyContent="flex-end" >
             <div className="iconstyle">
-        <ShoppingCartIcon fontSize="large"/> <PersonIcon fontSize="large"/>
+        <ShoppingCartIcon fontSize="large"/> 
+        <PersonIcon fontSize="large"/>
         </div>
         </Grid>
 </Grid>

@@ -13,7 +13,7 @@ const SignIn = () => {
  
     const [pass, setPass] = useState("");
     const [user, setUser] = useState("");
-    const [successmsg, setSuccessmsg] = useState(false);
+    // const [successmsg, setSuccessmsg] = useState(false);
     const [errmsg, setErrmsg] = useState(false);
     const [emptyfields, setEmptyfields] = useState(false);
 
@@ -28,7 +28,8 @@ const SignIn = () => {
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
-                        setSuccessmsg(true);
+                        // setSuccessmsg(true);
+                        navigate('/home');
                         console.log("success")
                     }
                     else {
