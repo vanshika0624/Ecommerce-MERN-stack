@@ -70,9 +70,7 @@ const SignIn = () => {
                     <Typography align='center'>
                         <Button variant="contained" onClick={getData} size="large" className="userSignin_button" >Sign In</Button>
                     </Typography>
-                    {successmsg && !emptyfields && <Typography className="userSignin_successmsg">
-                      Signed In Successfully!
-                    </Typography>}
+                   
                     {
                         errmsg && <Typography className="userSignin_errmsg">
                             Something went Wrong!! Please try again after sometime.
