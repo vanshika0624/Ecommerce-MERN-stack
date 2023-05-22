@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const SignIn = () => {
-    const navigate= useNavigate();
- 
+    const navigate = useNavigate();
+
     const [pass, setPass] = useState("");
     const [user, setUser] = useState("");
     // const [successmsg, setSuccessmsg] = useState(false);
@@ -47,8 +47,7 @@ const SignIn = () => {
         }
 
     }
-    const goToUserSignup=()=>
-    {
+    const goToUserSignup = () => {
         navigate('/user-signup')
     }
     return (<Grid container direction="row" className="userSignin_bgcolor">
@@ -70,7 +69,7 @@ const SignIn = () => {
                     <Typography align='center'>
                         <Button variant="contained" onClick={getData} size="large" className="userSignin_button" >Sign In</Button>
                     </Typography>
-                   
+
                     {
                         errmsg && <Typography className="userSignin_errmsg">
                             Something went Wrong!! Please try again after sometime.
@@ -85,7 +84,7 @@ const SignIn = () => {
                         </div>
                     }
                     <div className="link">
-                        <Link  color="inherit" onClick={goToUserSignup} >
+                        <Link color="inherit" onClick={goToUserSignup} >
                             Don't have an account ?<br />
                             Sign up here !
                         </Link>
