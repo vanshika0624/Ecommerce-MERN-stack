@@ -13,6 +13,8 @@ import HomeDecor from "./component/UserPages/ProductPages/HomeDecor.js";
 import Paintings from "./component/UserPages/ProductPages/Paintings.js";
 import Toys from "./component/UserPages/ProductPages/Toys.js";
 import HomePage from "./component/Homepage.js";
+import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
+
 // import Navigation from "./component/navigation.js"
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
       <Route  path='/home-decor' element={<HomeDecor />} />
       <Route  path='/paintings' element={<Paintings />} />
       <Route  path='/toys' element={<Toys />} />
+      <Route  path='/products/:id' element={<ViewProduct />} />
       {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
      </Routes>
      </div>
