@@ -13,37 +13,56 @@ const [products, setProducts] = useState([]);
 
 useEffect(() => {
   axios
-    .get('http://localhost:2000/getProducts')
+    .get('http://localhost:2000/product/getProducts')
     .then((res) => {
-      setProducts(res.data);
-      console.log(res.data);
+      setProducts(res.data.products);
+      // console.log(res.data.products);
     })
     .catch((err) => {
       console.log('Error from GetProducts');
     });
 }, []);
 
-const carddata = [
-  { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' },
-  { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' }, { id: 1, title: 'Card 1', description: 'This is card 1', image: 'https://example.com/image1.jpg' },
-  
-];
+const goToJewelry=()=>
+{
+    navigate('/jewelry')
+}
+const goToFurniture=()=>
+{
+    navigate('/furniture')
+}
+const goToClothing=()=>
+{
+    navigate('/clothing')
+}
+const goToHomeDecor=()=>
+{
+    navigate('/home-decor')
+}
+const goToPaintings=()=>
+{
+    navigate('/paintings')
+}
+const goToToys=()=>
+{
+    navigate('/toys')
+}
 
 const disaplyCards=(cards)=>
 { return(
   <Grid container direction="row" spacing={2}  >
   {cards.map((card) => (
    <Grid item xs={4} >
-    <Card key={card.id} className="card"  >
+    <Card key={card._id} className="card"  >
       <CardMedia  image={card.image} alt ="product image" />
       <CardContent>
-        <Typography variant="h5" component="h2">
-          {card.title}
+        <Typography variant="h6" component="h6">
+          {card.name},
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {card.description}
+          ${card.price}
         </Typography>
-        <Link to={`/product/${card.id}`}> View Product Details</Link>
+        <Link to={`/products/${card._id}`}> Details</Link>
       </CardContent>
     </Card>
     </Grid>
@@ -59,7 +78,50 @@ const disaplyCards=(cards)=>
     return (
      <div className="bg">
          <Navigation/>
-         {disaplyCards(carddata)}
+ <div>
+         <Typography variant="h4" color="textSecondary" component="div">
+          Jewelry
+        </Typography>
+         {disaplyCards(products)}
+         <Button onClick={goToJewelry}> View All Products</Button>
+</div>
+<div>
+         <Typography variant="h4" color="textSecondary" component="div">
+          Furniture
+        </Typography>
+        {disaplyCards(products)}
+        <Button onClick={goToFurniture}> View All Products</Button>
+        </div>
+        <div>
+
+        <Typography variant="h4" color="textSecondary" component="div">
+          Clothing
+        </Typography>
+        {disaplyCards(products)}
+        <Button onClick={goToClothing}> View All Products</Button>
+        </div>
+        <div>
+
+        <Typography variant="h4" color="textSecondary" component="div">
+          Home Decor
+        </Typography>
+        {disaplyCards(products)}
+        <Button onClick={goToHomeDecor}> View All Products</Button>
+</div>
+<div>
+        <Typography variant="h4" color="textSecondary" component="div">
+          Paintings
+        </Typography>
+        {disaplyCards(products)}
+        <Button onClick={goToPaintings}> View All Products</Button>
+        </div>
+        <div>
+        <Typography variant="h4" color="textSecondary" component="div">
+          Toys
+        </Typography>
+        {disaplyCards(products)}
+        <Button onClick={goToToys}> View All Products</Button>
+        </div>
          </div>
     //  <div>Home</div>
       

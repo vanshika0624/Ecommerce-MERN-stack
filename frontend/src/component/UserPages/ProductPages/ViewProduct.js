@@ -22,8 +22,9 @@ const setQuantityValue = (event) => {
     setQuantity(event.target.value);
   }
 useEffect(() => {
+    
     axios
-      .get(`http://localhost:2000/getProducts/${id}`)
+      .get(`http://localhost:2000/products/getProducts/${id}`)
       .then((res) => {
         setProductDetails(res.data);
       })
