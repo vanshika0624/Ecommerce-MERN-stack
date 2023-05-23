@@ -13,7 +13,6 @@ import HomeDecor from "./component/UserPages/ProductPages/HomeDecor.js";
 import Paintings from "./component/UserPages/ProductPages/Paintings.js";
 import Toys from "./component/UserPages/ProductPages/Toys.js";
 import HomePage from "./component/Homepage.js";
-import Footer from "./component/Footer.js";
 import Cart from "./component/UserPages/cart.js";
 import Profile from "./component/UserPages/profile.js";
 import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
@@ -37,8 +36,9 @@ function App() {
           <Route path='/toys' element={<Toys />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/footer' element={<Footer />} />
+          {/* <Route path='/footer' element={<Footer />} /> */}
           <Route path='/products/:id' element={<ViewProduct />} />
+
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
         </Routes>
       </div>

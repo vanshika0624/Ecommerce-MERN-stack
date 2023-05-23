@@ -1,7 +1,13 @@
 import React from "react";
 import "./Footer.css";
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 const Footer = () => {
+    const navigate = useNavigate();
+
+    const goToSignup = () => {
+        navigate('/user-signup')
+    }
     return (
         <div align="center" >
             <div className="Footer_heading">Maker's Mart </div>
@@ -9,8 +15,8 @@ const Footer = () => {
                 Handcrafted needs. </div>
 
             {/* <Typography align='center'> */}
-            <div> <Button className="Footer_button" variant="contained" size="large" >Sign Up</Button> </div>
-            <div>  <Button className="Footer_button" variant="contained" size="large" >Contact Us</Button> </div>
+            <div> <Button className="Footer_button" variant="contained" size="small" onClick={goToSignup} >Sign Up</Button> </div>
+            <div>  <Button className="Footer_button" variant="contained" size="small" >About Us</Button> </div>
             {/* </Typography> */}
             <div className="Footer_about"> MAKER'S MART COMPANY<br />
                 University of California,<br />
