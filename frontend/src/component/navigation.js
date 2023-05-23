@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
+import HomeIcon from '@mui/icons-material/Home';
 import Grid from '@mui/material/Grid';
 const Navigation = () => {
     const navigate = useNavigate();
@@ -34,7 +35,10 @@ const Navigation = () => {
     const goToProfile = () => {
         navigate('/profile')
     }
-
+    const goToHome=()=>
+    {
+        navigate('/home')
+    }
     return (
         <div>
 
@@ -55,6 +59,7 @@ const Navigation = () => {
 
                 <Grid container item xs={12} md={5} alignContent="flex-end" justifyContent="flex-end" >
                     <div className="iconstyle">
+                    <HomeIcon fontSize="large" onClick={goToHome} />
                         <ShoppingCartIcon fontSize="large" onClick={goToCart} />
                         <PersonIcon fontSize="large" onClick={goToProfile} />
                     </div>

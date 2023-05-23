@@ -16,6 +16,7 @@ import HomePage from "./component/Homepage.js";
 import Footer from "./component/Footer.js";
 import Cart from "./component/UserPages/cart.js";
 import Profile from "./component/UserPages/profile.js";
+import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
 // import Navigation from "./component/navigation.js"
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/footer' element={<Footer />} />
+          <Route path='/products/:id' element={<ViewProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
         </Routes>
       </div>

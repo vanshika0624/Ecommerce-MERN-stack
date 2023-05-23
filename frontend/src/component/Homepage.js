@@ -9,19 +9,84 @@ import { Card, CardContent, CardMedia,Grid } from '@mui/material';
 import axios from "axios";
 const HomePage = () => {
 const navigate= useNavigate();
-const [products, setProducts] = useState([]);
+const [furnitureProducts, setFurnitureProducts] = useState([]);
+const [jewelryProducts, setJewelryProducts] = useState([]);
+const [decorProducts, setDecorProducts] = useState([]);
+const [toyProducts, setToyProducts] = useState([]);
+const [clothProducts, setClothProducts] = useState([]);
+const [paintingProducts, setPaintingProducts] = useState([]);
 
 useEffect(() => {
   axios
-    .get('http://localhost:2000/product/getProducts')
+    .get('http://localhost:2000/product/getProducts?category=Furniture')
     .then((res) => {
-      setProducts(res.data.products);
-      // console.log(res.data.products);
+      setFurnitureProducts(res.data.products);
+      console.log(res.data.products);
     })
     .catch((err) => {
       console.log('Error from GetProducts');
     });
 }, []);
+useEffect(() => {
+  axios
+    .get('http://localhost:2000/product/getProducts?category=Jewelry')
+    .then((res) => {
+      setJewelryProducts(res.data.products);
+      console.log(res.data.products);
+    })
+    .catch((err) => {
+      console.log('Error from GetProducts');
+    });
+}, []);
+
+useEffect(() => {
+  axios
+    .get('http://localhost:2000/product/getProducts?category=Paintings')
+    .then((res) => {
+      setPaintingProducts(res.data.products);
+      console.log(res.data.products);
+    })
+    .catch((err) => {
+      console.log('Error from GetProducts');
+    });
+}, []);
+
+useEffect(() => {
+  axios
+    .get('http://localhost:2000/product/getProducts?category=Clothing')
+    .then((res) => {
+      setClothProducts(res.data.products);
+      console.log(res.data.products);
+    })
+    .catch((err) => {
+      console.log('Error from GetProducts');
+    });
+}, []);
+
+useEffect(() => {
+  axios
+    .get('http://localhost:2000/product/getProducts?category=Home-Decor')
+    .then((res) => {
+      setDecorProducts(res.data.products);
+      console.log(res.data.products);
+    })
+    .catch((err) => {
+      console.log('Error from GetProducts');
+    });
+}, []);
+
+useEffect(() => {
+  axios
+    .get('http://localhost:2000/product/getProducts?category=Toys')
+    .then((res) => {
+      setToyProducts(res.data.products);
+      console.log(res.data.products);
+    })
+    .catch((err) => {
+      console.log('Error from GetProducts');
+    });
+}, []);
+
 
 const goToJewelry=()=>
 {
@@ -82,14 +147,14 @@ const disaplyCards=(cards)=>
          <Typography variant="h4" color="textSecondary" component="div">
           Jewelry
         </Typography>
-         {disaplyCards(products)}
+         {disaplyCards(jewelryProducts)}
          <Button onClick={goToJewelry}> View All Products</Button>
 </div>
 <div>
          <Typography variant="h4" color="textSecondary" component="div">
           Furniture
         </Typography>
-        {disaplyCards(products)}
+        {disaplyCards(furnitureProducts)}
         <Button onClick={goToFurniture}> View All Products</Button>
         </div>
         <div>
@@ -97,7 +162,7 @@ const disaplyCards=(cards)=>
         <Typography variant="h4" color="textSecondary" component="div">
           Clothing
         </Typography>
-        {disaplyCards(products)}
+        {disaplyCards(clothProducts)}
         <Button onClick={goToClothing}> View All Products</Button>
         </div>
         <div>
@@ -105,21 +170,21 @@ const disaplyCards=(cards)=>
         <Typography variant="h4" color="textSecondary" component="div">
           Home Decor
         </Typography>
-        {disaplyCards(products)}
+        {disaplyCards(decorProducts)}
         <Button onClick={goToHomeDecor}> View All Products</Button>
 </div>
 <div>
         <Typography variant="h4" color="textSecondary" component="div">
           Paintings
         </Typography>
-        {disaplyCards(products)}
+        {disaplyCards(paintingProducts)}
         <Button onClick={goToPaintings}> View All Products</Button>
         </div>
         <div>
         <Typography variant="h4" color="textSecondary" component="div">
           Toys
         </Typography>
-        {disaplyCards(products)}
+        {disaplyCards(toyProducts)}
         <Button onClick={goToToys}> View All Products</Button>
         </div>
          </div>
