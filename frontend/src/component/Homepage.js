@@ -113,16 +113,16 @@ const HomePage = () => {
       <Grid container direction="row" spacing={2}  >
         {cards.map((card) => (
           <Grid item xs={4} >
-            <Card key={card._id} className="card"  >
+            <Card key={card._id} className="homePage_card"  >
               <CardMedia image={card.image} alt="product image" />
               <CardContent>
-                <Typography variant="h6" component="h6">
+                <Typography variant="h6" component="h6" color="#848D62">
                   {card.name},
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body2" color="#848D62" component="p">
                   ${card.price}
                 </Typography>
-                <Link to={`/products/${card._id}`}> Details</Link>
+                <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
               </CardContent>
             </Card>
           </Grid>
@@ -139,49 +139,50 @@ const HomePage = () => {
     <div className="bg">
       <Navigation />
       <div>
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Jewelry
         </Typography>
         {disaplyCards(jewelryProducts)}
-        <Button onClick={goToJewelry}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
       </div>
       <div>
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Furniture
         </Typography>
         {disaplyCards(furnitureProducts)}
-        <Button onClick={goToFurniture}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
       </div>
       <div>
 
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Clothing
         </Typography>
         {disaplyCards(clothProducts)}
-        <Button onClick={goToClothing}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
       </div>
       <div>
 
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Home Decor
         </Typography>
         {disaplyCards(decorProducts)}
-        <Button onClick={goToHomeDecor}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
       </div>
       <div>
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Paintings
         </Typography>
         {disaplyCards(paintingProducts)}
-        <Button onClick={goToPaintings}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToPaintings}> View All Products</Button>
       </div>
       <div>
-        <Typography variant="h4" color="textSecondary" component="div">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Toys
         </Typography>
         {disaplyCards(toyProducts)}
-        <Button onClick={goToToys}> View All Products</Button>
+        <Button className="homePage_button" onClick={goToToys}> View All Products</Button>
       </div>
+      <Footer />
     </div>
     //  <div>Home</div>
 

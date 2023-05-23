@@ -6,6 +6,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
+import Footer from "../../Footer.js";
+import "./products.css"
 const Paintings = () => {
     const navigate = useNavigate();
     const [paintingProducts, setPaintingProducts] = useState([]);
@@ -34,13 +36,13 @@ const Paintings = () => {
                         <Card key={card._id} className="card"  >
                             <CardMedia image={card.image} alt="product image" />
                             <CardContent>
-                                <Typography variant="h6" component="h6">
+                                <Typography color="#848D62" variant="h6" component="h6">
                                     {card.name},
                                 </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
+                                <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                <Link to={`/products/${card._id}`}> Details</Link>
+                                <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -59,6 +61,7 @@ const Paintings = () => {
             <div>
                 {disaplyCards(paintingProducts)}
             </div>
+            <Footer />
 
         </div>
         //  <div>Home</div>
