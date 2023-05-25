@@ -1,0 +1,13 @@
+.navbar{
+    border-radius:20px;
+    background-color: #C4AD88;
+    color: #0000;
+    margin: 20px;
+}
+.buttonstyle.MuiButton-root{
+    margin: 0px 10px 0px 10px;
+    color:black;
+}
+.iconstyle{
+    margin:20px;
+}

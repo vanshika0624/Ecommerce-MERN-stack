@@ -19,6 +19,8 @@ import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
 // import Navigation from "./component/navigation.js"
 import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
+import Dashboard from './component/SellerPages/dashboard.js'
+
 function App() {
   return (
     <Router>
@@ -41,8 +43,10 @@ function App() {
           {/* <Route path='/footer' element={<Footer />} /> */}
           <Route path='/products/:id' element={<ViewProduct />} />
           <Route path='/add-product' element={< AddProduct />} />
-          <Route path='/edit-product' element={< EditProduct />} />
+          <Route path='/edit-product/:id' element={< EditProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
+          <Route path='/seller-dashboard' element={< Dashboard />} />
+
         </Routes>
       </div>
     </Router>

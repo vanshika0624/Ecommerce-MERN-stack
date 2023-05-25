@@ -9,13 +9,14 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import axios from "axios";
 import UploadIcon from '@mui/icons-material/Upload';
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditProduct= () =>{
 
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
     const fileInputRef = useRef(null);
+    const { id } = useParams();
     const createProductImagesChange = (e) => {
         const files = Array.from(e.target.files);
     
@@ -124,7 +125,7 @@ return(
         <div>
         <div className="editProduct_labelStyle" style={{marginTop: "40px"}} >
         Product ID: 
-        <TextField  className="editProduct_textbox" sx={{width: 300}} style={{marginLeft:'200px'}} required id="outlined-basic" label="" variant="outlined" InputProps={{readOnly: true, }}  />  
+        <TextField  className="editProduct_textbox" sx={{width: 300}} style={{marginLeft:'200px'}} required id="outlined-basic"  value ={id} label="" variant="outlined" InputProps={{readOnly: true, }} > </TextField>  
         </div>
         <div  className="editProduct_labelStyle">
         Product Title:

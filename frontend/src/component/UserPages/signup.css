@@ -74,4 +74,7 @@
         display: none;
     }
 }
+.userSignup_bgcolor {
 
+    background: linear-gradient(0.45turn, #e1a578, #c9cacb, #eeba89);
+}

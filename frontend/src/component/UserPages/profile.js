@@ -3,7 +3,7 @@ import React from "react";
 // import bg from "../images/bg.jpg";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 const Profile = () => {
     const navigate = useNavigate();
 
@@ -11,6 +11,7 @@ const Profile = () => {
     return <div >
 
         Profile
+        <Link to="/seller-dashboard">Go to Seller Dashboard</Link>
 
 
     </div>;

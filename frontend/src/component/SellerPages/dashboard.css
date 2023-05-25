@@ -1,0 +1,33 @@
+.bg {
+    background-color: #FAF2E9;
+}
+
+.dashboard_card.MuiCard-root {
+    background-color: #FAF2E9;
+    margin: 20px 10px 10px 20px;
+    padding: 5px;
+
+}
+
+.dashboard_typography.MuiTypography-root {
+    margin-left: 20px;
+    color: #848D62;
+}
+
+.dashboard_button.MuiButton-root {
+    color: #848D62;
+    text-decoration: underline;
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+}
+.displayProductFormImage {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .displayProductFormImage>img {
+    /* width: 15vmax; */
+    width:85%;
+    margin: 10px 30px;
+}
