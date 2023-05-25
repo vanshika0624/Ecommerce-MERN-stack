@@ -52,7 +52,11 @@ const productSchema = mongoose.Schema({
         ref: "User",
         required: true,
       },
-      name: {
+      firstname: {
+        type: String,
+        required: true,
+      },
+      lastname: {
         type: String,
         required: true,
       },
