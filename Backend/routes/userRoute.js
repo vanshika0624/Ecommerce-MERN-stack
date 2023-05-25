@@ -12,6 +12,7 @@ const {
   getSingleUser,
   //updateUserRole,
   deleteUser,
+  getAllSellers
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -27,28 +28,23 @@ router.route("/password/reset/:token").put(resetPassword);
 
 router.route("/logout").get(logout);
 
-//router.route("/me").get(isAuthenticatedUser, getUserDetails);
-router.route("/me").get(getUserDetails);
+router.route("/getMyDetails").get(isAuthenticatedUser, getUserDetails);
+
+router.route("/updateMyPassword").put(isAuthenticatedUser, updatePassword);
+
+router.route("/updateMyDetails").put(isAuthenticatedUser, updateProfile);
+
+//to get all seller details - can be used for filtering products
+router.route("/getSellers").get(isAuthenticatedUser, getAllSellers);
+
+//"admin" APIs
+router.route("/getUsers").get(isAuthenticatedUser, getAllUser);
 
 
-// router.route("/password/update").put(isAuthenticatedUser, updatePassword);
-router.route("/password/update").put(updatePassword);
-
-// router.route("/me/update").put(isAuthenticatedUser, updateProfile);
-router.route("/me/update").put(updateProfile);
-
-router
-  .route("/getUsers").get(getAllUser);
-  // .route("/admin/users").get(getAllUser);
-  // .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
-
+// need to confirm this api and remove one among this one and getMyDetails
 router
   .route("/getUsers/:id")
-  .get(getSingleUser)
-  // .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
-  //.put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
-  .delete(deleteUser);
-  // .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
-
+  .get(isAuthenticatedUser, getSingleUser)
+  .delete(isAuthenticatedUser, deleteUser);
 
 module.exports = router;

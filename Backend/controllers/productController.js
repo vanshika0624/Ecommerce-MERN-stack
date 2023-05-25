@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
-  console.log(typeof req.body.images);
+  
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
@@ -32,8 +32,8 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   req.body.images = imagesLinks;
-  //need to add make toke, auth code changes to uncomment the below line
-  //req.body.user = req.user.id;
+  //added user cookies/token 
+  req.body.user = req.user.id;
   
 
   const product = await Product.create(req.body);
@@ -45,23 +45,19 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get All Product
+// Get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 9;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter();
+    .filter()
+    .pagination(resultPerPage);
 
   let products = await apiFeature.query;
 
   let filteredProductsCount = products.length;
-
-  apiFeature.pagination(resultPerPage);
-
-  //commented this because it is already execute above 
-  //products = await apiFeature.query;
 
   res.status(200).json({
     success: true,
@@ -72,52 +68,8 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get Product Details
-exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
-
-  if (!product) {
-    return next(new ErrorHander("Product not found", 404));
-  }
-
-  const resultPerPage = 9;
-  const productsCount = await Product.countDocuments();
-
-  const apiFeature = new ApiFeatures(Product.findById(req.params.id), req.query)
-    .search()
-    .filter();
-
-  let products = await apiFeature.query;
-
-  let filteredProductsCount = products.length;
-
-  apiFeature.pagination(resultPerPage);
-
-  //commented this because it is already execute above 
-  //products = await apiFeature.query;
-
-  res.status(200).json({
-    success: true,
-    products,
-    productsCount,
-    resultPerPage,
-    filteredProductsCount,
-  });
-  
-});
-
-// Get All Product (Admin)
-exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
-  const products = await Product.find();
-
-  res.status(200).json({
-    success: true,
-    products,
-  });
-});
-
-// Get Seller(Admin) Product Details By Id
-exports.getSellerProduct = catchAsyncErrors(async (req, res, next) => {
+// Get Single Product Details By Id
+exports.getSingleProductDetails = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
@@ -130,7 +82,54 @@ exports.getSellerProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Update Product -- Seller/Admin
+// Get All Products for Seller
+exports.getSellerProducts = catchAsyncErrors(async (req, res, next) => {
+  const resultPerPage = 9;
+  const productsCount = await Product.countDocuments();
+
+  // filtering only the products added by the seller who logged in
+  req.query.user = req.user.id
+
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  let products = await apiFeature.query;
+
+  let filteredProductsCount = products.length;
+
+  res.status(200).json({
+    success: true,
+    products,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  });
+});
+
+// Get Single Product for Seller
+exports.getSellerSingleProduct = catchAsyncErrors(async (req, res, next) => {
+  
+  // filtering only the products added by the seller who logged in
+  req.query.user = req.user.id
+
+  const apiFeature = new ApiFeatures(Product.findById(req.params.id), req.query)
+    .search()
+    .filter()
+
+  let products = await apiFeature.query;
+
+  res.status(200).json({
+    success: true,
+    products,
+  });
+});
+
+
+// Update Product -- Seller
+// As we are getting the products related to each seller separately
+// Assuming a seller of one product cannot update product of other seller 
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
@@ -181,7 +180,9 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Delete Product -- Seller/Admin
+// Delete Product -- Seller
+// As we are getting the products related to each seller separately
+// Assuming a seller of one product cannot delete product of other seller 
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
@@ -204,18 +205,14 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Create New Review or Update the review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
-  const { rating, comment, productId, 
-    user
-  } = req.body;
+  const { rating, comment, productId } = req.body;
 
-  // temporarily sending user id and name in req. 
-  // need to make token, auth code changes to uncomment the below lines inside 'const review' and 'isReviewed'
+  //added user cookies/token 
 
   const review = {
-    //user: req.user._id,
-    //name: req.user.name,
-    user,
-    //name,
+    user: req.user._id,
+    firstname: req.user.firstname,
+    lastname: req.user.lastname,
     rating: Number(rating),
     comment,
   };
@@ -223,14 +220,12 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(productId);
 
   const isReviewed = product.reviews.find(
-    //(rev) => rev.user.toString() === req.user._id.toString()
-    (rev) => rev.user.toString() === user.toString()
+    (rev) => rev.user.toString() === req.user._id.toString()
   );
 
   if (isReviewed) {
     product.reviews.forEach((rev) => {
-      //if (rev.user.toString() === req.user._id.toString())
-      if (rev.user.toString() === user.toString())
+      if (rev.user.toString() === req.user._id.toString())
         (rev.rating = rating), (rev.comment = comment);
     });
   } else {
