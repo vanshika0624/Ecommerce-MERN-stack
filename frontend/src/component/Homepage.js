@@ -115,6 +115,14 @@ const HomePage = () => {
           <Grid item xs={4} >
             <Card key={card._id} className="homePage_card"  >
               <CardMedia image={card.image} alt="product image" />
+              {
+          card.images && card.images.map((image)=>(
+          //  console.log(card);
+          <CardMedia alt="product image"  className="displayProductFormImage">
+           <img  src={image.url} alt="Product Preview" />
+          </CardMedia>
+          ))
+        }
               <CardContent>
                 <Typography variant="h6" component="h6" color="#848D62">
                   {card.name},

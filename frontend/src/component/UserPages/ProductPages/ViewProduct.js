@@ -72,10 +72,10 @@ const ViewProduct = () => {
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
       <Grid container item xs={6} >
         {
-          productDetails.images && productDetails.images.map((card)=>(
+          productDetails.images && productDetails.images.map((image)=>(
           //  console.log(card);
           <CardMedia alt="product image"  className="createProductFormImage">
-           <img  src={card.url} alt="Product Preview" />
+           <img  src={image.url} alt="Product Preview" />
           </CardMedia>
           ))
         }
