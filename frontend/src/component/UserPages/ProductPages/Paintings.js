@@ -13,7 +13,7 @@ const Paintings = () => {
     const [paintingProducts, setPaintingProducts] = useState([]);
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Paintings')
+            .get('http://localhost:2000/product/getProducts?category=Paintings',{ withCredentials: true })
             .then((res) => {
                 setPaintingProducts(res.data.products);
                 console.log(res.data.products);

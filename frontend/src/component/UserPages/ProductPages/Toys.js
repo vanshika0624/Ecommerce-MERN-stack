@@ -16,7 +16,7 @@ const Clothing = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Toys')
+            .get('http://localhost:2000/product/getProducts?category=Toys',{ withCredentials: true })
             .then((res) => {
                 setToyProducts(res.data.products);
                 console.log(res.data.products);

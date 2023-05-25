@@ -14,7 +14,7 @@ const HomeDecor = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Home-Decor')
+            .get('http://localhost:2000/product/getProducts?category=Home-Decor',{ withCredentials: true })
             .then((res) => {
                 setDecorProducts(res.data.products);
                 console.log(res.data.products);

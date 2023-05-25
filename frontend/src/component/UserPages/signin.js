@@ -19,7 +19,7 @@ const SignIn = () => {
 
     const getData = (event) => {
         event.preventDefault()
-        if (user != "" && pass != "") {
+        if (user != "" && pass != "") {     
             setEmptyfields(false);
             axios.post("http://localhost:2000/user/login", {
                 "email": user,
