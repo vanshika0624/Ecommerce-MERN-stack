@@ -204,7 +204,7 @@ const SellerSignUp = () => {
                 "phone": pno,
                 "ein": ein,
                 "role": "seller",
-            })
+            },{ withCredentials: true })
                 .then((response) => {
                     if (response.status == 201) {
                         setSuccessmsg(true);

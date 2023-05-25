@@ -52,7 +52,7 @@ const ViewProduct = () => {
   useEffect(() => {
 
     axios
-      .get(`http://localhost:2000/product/getProducts/${id}`)
+      .get(`http://localhost:2000/product/getProducts/${id}`,{ withCredentials: true })
       .then((res) => {
         setProductDetails(res.data.products[0]);
         console.log(res.data.products)

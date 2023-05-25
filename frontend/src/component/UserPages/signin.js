@@ -19,16 +19,17 @@ const SignIn = () => {
 
     const getData = (event) => {
         event.preventDefault()
-        if (user != "" && pass != "") {
+        if (user != "" && pass != "") {     
             setEmptyfields(false);
-            axios.get("http://localhost:2000/user/login", {
+            axios.post("http://localhost:2000/user/login", {
                 "email": user,
                 "password": pass,
-            })
+            },{ withCredentials: true })
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
                         // setSuccessmsg(true);
+                        // console.log(response);
                         navigate('/home');
                         console.log("success")
                     }

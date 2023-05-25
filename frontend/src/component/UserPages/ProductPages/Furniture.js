@@ -16,7 +16,7 @@ const Furniture = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Furniture')
+            .get('http://localhost:2000/product/getProducts?category=Furniture',{ withCredentials: true })
             .then((res) => {
                 setFurnitureProducts(res.data.products);
                 console.log(res.data.products);

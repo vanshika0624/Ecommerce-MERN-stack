@@ -86,12 +86,13 @@ const SignUp = () => {
             "lastname": lname,
             "email":email,
             "password":password,
-            "role":"user",
-                    })
+            "role":"buyer",
+                    },{ withCredentials: true })
         .then((response) => {if (response.status == 201)
         {
            setSuccessmsg(true);
-           console.log("success")
+           
+           console.log(response)
         }
         else
         {

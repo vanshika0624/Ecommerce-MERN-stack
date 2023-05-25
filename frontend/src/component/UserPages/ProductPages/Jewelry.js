@@ -14,7 +14,7 @@ const Jewelry = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Jewelry')
+            .get('http://localhost:2000/product/getProducts?category=Jewelry',{ withCredentials: true })
             .then((res) => {
                 setJewelryProducts(res.data.products);
                 console.log(res.data.products);
