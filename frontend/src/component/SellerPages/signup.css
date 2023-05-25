@@ -1,4 +1,4 @@
-.style {
+.sellerSignup_style {
     justify-content: left;
     color: #000000;
     text-align: center;
@@ -27,11 +27,14 @@
 }
 
 .textbox.MuiTextField-root {
+   
     margin-left: 10px;
     background: #e6eff2;
     font-family: 'Seasons', 'Calibri', 'Arial';
     height: 80px;
     width: 280px;
+   
+    
 
 }
 
@@ -39,7 +42,7 @@
     color: white;
     background: black;
     border-radius: 30px;
-
+    
 }
 
 .size {

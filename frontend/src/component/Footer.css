@@ -1,0 +1,35 @@
+body {
+    background-color: #FAF2E9;
+}
+
+.Footer_heading {
+    font-size: 35px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #848D62;
+    margin: 20px;
+
+    align-items: center;
+
+}
+
+.Footer_sub_heading {
+    font-size: 15px;
+    font-family: 'Calibiri', Arial, serif;
+    color: #848D62;
+    margin: 5px;
+    align-items: center;
+}
+
+.Footer_button.MuiButton-root {
+    color: #848D62;
+    background-color: transparent;
+    margin: 5px;
+
+}
+
+.Footer_about {
+    font-size: 10px;
+    color: #848D62;
+    font-family: 'Calibiri', Arial, serif;
+    margin: 5px;
+}

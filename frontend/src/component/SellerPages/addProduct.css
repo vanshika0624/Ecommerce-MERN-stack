@@ -1,0 +1,55 @@
+
+body{
+    background-color: #FAF2E9;
+}
+.heading{
+    font-size: 50px;
+    font-family:'Times New Roman', Times, serif;
+    color: #848D62;
+    margin: 20px;
+    margin-bottom: 10px;
+}
+
+.labelStyle{
+    color:black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin:20px;
+    margin-left:100px;
+    position: relative;
+    /* padding:10px; */
+    
+
+}
+
+.cardStyle.MuiCard-root {
+    display: inline-block;
+    background-color: #C4AD88;
+    min-width: 85%;
+    border-radius: 20px;
+    margin:20px;
+
+}
+.divider.MuiDivider-root{
+    border-color:#BCB5AE;
+    border-width: 2px;
+}
+
+
+.addProduct_button.MuiButton-root {
+    color: white;
+    background-color: #684F3E;
+    border-radius: 30px;
+    margin:20px;
+    
+
+}
+#createProductFormImage {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  #createProductFormImage>img {
+    width: 8vmax;
+    margin: 0 0.5vmax;
+}

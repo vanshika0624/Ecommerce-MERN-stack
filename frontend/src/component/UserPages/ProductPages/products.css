@@ -1,0 +1,24 @@
+.card.MuiCard-root {
+    background-color: #FAF2E9;
+    margin: 20px 10px 10px 20px;
+    padding: 5px;
+
+
+}
+
+.color.card.MuiCardContent-root {
+    color: "#848D62"
+}
+
+.homePage_typography.MuiTypography-root {
+    margin-left: 20px;
+    color: #848D62;
+}
+
+.homePage_button.MuiButton-root {
+    color: #848D62;
+    text-decoration: underline;
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+}
