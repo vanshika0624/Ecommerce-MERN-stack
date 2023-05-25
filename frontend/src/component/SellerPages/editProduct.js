@@ -123,18 +123,47 @@ return(
         <Grid container item xs={12} justifyContent="center" >
         <Card variant="outlined" className="editProduct_cardStyle" sx={{ minWidth: 450 }}>
         <div>
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div className="editProduct_labelStyle" style={{marginTop: "40px"}} >
         Product ID: 
-        <TextField  className="editProduct_textbox" sx={{width: 300}} style={{marginLeft:'200px'}} required id="outlined-basic"  value ={id} label="" variant="outlined" InputProps={{readOnly: true, }} > </TextField>  
+      </div>
+        </Grid>
+        <Grid item xs={8}>
+      <div className="editProduct_labelStyle" style={{marginTop: "40px"}}>
+        <TextField  className="editProduct_textbox" sx={{width: 300}}  required id="outlined-basic"  value ={id} label="" variant="outlined" InputProps={{readOnly: true, }} > </TextField>  
         </div>
+        </Grid>
+      
+        </Grid>
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="editProduct_labelStyle">
         Product Title:
-        <TextField required sx={{width: 300}} className="editProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
+            <div className="editProduct_labelStyle">
+        <TextField required sx={{width: 300}} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="editProduct_labelStyle">
         Product Price:
-        <TextField required sx={{width: 300}} className="editProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
+            <div className="editProduct_labelStyle">
+        <TextField required sx={{width: 300}} className="editProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="editProduct_labelStyle">
         Product Images:
         <input
@@ -148,28 +177,60 @@ return(
         
               /> 
              {/* <Button onClick={handleOpenFileDialog}> <UploadIcon onClick={handleOpenFileDialog} /></Button> */}
-             <UploadIcon onClick={handleOpenFileDialog} />
-          
-        </div>
-        <div id="createProductFormImage" style={{marginLeft:'200px'}} >
+             <UploadIcon onClick={handleOpenFileDialog} />  
+       
+             </div>
+        </Grid>
+        <Grid item xs={8}>
+        <div className="editProduct_labelStyle">
+        <div id="createProductFormImage"  >
               {imagesPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
+            </div>
+        </Grid>
+        </Grid>
         
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="editProduct_labelStyle">
         Product  Description:
-        <TextField required sx={{width: 400}} multiline rows={4} className="editProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
-        <div  className="editProduct_labelStyle">
-            
+        </Grid>
+        <Grid item xs={8}>
+            <div className="editProduct_labelStyle">
+        <TextField required sx={{width: 400}} multiline rows={4} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
+        <div  className="editProduct_labelStyle">      
         Product  sizing:
-        <TextField required sx={{width: 300}} className="editProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
+            <div className="editProduct_labelStyle">
+        <TextField required sx={{width: 300}} className="editProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="editProduct_labelStyle">
-        Product  Quantity:        
-        <TextField sx={{width: 300}} required className="editProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
-        </div>     
+        Product  Quantity:       
+        </div>
+        </Grid>
+        <Grid item xs={8}>
+            <div className="editProduct_labelStyle"> 
+        <TextField sx={{width: 300}} required className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />  
+        </div>  
+        </Grid>
+        </Grid>
+
         <div>
           <Typography align='center'>
               <Button className="editProduct_button" variant="contained"  size="large"  onClick={updateData}>Save Changes</Button>

@@ -82,15 +82,34 @@ return(
         <Grid container item xs={12} justifyContent="center" >
         <Card variant="outlined" className="cardStyle" sx={{ minWidth: 450 }}>
         <div>
-        
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="labelStyle">
         Product Title:
-        <TextField required sx={{width: 300}} className="addProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
+        <div  className="labelStyle">
+        <TextField required sx={{width: 300}} className="addProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="labelStyle">
         Product Price:
-        <TextField required sx={{width: 300}} className="addProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
+        <div  className="labelStyle">
+        <TextField required sx={{width: 300}} className="addProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="labelStyle">
         Product Images:
         <input
@@ -107,24 +126,58 @@ return(
              <UploadIcon onClick={handleOpenFileDialog} />
           
         </div>
-        <div id="createProductFormImage" style={{marginLeft:'200px'}} >
+        </Grid>
+        <Grid item xs={8}>
+        <div  className="labelStyle">
+        <div id="createProductFormImage"  >
               {imagesPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
+            </div>
+            </Grid>
+        </Grid>
+
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="labelStyle">
         Product  Description:
-        <TextField required sx={{width: 400}} multiline rows={4} className="addProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        <Grid item xs={8}>
         <div  className="labelStyle">
-            
-        Product  sizing:
-        <TextField required sx={{width: 300}} className="addProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
+        <TextField required sx={{width: 400}} multiline rows={4} className="addProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
         </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
+        <div  className="labelStyle">           
+        Product  sizing:
+        </div>
+        </Grid>
+        <Grid item xs={8}>
+        <div  className="labelStyle">
+        <TextField required sx={{width: 300}} className="addProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row"  >  
+        <Grid item  xs={4}>
         <div  className="labelStyle">
         Product  Quantity:        
-        <TextField sx={{width: 300}} required className="addProduct_textbox" style={{marginLeft:'200px'}} id="outlined-basic" label="" variant="outlined" />  
-        </div>     
+        </div>
+        </Grid>
+        <Grid item xs={8}>
+        <div  className="labelStyle">
+        <TextField sx={{width: 300}} required className="addProduct_textbox"  id="outlined-basic" label="" variant="outlined" />  
+        </div>  
+        </Grid>
+        </Grid>
+
         <div>
           <Typography align='center'>
               <Button className="addProduct_button" variant="contained"  size="large" onClick={postData} >Add Product</Button>
