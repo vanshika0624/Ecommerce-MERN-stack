@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import  "./DisplayPage.css"
+import  "./ViewProduct.css"
 // import bg from "../images/bg.jpg";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -48,6 +48,7 @@ const ViewProduct = () => {
         setQuantity(productDetails.Stock) : setQuantity(inputValue)
 
   };
+
   useEffect(() => {
 
     axios
@@ -61,19 +62,26 @@ const ViewProduct = () => {
       });
   }, [id]);
 
-  const menuItems = Array.from(Array(productDetails.Stock), (_, index) => (
-    <MenuItem key={index} value={index + 1}>
-      {index + 1}
-    </MenuItem>
-  ));
+  // const menuItems = Array.from(Array(productDetails.Stock), (_, index) => (
+  //   <MenuItem key={index} value={index + 1}>
+  //     {index + 1}
+  //   </MenuItem>
+  // ));
   return (<div className="bg" >
     <Navigation />
-    <Grid container direction="row" spacing={2}>
-      <Grid item xs={6}>
-        <CardMedia image={productDetails.image} alt="product image" />
-        Image
+    <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
+      <Grid container item xs={6} >
+        {
+          productDetails.images && productDetails.images.map((card)=>(
+          //  console.log(card);
+          <CardMedia alt="product image"  className="createProductFormImage">
+           <img  src={card.url} alt="Product Preview" />
+          </CardMedia>
+          ))
+        }
+
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={4} >
         <Typography variant="h4" component="h4">
           {productDetails.name}
         </Typography>

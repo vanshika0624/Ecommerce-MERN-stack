@@ -1,0 +1,9 @@
+.createProductFormImage {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .createProductFormImage>img {
+    width: 30vmax;
+    margin: 0 0.5vmax;
+}

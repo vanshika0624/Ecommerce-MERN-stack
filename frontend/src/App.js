@@ -17,6 +17,8 @@ import Cart from "./component/UserPages/cart.js";
 import Profile from "./component/UserPages/profile.js";
 import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
 // import Navigation from "./component/navigation.js"
+import AddProduct from './component/SellerPages/addProduct.js'
+import EditProduct from './component/SellerPages/editProduct.js'
 function App() {
   return (
     <Router>
@@ -38,7 +40,8 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           {/* <Route path='/footer' element={<Footer />} /> */}
           <Route path='/products/:id' element={<ViewProduct />} />
-
+          <Route path='/add-product' element={< AddProduct />} />
+          <Route path='/edit-product' element={< EditProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
         </Routes>
       </div>
