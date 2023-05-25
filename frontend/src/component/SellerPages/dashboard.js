@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Furniture')
+      .get('http://localhost:2000/product/getProducts?category=Furniture',{ withCredentials: true })
       .then((res) => {
         setFurnitureProducts(res.data.products);
         console.log(res.data.products);
@@ -30,7 +30,7 @@ const Dashboard = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Jewelry')
+      .get('http://localhost:2000/product/getProducts?category=Jewelry',{ withCredentials: true })
       .then((res) => {
         setJewelryProducts(res.data.products);
         console.log(res.data.products);
@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Paintings')
+      .get('http://localhost:2000/product/getProducts?category=Paintings',{ withCredentials: true })
       .then((res) => {
         setPaintingProducts(res.data.products);
         console.log(res.data.products);
@@ -54,7 +54,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Clothing')
+      .get('http://localhost:2000/product/getProducts?category=Clothing',{ withCredentials: true })
       .then((res) => {
         setClothProducts(res.data.products);
         console.log(res.data.products);
@@ -66,7 +66,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Home-Decor')
+      .get('http://localhost:2000/product/getProducts?category=Home-Decor',{ withCredentials: true })
       .then((res) => {
         setDecorProducts(res.data.products);
         console.log(res.data.products);
@@ -78,7 +78,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Toys')
+      .get('http://localhost:2000/product/getProducts?category=Toys',{ withCredentials: true })
       .then((res) => {
         setToyProducts(res.data.products);
         console.log(res.data.products);

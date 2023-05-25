@@ -50,9 +50,9 @@ const AddProduct= () =>{
                     "category": "Clothing",
                     "images":images,
                     "stock":"18",
-                    "user": "64596f0f3d0561f78b51993d"
+                    // "user": "64596f0f3d0561f78b51993d"
                 
-            })
+            },{ withCredentials: true })
                 .then((response) => {
                     console.log(response);
                     // if (response.status == 200) {
