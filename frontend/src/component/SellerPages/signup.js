@@ -9,9 +9,23 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
 // const axios = require('axios');
 
+
+
+
 const SellerSignUp = () => {
+
+    const [USstate, setUSstate] = React.useState('');
+
+    const handleUSstateChange = (event) => {
+        setUSstate(event.target.value);
+    };
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -26,8 +40,8 @@ const SellerSignUp = () => {
 
     const [einError, setEinError] = useState('');
     const [pnoError, setPnoError] = useState('');
-    // const [streetError, setStreetError] = useState('');
-    // const [cityError, setCityError] = useState('');
+    const [streetError, setStreetError] = useState('');
+    const [cityError, setCityError] = useState('');
     const [zipError, setZipError] = useState('');
     // const [stateError, setStateError] = useState('');
 
@@ -38,7 +52,7 @@ const SellerSignUp = () => {
     const [errmsg, setErrmsg] = useState(false);
     const [emptyfields, setEmptyfields] = useState(false);
 
-    
+
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
         if (!validateEmail(e.target.value)) {
@@ -65,7 +79,7 @@ const SellerSignUp = () => {
         }
     }
     const validatePassword = (password) => {
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i;
+        const passwordRegex = /(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/;
         return passwordRegex.test(password)
     }
 
@@ -93,27 +107,32 @@ const SellerSignUp = () => {
         const nameRegex = /^[a-zA-Z ]+$/i;
         return nameRegex.test(name)
     }
-    const navigate= useNavigate();
-    const goToSignin=()=>
-    {
+    const navigate = useNavigate();
+    const goToSignin = () => {
         navigate('/signin')
     }
 
-    // const handleStreetChange = (e) => {
-    //     setstreet(e.target.value)
-    //     if (!validateAddress(e.target.value)) {
-    //         setStreetError('Please Enter Valid Street Name')
+    const handleStreetChange = (e) => {
+        setstreet(e.target.value)
+        if (!validateStreet(e.target.value)) {
+            setStreetError('Please Enter Valid Street Name')
 
-    //     }
-    //     else {
-    //         setStreetError('')
-    //     }
-    // }
-    // const validateAddress = (address) => {
-    //     const streetRegex = /[\S\s]+[\S]+/;
-    //     return streetRegex.test(address)
+        }
+        else {
+            setStreetError('')
+        }
+    }
 
-    // }
+    const validateStreet = (address) => {
+        const streetRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+        return streetRegex.test(address)
+
+    }
+    const validateAddress = (address) => {
+        const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+        return cityRegex.test(address)
+
+    }
 
     // const handleStateChange = (e) => {
     //     setstate(e.target.value)
@@ -124,16 +143,16 @@ const SellerSignUp = () => {
     //         setStateError('')
     //     }
     // }
-    // const handleCityChange = (e) => {
-    //     setcity(e.target.value)
-    //     if (!validateAddress(e.target.value)) {
-    //         setCityError('Please Enter Valid City Name')
+    const handleCityChange = (e) => {
+        setcity(e.target.value)
+        if (!validateAddress(e.target.value)) {
+            setCityError('Please Enter Valid City Name')
 
-    //     }
-    //     else {
-    //         setCityError('')
-    //     }
-    // }
+        }
+        else {
+            setCityError('')
+        }
+    }
 
     const handleZipChange = (e) => {
         setzip(e.target.value)
@@ -157,6 +176,7 @@ const SellerSignUp = () => {
             setPnoError('Please Enter Valid Phone')
 
         }
+
         else {
             setPnoError('')
         }
@@ -204,7 +224,7 @@ const SellerSignUp = () => {
                 "phone": pno,
                 "ein": ein,
                 "role": "seller",
-            },{ withCredentials: true })
+            }, { withCredentials: true })
                 .then((response) => {
                     if (response.status == 201) {
                         setSuccessmsg(true);
@@ -233,36 +253,100 @@ const SellerSignUp = () => {
                         </Typography>
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField  id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={lname} label="Last Name" onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                        <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} type="password" />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={street} onChange={(e) => setstreet(e.target.value)} error={!street} helperText={!street ? "" : ""} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                        <TextField id="outlined-basic" value={city} onChange={(e) => setcity(e.target.value)} error={!city} helperText={!city ? "" : ""} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-basic" value={street} onChange={handleStreetChange} error={Boolean(cityError)} helperText={!street ? "" : "streetError"} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-required" value={city} onChange={handleCityChange} error={Boolean(cityError)} helperText={!city ? "" : "cityError"} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        {/* <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} /> */}
+                        <FormControl required sx={{ m: 0, minWidth: 280 }}>
+                            <InputLabel id="demo-simple-select-helper-label">State</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={USstate}
+                                label="State"
+                                onChange={handleUSstateChange}
+                            >
+
+                                <MenuItem value={"AL"}>Alabama</MenuItem>
+                                <MenuItem value={"AK"}>Alaska</MenuItem>
+                                <MenuItem value={"AZ"}>Arizona</MenuItem>
+                                <MenuItem value={"AR"}>Arkansas</MenuItem>
+                                <MenuItem value={"CA"}>California</MenuItem>
+                                <MenuItem value={"CO"}>Colorado</MenuItem>
+                                <MenuItem value={"CT"}>Connecticut</MenuItem>
+                                <MenuItem value={"DE"}>Delaware</MenuItem>
+                                <MenuItem value={"FL"}>Florida</MenuItem>
+                                <MenuItem value={"GA"}>Georgia</MenuItem>
+                                <MenuItem value={"HI"}>Hawaii</MenuItem>
+                                <MenuItem value={"ID"}>Idaho</MenuItem>
+                                <MenuItem value={"IL"}>Illinois</MenuItem>
+                                <MenuItem value={"IN"}>Indiana</MenuItem>
+                                <MenuItem value={"IA"}>Iowa</MenuItem>
+                                <MenuItem value={"KS"}>Kansas</MenuItem>
+                                <MenuItem value={"KY"}>Kentucky</MenuItem>
+                                <MenuItem value={"LA"}>Louisiana</MenuItem>
+                                <MenuItem value={"ME"}>Maine</MenuItem>
+                                <MenuItem value={"MD"}>Maryland</MenuItem>
+                                <MenuItem value={"MA"}>Massachusetts</MenuItem>
+                                <MenuItem value={"MI"}>Michigan</MenuItem>
+                                <MenuItem value={"MN"}>Minnesota</MenuItem>
+                                <MenuItem value={"MS"}>Mississippi</MenuItem>
+                                <MenuItem value={"MO"}>Missouri</MenuItem>
+                                <MenuItem value={"MT"}>Montana</MenuItem>
+                                <MenuItem value={"NE"}>Nebraska</MenuItem>
+                                <MenuItem value={"NV"}>Nevada</MenuItem>
+                                <MenuItem value={"NH"}>New Hampshire</MenuItem>
+                                <MenuItem value={"NJ"}>New Jersey</MenuItem>
+                                <MenuItem value={"NM"}>New Mexico</MenuItem>
+                                <MenuItem value={"NY"}>New York</MenuItem>
+                                <MenuItem value={"NC"}>North Carolina</MenuItem>
+                                <MenuItem value={"ND"}>North Dakota</MenuItem>
+                                <MenuItem value={"OH"}>Ohio</MenuItem>
+                                <MenuItem value={"OK"}>Oklahoma</MenuItem>
+                                <MenuItem value={"OR"}>Oregon</MenuItem>
+                                <MenuItem value={"PA"}>Pennsylvania</MenuItem>
+                                <MenuItem value={"RI"}>Rhode Island</MenuItem>
+                                <MenuItem value={"SC"}>South Carolina</MenuItem>
+                                <MenuItem value={"SD"}>South Dakota</MenuItem>
+                                <MenuItem value={"TN"}>Tennessee</MenuItem>
+                                <MenuItem value={"TX"}>Texas</MenuItem>
+                                <MenuItem value={"UT"}>Utah</MenuItem>
+                                <MenuItem value={"VT"}>Vermont</MenuItem>
+                                <MenuItem value={"VA"}>Virginia</MenuItem>
+                                <MenuItem value={"WA"}>Washington</MenuItem>
+                                <MenuItem value={"WV"}>West Virginia</MenuItem>
+                                <MenuItem value={"WI"}>Wisconsin</MenuItem>
+                                <MenuItem value={"WY"}>Wyoming</MenuItem>
+                            </Select>
+                        </FormControl>
+
                         <TextField id="outlined-basic" value={zip} label="ZipCode" onChange={handleZipChange} error={Boolean(zipError)} helperText={zipError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField id="outlined-basic" value={pno} onChange={handlePnoChange} error={Boolean(pnoError)} helperText={pnoError} label="Phone Number" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-required" value={pno} onChange={handlePnoChange} error={Boolean(pnoError)} helperText={!pnoError ? "Required" : pnoError} label="Phone Number" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={ein} onChange={handleEinChange} error={Boolean(einError)} helperText={einError} label="EIN" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div className="buttonmargin style">
                         <Typography align='center'>
                             <Button variant="contained" size="large" type="submit" className="button" >Sign Up</Button>
                         </Typography>
-                        {successmsg && !emptyfields && 
-                        <div>
-                            <Typography className="successmsg">
-                            Account Created Succesfully!
-                        </Typography>
-                        <Button variant="contained" size="large"  onClick={goToSignin} className="button" >Click here to Sign In</Button>
-                        </div>}
+                        {successmsg && !emptyfields &&
+                            <div>
+                                <Typography className="successmsg">
+                                    Account Created Succesfully!
+                                </Typography>
+                                <Button variant="contained" size="large" onClick={goToSignin} className="button" >Click here to Sign In</Button>
+                            </div>}
                         {
                             errmsg && <Typography className="errmsg">
                                 Something went Wrong!! Please try again after sometime.

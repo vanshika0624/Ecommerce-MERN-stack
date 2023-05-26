@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import  "./ViewProduct.css"
+import "./ViewProduct.css"
 // import bg from "../images/bg.jpg";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -52,13 +52,14 @@ const ViewProduct = () => {
   useEffect(() => {
 
     axios
-      .get(`http://localhost:2000/product/getProducts/${id}`,{ withCredentials: true })
+      .get(`http://localhost:2000/product/getProducts/${id}`, { withCredentials: true })
       .then((res) => {
-        setProductDetails(res.data.products[0]);
-        console.log(res.data.products)
+        setProductDetails(res.data.product);
+        // console.log(res.data.products)
       })
       .catch((err) => {
         console.log('Error from ViewProduct');
+
       });
   }, [id]);
 
@@ -72,11 +73,11 @@ const ViewProduct = () => {
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
       <Grid container item xs={6} >
         {
-          productDetails.images && productDetails.images.map((image)=>(
-          //  console.log(card);
-          <CardMedia alt="product image"  className="createProductFormImage">
-           <img  src={image.url} alt="Product Preview" />
-          </CardMedia>
+          productDetails.images && productDetails.images.map((image) => (
+            //  console.log(card);
+            <CardMedia alt="product image" className="createProductFormImage">
+              <img src={image.url} alt="Product Preview" />
+            </CardMedia>
           ))
         }
 
