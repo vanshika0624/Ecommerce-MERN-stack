@@ -7,7 +7,12 @@
 .buttonstyle.MuiButton-root{
     margin: 0px 10px 0px 10px;
     color:black;
+    border-radius: 25px;
 }
 .iconstyle{
     margin:20px;
 }
+.buttonstyle.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white}

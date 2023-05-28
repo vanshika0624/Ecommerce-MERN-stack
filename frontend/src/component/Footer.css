@@ -1,13 +1,12 @@
 body {
-    background-color: #FAF2E9;
+    border-radius:20px;
 }
 
 .Footer_heading {
     font-size: 35px;
     font-family: 'Times New Roman', Times, serif;
-    color: #848D62;
+    color: black;
     margin: 20px;
-
     align-items: center;
 
 }
@@ -15,21 +14,28 @@ body {
 .Footer_sub_heading {
     font-size: 15px;
     font-family: 'Calibiri', Arial, serif;
-    color: #848D62;
+    color: black;
     margin: 5px;
     align-items: center;
 }
 
 .Footer_button.MuiButton-root {
-    color: #848D62;
+    color: black;
     background-color: transparent;
     margin: 5px;
-
 }
 
 .Footer_about {
     font-size: 10px;
-    color: #848D62;
+    color: black;
     font-family: 'Calibiri', Arial, serif;
     margin: 5px;
+    border-bottom-left-radius: 0.35em;
+    border-bottom-right-radius: 0.35em;
+}
+
+.Footer_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
 }
