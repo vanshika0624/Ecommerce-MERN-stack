@@ -26,7 +26,7 @@
     font-size: 14px;
     margin: 10px;
     color: #C4AD88;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -44,16 +44,23 @@
     color: #FFFFFF;
     font-family: 'Seasons', 'Calibri', 'Arial';
     border-radius: 15px;
-    height: 80px;
-    width: 280px;
+    /* padding: 20px; */
+    /* height: 80px;
+    width: 280px; */
 }
 
 .userSignin_button.MuiButton-root {
-    color: #1F1347;
     background-color: #C4AD88;
     border-radius: 30px;
-
+    margin: 10px;
+    /* width: 200px; */
+    font-size: 15px;
 }
+
+.userSignin_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white}
 
 .userSignin_size {
     width: -webkit-fill-available;
@@ -69,9 +76,9 @@
 .userSignin_successmsg {
     color: white;
     position: flex;
-   }
+}
 
 .userSignin_errmsg {
-    color:rgb(161, 16, 16) ;
+    color: rgb(161, 16, 16);
     align-items: center;
-   }
+}

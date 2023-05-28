@@ -1,5 +1,5 @@
 .userSignup_style {
-    justify-content: left;
+    justify-content: center;
     margin-bottom: 55px;
     /* position: relative;
     top:30%; */
@@ -10,7 +10,6 @@
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /* background-color: #C4AD88; */
     /* position: relative; */
-
 }
 
 .userSignup_buttonmargin {
@@ -19,16 +18,22 @@
 
 }
 
+.userSignup_button:hover{
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
 /* .userSignup_width{
  MuiButton:{
     root:
     min-width: 200px;
 }
 } */
-.userSignup_link {
+.link {
     font-size: 14px;
     margin: 10px;
     text-align: left;
+    color: #6b614f;
 }
 
 /* .userSignup_bgcolor {
@@ -49,14 +54,24 @@
    
 
 }
+.userSignup_button.MuiButton-root{
+    color: white;
+    background-color: black;
+    margin: 5px;
+}
+.userSignup_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
 
-.userSignup_button{
+/*.userSignup_button{
     color: white;
     background: black;
     border-radius: 30px;
 
 }
-
+*/
 .userSignup_size {
     width: -webkit-fill-available;
     height: -webkit-fill-available;

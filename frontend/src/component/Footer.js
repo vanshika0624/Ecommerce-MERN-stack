@@ -9,7 +9,7 @@ const Footer = () => {
         navigate('/user-signup')
     }
     return (
-        <div align="center" >
+        <div align="center" style={{background: "#C4AD88" }}> 
             <div className="Footer_heading">Maker's Mart </div>
             <div className="Footer_sub_heading">A one-stop-shop for all your
                 Handcrafted needs. </div>
@@ -21,7 +21,7 @@ const Footer = () => {
             <div className="Footer_about"> MAKER'S MART COMPANY<br />
                 University of California,<br />
                 Irvine CA 92697<br />
-            </div>
+            </div> 
             <div className="Footer_about">www.makersmart.com</div>
         </div>
 
