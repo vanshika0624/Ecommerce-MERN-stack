@@ -11,20 +11,61 @@ import axios from 'axios';
 const SignIn = () => {
     const navigate = useNavigate();
 
+
     const [pass, setPass] = useState("");
     const [user, setUser] = useState("");
+    const [userError, setUserError] = useState('');
+    const [passError, setPassError] = useState('');
     // const [successmsg, setSuccessmsg] = useState(false);
+
+
     const [errmsg, setErrmsg] = useState(false);
     const [emptyfields, setEmptyfields] = useState(false);
 
+    const handleUserChange = (e) => {
+        setUser(e.target.value)
+        if (!validateUser(e.target.value)) {
+            setUserError('Please Enter Valid Username')
+
+        }
+        else {
+            setUserError('')
+        }
+    }
+    const validateUser = (user) => {
+        const userRegex = /^(?!\s*$).+/;
+        return userRegex.test(user)
+
+    }
+
+    const validatePass = (pass) => {
+        const passRegex = /^(?!\s*$).+/;
+        return passRegex.test(pass)
+
+    }
+
+    const handlePassChange = (e) => {
+        setPass(e.target.value)
+        if (!validatePass(e.target.value)) {
+            setPassError('Please Enter Valid Password')
+
+        }
+        else {
+            setPassError('')
+        }
+    }
+
+
+
+
     const getData = (event) => {
         event.preventDefault()
-        if (user != "" && pass != "") {     
+        if (user != "" && pass != "") {
             setEmptyfields(false);
             axios.post("http://localhost:2000/user/login", {
                 "email": user,
                 "password": pass,
-            },{ withCredentials: true })
+            }, { withCredentials: true })
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
@@ -59,11 +100,11 @@ const SignIn = () => {
                         Sign In
                     </Typography>
                 </div>
-                <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField id="filled-basic" value={user} onChange={(e) => setUser(e.target.value)} error={!user} helperText={!user ? "Require" : ""} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                <div style={{ margin: "10px", textAlign: "center", padding: "10px" }}>
+                    <TextField id="filled-basic" sx={{ width: 300 }} value={user} onChange={handleUserChange} error={Boolean(userError)} helperText={!user ? "" : "userError"} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
-                <div style={{ margin: "5px", textAlign: "center" }}>
-                    <TextField type='password' value={pass} onChange={(e) => setPass(e.target.value)} error={!pass} helperText={!pass ? "Require" : ""} id="filled-basic" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                <div style={{ margin: "10px", textAlign: "center" }}>
+                    <TextField type='password' sx={{ width: 300 }} value={pass} onChange={handlePassChange} error={Boolean(passError)} helperText={!pass ? "" : "passError"} id="filled-basic" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
 
                 <div className="userSignin_buttonmargin">
