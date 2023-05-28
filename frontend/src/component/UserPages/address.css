@@ -1,5 +1,4 @@
 .add_style {
-    /* justify-content: center; */
     position: relative;
     top: 45%;
     padding-top: 10vh;
@@ -7,11 +6,7 @@
     color: white;
     text-align: center;
     font-size: 45px !important;
-    /* font-size: 65px; */
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    /* background-color: #C4AD88; */
-    /* position: relative; */
-
 }
 
 .add_imgstyle {
@@ -20,29 +15,30 @@
     height:100%;
     width: 100%; 
     position: absolute;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .add_buttonmargin {
-    margin: 10px;
+    margin: 10px 10px 30px 10px;
 }
 
-/* .add_width{
- MuiButton:{
-    root:
-    min-width: 200px;
+.psw_buttonmargin {
+    margin: 50px 10px 25px 10px !important;
 }
-} */
-/* .add_link {
-    font-size: 14px;
-    margin: 10px;
-} */
 
-/* 
-.add_bgcolor {
+.address_SuccessMsg {
+    color: rgb(3, 58, 3);
+    margin-left: 40px;
+}
 
-    background-color: #1B201E;
-} */
-
+.address_ErrorMsg {
+    color:rgb(161, 16, 16) ;
+    margin-left: 40px;
+}
+   
 .add_align {
     margin: 30%;
 }
@@ -61,11 +57,6 @@
     background-color: rgb(234, 117, 200);
     border-radius: 30px;
 
-}
-.add_button.MuiButton-root:hover {
-    background-color: #6b614f;
-    transition: 0.7s;
-    color: white
 }
 
 .add_size {

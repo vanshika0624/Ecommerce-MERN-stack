@@ -6,6 +6,7 @@ import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
 import SellerSignUp from './component/SellerPages/signup.js'
 import Address from './component/UserPages/address.js';
+import ChangePassword from './component/UserPages/changePassword';
 import Jewelry from "./component/UserPages/ProductPages/Jewelry.js";
 import Clothing from "./component/UserPages/ProductPages/Clothing.js";
 import Furniture from "./component/UserPages/ProductPages/Furniture.js";
@@ -31,6 +32,7 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/seller-signup' element={<SellerSignUp />} />
           <Route path='/address' element={<Address />} />
+          <Route path='/changePassword' element={<ChangePassword />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='/jewelry' element={<Jewelry />} />
           <Route path='/furniture' element={<Furniture />} />
