@@ -126,10 +126,12 @@ const SignIn = () => {
                         </div>
                     }
                     <div className="link">
+                    <Typography align='center'>
                         <Link color="inherit" onClick={goToUserSignup} >
                             Don't have an account ?<br />
                             Sign up here !
                         </Link>
+                        </Typography>
                     </div>
                 </div>
             </div>

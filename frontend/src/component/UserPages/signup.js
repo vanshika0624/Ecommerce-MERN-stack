@@ -139,13 +139,16 @@ const SignUp = () => {
                     
                 </div> */}
 
-                        <div className="userSignup_buttonmargin ">
-                            <Typography align='left'>
-                                <Button variant="contained" size="large" type="submit" className="userSignup__button" >Sign Up</Button>
-                            </Typography>
-                            {successmsg && !emptyfields && <div><Typography className="userSignup_successmsg">
-                                Account Created Succesfully!
-                            </Typography>
+                <div className="userSignup_buttonmargin ">
+                    <Typography  align='left'>
+                        <Button variant="contained" size="large" type="submit" className="userSignup_button" >Sign Up</Button>
+                    </Typography>
+                   { successmsg && !emptyfields && <div><Typography className="userSignup_successmsg">
+    Account Created Succesfully!
+  </Typography>
+  
+  
+         
 
                                 <Button variant="contained" size="large" onClick={goToSignin} className="userSignup_button" >Click here to Sign In</Button>
                             </div>

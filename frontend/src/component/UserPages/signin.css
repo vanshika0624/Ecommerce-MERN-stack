@@ -50,13 +50,17 @@
 }
 
 .userSignin_button.MuiButton-root {
-    color: #1F1347;
     background-color: #C4AD88;
     border-radius: 30px;
     margin: 10px;
     /* width: 200px; */
     font-size: 15px;
 }
+
+.userSignin_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white}
 
 .userSignin_size {
     width: -webkit-fill-available;
