@@ -114,7 +114,7 @@ const HomePage = () => {
         {cards.map((card) => (
           <Grid item xs={4} >
             <Card key={card._id} className="homePage_card"  >
-              <CardMedia image={card.image} alt="product image" />
+              {/* <CardMedia image={card.image} alt="product image" /> */}
               {
           card.images && card.images.map((image)=>(
           //  console.log(card);
