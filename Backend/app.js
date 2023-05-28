@@ -22,12 +22,13 @@ app.use(express.json());
 // Route Imports
 const product = require("./routes/productRoute");
 const user = require("./routes/userRoute");
+const order = require("./routes/orderRoute")
 // const order = require("./routes/orderRoute");
 // const payment = require("./routes/paymentRoute");
 
 app.use("/product/", product);
 app.use("/user/", user);
-// app.use("/api/v1", order);
+app.use("/mart/", order);
 // app.use("/api/v1", payment);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
