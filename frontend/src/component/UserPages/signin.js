@@ -101,10 +101,10 @@ const SignIn = () => {
                     </Typography>
                 </div>
                 <div style={{ margin: "10px", textAlign: "center", padding: "10px" }}>
-                    <TextField id="filled-basic" sx={{ width: 300 }} value={user} onChange={handleUserChange} error={Boolean(userError)} helperText={!user ? "" : "userError"} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField id="filled-basic" sx={{ width: 300 }} value={user} onChange={handleUserChange} error={Boolean(userError)} helperText={!user ? "" : ""} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
                 <div style={{ margin: "10px", textAlign: "center" }}>
-                    <TextField type='password' sx={{ width: 300 }} value={pass} onChange={handlePassChange} error={Boolean(passError)} helperText={!pass ? "" : "passError"} id="filled-basic" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
+                    <TextField type='password' sx={{ width: 300 }} value={pass} onChange={handlePassChange} error={Boolean(passError)} helperText={!pass ? "" : ""} id="filled-basic" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} />
                 </div>
 
                 <div className="userSignin_buttonmargin">
@@ -126,11 +126,11 @@ const SignIn = () => {
                         </div>
                     }
                     <div className="link">
-                    <Typography align='center'>
-                        <Link color="inherit" onClick={goToUserSignup} >
-                            Don't have an account ?<br />
-                            Sign up here !
-                        </Link>
+                        <Typography align='center'>
+                            <Link color="inherit" onClick={goToUserSignup} >
+                                Don't have an account ?<br />
+                                Sign up here !
+                            </Link>
                         </Typography>
                     </div>
                 </div>

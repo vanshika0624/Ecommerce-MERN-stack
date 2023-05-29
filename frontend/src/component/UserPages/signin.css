@@ -60,7 +60,8 @@
 .userSignin_button.MuiButton-root:hover {
     background-color: #6b614f;
     transition: 0.7s;
-    color: white}
+    color: white
+}
 
 .userSignin_size {
     width: -webkit-fill-available;
