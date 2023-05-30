@@ -16,7 +16,7 @@ const Clothing = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:2000/product/getProducts?category=Clothing',{ withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
             .then((res) => {
                 setClothProducts(res.data.products);
                 console.log(res.data.products);
@@ -36,7 +36,15 @@ const Clothing = () => {
                 {cards.map((card) => (
                     <Grid item xs={4} >
                         <Card key={card._id} className="card"  >
-                            <CardMedia image={card.image} alt="product image" />
+                            {/* <CardMedia image={card.image} alt="product image" /> */}
+                            {
+                                card.images && card.images.map((image) => (
+                                    //  console.log(card);
+                                    <CardMedia alt="product image" className="displayProductFormImage">
+                                        <img src={image.url} alt="Product Preview" />
+                                    </CardMedia>
+                                ))
+                            }
                             <CardContent>
                                 <Typography color="#848D62" variant="h6" component="h6">
                                     {card.name},
