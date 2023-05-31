@@ -45,6 +45,8 @@ const EditProduct = () => {
         setprice(res.data.product.price)
         setcategory(res.data.product.category)
         setStock(res.data.product.stock)
+        setImages(res.data.product.images)
+        setImagesPreview(res.data.product.images)
         setdescription(res.data.product.description)
         // console.log(res.data.products)
       })
@@ -83,12 +85,12 @@ const EditProduct = () => {
       // setEmptyfields(false);
       axios.put(`http://localhost:2000/product/seller/getProducts/${id}`, {
 
-        "name": "prName",
-        "description": "description",
-        "price": "price",
-        "category": "category",
+        "name": prName,
+        "description": description,
+        "price": price,
+        "category": category,
         "images": images,
-        "stock": "Stock",
+        "Stock": Stock,
         // "user": "64596f0f3d0561f78b51993d"
 
       }, { withCredentials: true })
@@ -210,6 +212,7 @@ const EditProduct = () => {
                   />
                   {/* <Button onClick={handleOpenFileDialog}> <UploadIcon onClick={handleOpenFileDialog} /></Button> */}
                   <UploadIcon onClick={handleOpenFileDialog} />
+
 
                 </div>
               </Grid>

@@ -1,9 +1,41 @@
 .createProductFormImage {
-    width: 100%;
-    overflow: auto;
-  }
-  
-  .createProductFormImage>img {
-    width: 30vmax;
-    margin: 0 0.5vmax;
+  width: 100%;
+  overflow: auto;
+}
+
+.createProductFormImage>img {
+  width: 30vmax;
+  margin: 0 0.5vmax;
+
+}
+
+.fontStyles.MuiTypography-root {
+  text-align: justify;
+  margin: 10px;
+  margin-top: 15px;
+  font-family: 'Cambria', 'Calibiri', 'Arial';
+}
+
+.quantity {
+  margin: 10px;
+  margin-top: 15px;
+  /* font-size: 15px; */
+  font-weight: 500;
+  font-size: 18px;
+  font-family: 'Cambria', 'Calibiri', 'Arial';
+}
+
+.viewProduct_Button.MuiButton-root {
+  color: tan;
+  background-color: #241B18;
+  border-radius: 30px;
+  margin: 10px;
+  margin-top: 20px;
+  height: 40px;
+  width: 180px;
+  font-size: 15px;
+}
+
+.createProductFormImage.MuiCardMedia-root {
+  align-items: center;
 }

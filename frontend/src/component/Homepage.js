@@ -8,6 +8,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
+import Search from "./UserPages/ProductPages/search.js";
 const HomePage = () => {
   const navigate = useNavigate();
   const [furnitureProducts, setFurnitureProducts] = useState([]);
@@ -16,10 +17,16 @@ const HomePage = () => {
   const [toyProducts, setToyProducts] = useState([]);
   const [clothProducts, setClothProducts] = useState([]);
   const [paintingProducts, setPaintingProducts] = useState([]);
+  const [searchBarData, setSearchBarData] = useState([]);
+
+  const handleSearchResults = (results) => {
+    setSearchBarData(results);
+    console.log(searchBarData, "in homepage");
+  };
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Furniture',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Furniture', { withCredentials: true })
       .then((res) => {
         setFurnitureProducts(res.data.products);
         console.log(res.data.products);
@@ -30,7 +37,7 @@ const HomePage = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Jewelry',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Jewelry', { withCredentials: true })
       .then((res) => {
         setJewelryProducts(res.data.products);
         console.log(res.data.products);
@@ -42,7 +49,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Paintings',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Paintings', { withCredentials: true })
       .then((res) => {
         setPaintingProducts(res.data.products);
         console.log(res.data.products);
@@ -54,7 +61,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Clothing',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
       .then((res) => {
         setClothProducts(res.data.products);
         console.log(res.data.products);
@@ -66,7 +73,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Home-Decor',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Home-Decor', { withCredentials: true })
       .then((res) => {
         setDecorProducts(res.data.products);
         console.log(res.data.products);
@@ -78,7 +85,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Toys',{ withCredentials: true })
+      .get('http://localhost:2000/product/getProducts?category=Toys', { withCredentials: true })
       .then((res) => {
         setToyProducts(res.data.products);
         console.log(res.data.products);
@@ -116,13 +123,13 @@ const HomePage = () => {
             <Card key={card._id} className="homePage_card"  >
               {/* <CardMedia image={card.image} alt="product image" /> */}
               {
-          card.images && card.images.map((image)=>(
-          //  console.log(card);
-          <CardMedia alt="product image"  className="displayProductFormImage">
-           <img  src={image.url} alt="Product Preview" />
-          </CardMedia>
-          ))
-        }
+                card.images && card.images.map((image) => (
+                  //  console.log(card);
+                  <CardMedia alt="product image" className="displayProductFormImage">
+                    <img src={image.url} alt="Product Preview" />
+                  </CardMedia>
+                ))
+              }
               <CardContent>
                 <Typography variant="h6" component="h6" color="#848D62">
                   {card.name},
@@ -145,7 +152,7 @@ const HomePage = () => {
 
   return (
     <div className="bg">
-      <Navigation />
+      <Navigation searchBarData={handleSearchResults} />
       <div>
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Jewelry

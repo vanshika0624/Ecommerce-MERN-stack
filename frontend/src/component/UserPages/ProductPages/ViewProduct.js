@@ -8,6 +8,7 @@ import { CardMedia, Grid, MenuItem, TextField } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import axios from "axios";
 import Navigation from "../../navigation.js"
+import Footer from "../../Footer.js"
 const ViewProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -75,7 +76,7 @@ const ViewProduct = () => {
         {
           productDetails.images && productDetails.images.map((image) => (
             //  console.log(card);
-            <CardMedia alt="product image" className="createProductFormImage">
+            <CardMedia align="center" alt="product image" className="createProductFormImage">
               <img src={image.url} alt="Product Preview" />
             </CardMedia>
           ))
@@ -83,23 +84,29 @@ const ViewProduct = () => {
 
       </Grid>
       <Grid item xs={4} >
-        <Typography variant="h4" component="h4">
+        <Typography variant="h4" component="h4" className="fontStyles"  >
           {productDetails.name}
         </Typography>
-        <Typography variant="h6" component="h6">
+        <Typography variant="h6" component="h6" className="fontStyles">
           {productDetails.description}
         </Typography>
+        <Typography variant="h6" component="h6" className="fontStyles">
+          Price: ${productDetails.price}
+        </Typography>
         <div>
-          <Select
-            labelId="product_size_label"
-            id="product_size"
-            value={size}
-            defaultValue="OneSize"
-            label="Size"
-            onChange={setSizeValue}
-          >
-            <MenuItem value={"OneSize"}>OneSize</MenuItem>
-          </Select>
+          {/* <Typography className="fontStyles" >
+            OneSize
+          </Typography> */}
+          {/* <Select
+              labelId="product_size_label"
+              id="product_size"
+              value={size}
+              defaultValue="OneSize"
+              label="Size"
+              onChange={setSizeValue}
+            >
+              <MenuItem value={"OneSize"}>OneSize</MenuItem>
+            </Select> */}
           {productDetails && productDetails.Stock > 0 ?
             // <Select
             //   labelId="product_quantity_label"
@@ -113,24 +120,26 @@ const ViewProduct = () => {
             //   {/* <MenuItem value={i}>i</MenuItem> */}
 
             // </Select>
-            <div>
+            <div  >
               {/* <Button onClick={decreaseQuantity}>-</Button> */}
-              <div>Quantity</div><TextField readOnly type="number" value={quantity} onChange={handleInputChange} />
+              <div className="quantity">Quantity</div><TextField style={{ margin: "10px" }} readOnly type="number" value={quantity} onChange={handleInputChange} />
               {/* <Button onClick={increaseQuantity}>+</Button> */}
             </div>
             :
-            <Typography variant="h4" component="h4">
+            <Typography variant="h4" component="h4" >
               Out of Stock!
             </Typography>
           }
         </div>
-
         <div>
-          <Button disabled={productDetails.Stock > 0 ? false : true}> Add to Cart</Button>
+          <Button className="viewProduct_Button" disabled={productDetails.Stock > 0 ? false : true}> Add to Cart</Button>
         </div>
+
       </Grid>
     </Grid>
-  </div>
+    <Footer />
+  </div >
+
   )
 };
 
