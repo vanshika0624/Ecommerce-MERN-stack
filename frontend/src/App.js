@@ -16,6 +16,7 @@ import HomePage from "./component/Homepage.js";
 import Cart from "./component/UserPages/cart.js";
 import Profile from "./component/UserPages/profile.js";
 import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
+import Search from "./component/UserPages/ProductPages/searchResult.js";
 // import Navigation from "./component/navigation.js"
 import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
@@ -42,6 +43,8 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           {/* <Route path='/footer' element={<Footer />} /> */}
           <Route path='/products/:id' element={<ViewProduct />} />
+          <Route path='/products/:id/:keyword' element={<ViewProduct />} />
+          <Route path='/search' element={<Search />} />
           <Route path='/add-product' element={< AddProduct />} />
           <Route path='/edit-product/:id' element={< EditProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
