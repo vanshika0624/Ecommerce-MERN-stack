@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./address.css";
-// import adimg from "../images/address.png";
+import { useNavigate, Link } from 'react-router-dom';
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -11,20 +11,32 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import Tooltip from '@mui/material/Tooltip';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import LogoutIcon from '@mui/icons-material/Logout';
 import axios from "axios";
 const Address = () => {
+    const navigate = useNavigate();
     const [fname, setFName] = useState('');
     const [lname, setLName] = useState('');
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [phone, setPhone] = useState('');
+    const [role, setRole] = useState('');
+    const [ein, setEIN] = useState('');
     const [fnameError, setFNameError] = useState('');
     const [lnameError, setLNameError] = useState('');
     const [streetError, setStreetError] = useState('');
     const [cityError, setCityError] = useState('');
     const [stateError, setStateError] = useState('');
     const [zipError, setZipError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [einError, setEINError] = useState('');
     const [successMsgFlag, setSuccessMsgFlag] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsgFlag, setErrorMsgFlag] = useState(false);
@@ -40,9 +52,19 @@ const Address = () => {
         return zipRegex.test(zipCode);
     }
 
+    const validatePhone = (pno) => {
+        const pnoRegex = /^\d{10}$/;
+        return pnoRegex.test(pno)
+    }
+
+    const validateEIN = (ein) => {
+        const einRegex = /^\d+$/;
+        return einRegex.test(ein)
+    }
+
     const handleFNameChange = (e) => {
         setFName(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setFNameError('Required')
         }
         else if (!validateName(e.target.value)) {
@@ -55,7 +77,7 @@ const Address = () => {
     
     const handleLNameChange = (e) => {
         setLName(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setLNameError('Required')
         }
         else if (!validateName(e.target.value)) {
@@ -68,7 +90,7 @@ const Address = () => {
 
     const handleStreetChange = (e) => {
         setStreet(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setStreetError('Required')
         }
         else if (e.target.value.length > 50) {
@@ -81,7 +103,7 @@ const Address = () => {
 
     const handleCityChange = (e) => {
         setCity(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setCityError('Required')
         }
         else if (e.target.value.length > 20) {
@@ -94,7 +116,7 @@ const Address = () => {
 
     const handleStateChange = (e) => {
         setState(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setStateError('Required')
         }
         else {
@@ -104,7 +126,7 @@ const Address = () => {
 
     const handleZipChange = (e) => {
         setZip(e.target.value)
-        if(e.target.value.length == 0) {
+        if(e.target.value.length === 0) {
             setZipError('Required')
         }
         else if (!validateZip(e.target.value)) {
@@ -115,13 +137,77 @@ const Address = () => {
         }
     }
 
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value)
+        if(e.target.value.length === 0) {
+            setPhoneError('Required')
+        }
+        else if (!validatePhone(e.target.value)) {
+            setPhoneError('Please Enter Valid Phone')
+        }
+        else {
+            setPhoneError('')
+        }
+    }
+
+    const handleEINChange = (e) => {
+        setEIN(e.target.value)
+        if(e.target.value.length === 0) {
+            setEINError('Required')
+        }
+        else if (!validateEIN(e.target.value)) {
+            setEINError('Please Enter Valid EIN')
+
+        }
+        else {
+            setEINError('')
+        }
+    }
+
+
+    const goToProfile = () => {
+        navigate('/profile')
+    }
+    
+    const goToCart = () => {
+        navigate('/cart')
+    }
+    
+    const goToHome=()=> {
+        navigate('/home')
+    }
+
+    const goToOrders =()=> {
+        navigate('/profile')
+    }
+
+    const goToChangePassword =()=> {
+        navigate('/changePassword')
+    }
+
+    const logOut=()=>
+    {
+        axios
+        .get(`http://localhost:2000/user/logout/`,{ withCredentials: true })
+        .then((res) => {
+            // console.log(res)
+        })
+        .catch((err) => {
+            console.log('Error while logging out');
+        });
+        navigate('/')
+    }
+
     useEffect(() => {
         axios
             .get('http://localhost:2000/user/getMyDetails',{ withCredentials: true })
             .then((res) => {
+                setFName(res.data.user.firstname)
+                setLName(res.data.user.lastname)
+                setPhone(res.data.user.phone);
+                setRole(res.data.user.role);
+                setEIN(res.data.user.EIN);
                 if(res.data.user.address.length > 0) {
-                    setFName(res.data.user.firstname)
-                    setLName(res.data.user.lastname)
                     setStreet(res.data.user.address[0].street);
                     setCity(res.data.user.address[0].city);
                     setState(res.data.user.address[0].state);
@@ -142,68 +228,97 @@ const Address = () => {
     const updateAddress = (event) => {
         event.preventDefault()
         {
-            if(Boolean(fnameError == "") && Boolean(lnameError == "") &&
-            Boolean(stateError == "") && Boolean(zipError == "") &&
-            Boolean(stateError == "") && Boolean(zipError == "")) {
-                axios.put("http://localhost:2000/user/updateMyDetails", {
-                    "firstname": fname,
-                    "lastname": lname,
-                    "address": [{
-                            "street": street,
-                            "city": city,
-                            "state": state,
-                            "zipcode": zip
-                        }]
+            if((fname !== "") && (lname !== "") && (phone !== "")  &&
+            (street !== "") && (city !== "") && (state !== "") && (zip !== "") &&
+            ((role === 'seller' && ein !== "") || (role === 'buyer'))) {
+
+                axios.put("http://localhost:2000/user/updateMyDetails", { 
+                        "firstname": fname,
+                        "lastname": lname,
+                        "phone": phone,
+                        "EIN": ein,
+                        "address": [{
+                                "street": street,
+                                "city": city,
+                                "state": state,
+                                "zipcode": zip
+                            }]
+                    
                     }, { withCredentials: true })
                         .then((response) => {
                         setSuccessMsgFlag(true);
                         setErrorMsgFlag(false);
-                        setSuccessMsg('Address Updated Succesfully!');
+                        setSuccessMsg('User Details Updated Succesfully!');
                         })
                         .catch((err) => {
                             setErrorMsgFlag(true);
                             setSuccessMsgFlag(false);
-                            setErrorMsg('Error occured while updating the Address!');
+                            setErrorMsg('Error occured while updating the User Details!');
                         })
             }
+            else{
+                setErrorMsgFlag(true);
+                setSuccessMsgFlag(false);
+                setErrorMsg('Please fill all the required fields.');
+            }
         }
-        
     }
-
   
     return (<div className="add_imgstyle">
+        
+        <Grid container direction="row">
+            <Grid item xs={8}  > 
+                <Typography fontSize="40px" color="black" marginLeft={3}>
+                </Typography>
+            </Grid>
+            <Grid item xs={4}  > 
+                <div className="buttonmargin">
+                    <Typography align="right">
+                        <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip>
+                        <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
+                        <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
+                        <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToProfile}/></Tooltip>
+                        <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
+                    </Typography>
+                </div>
+            </Grid>
+        </Grid>
+
         <Grid container direction="row" >
-            <Grid item xs={2}  >
+            <Grid item xs={3}  >
                 <div className="add_align">
                     <div >
-                        <Typography align="center" className="add_style" >
+                        <Typography variant="h2" component="h2" color="#3b2f28" align="center">
                             Update User Details
+                        </Typography>
+                        <Typography variant="h5" component="h5" color="#3b2f28" align="center">
+                            <Button size="large" style={{ color: "#3b2f28", fontSize: 13.5, fontWeight: 'bold'}}  className="" onClick={goToChangePassword}>Change Password?</Button><br/>
                         </Typography>
                     </div>
                 </div>
 
             </Grid>
             <div>
-                <Grid item xs={10} style={{ margin: '100px 50px 0px 375px' }} >
+                <Grid item xs={9} style={{ margin: '0px 100px 0px 200px' }} >
                     <Card variant="outlined" className="add_cardStyle" sx={{ minWidth: 650 }}>
                         <CardContent>
                             <Typography fontSize="40px" color="black" align="center">
-                                User Deatils
+                                User Details
                             </Typography>
                         </CardContent>
                         
                         <div style={{ margin: "20px", textAlign: "left" }}>
-                            <TextField required id="id-fname" value={fname} onChange={handleFNameChange} error={Boolean(fnameError != "")} helperText={Boolean(fnameError != "") ? fnameError : ""} label="First Name" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
-                            <TextField required id="id-lname" value={lname} onChange={handleLNameChange} error={Boolean(lnameError != "")} helperText={Boolean(lnameError != "") ? lnameError : ""} label="Last Name" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-fname" value={fname} onChange={handleFNameChange} error={Boolean(fnameError !== "")} helperText={Boolean(fnameError !== "") ? fnameError : ""} label="First Name" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-lname" value={lname} onChange={handleLNameChange} error={Boolean(lnameError !== "")} helperText={Boolean(lnameError !== "") ? lnameError : ""} label="Last Name" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                         </div>
                         <div style={{ margin: "20px", textAlign: "left" }}>
-                            <TextField required id="id-street" value={street} onChange={handleStreetChange} error={Boolean(streetError != "")} helperText={Boolean(streetError != "") ? streetError : ""} label="Address" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
-                            <TextField required id="id-city" value={city} onChange={handleCityChange} error={Boolean(cityError != "")} helperText={Boolean(cityError != "") ? cityError : ""} label="City" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-street" value={street} onChange={handleStreetChange} error={Boolean(streetError !== "")} helperText={Boolean(streetError !== "") ? streetError : ""} label="Address" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-city" value={city} onChange={handleCityChange} error={Boolean(cityError !== "")} helperText={Boolean(cityError !== "") ? cityError : ""} label="City" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                         </div>
                         <div style={{ margin: "20px", textAlign: "left" }}>
                             <FormControl required sx={{minWidth: 380, marginLeft: 1.25 }} variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} >
                                 <InputLabel id="id-state-label">State</InputLabel>
-                                <Select labelId="state-label" id="id-state-dd" value={state} label="State" onChange={handleStateChange} error={Boolean(stateError != "")} helperText={Boolean(stateError != "") ? stateError : ""} >
+                                <Select labelId="state-label" id="id-state-dd" value={state} label="State" onChange={handleStateChange} error={Boolean(stateError !== "")} helperText={Boolean(stateError !== "") ? stateError : ""} >
                                     <MenuItem value={"AL"}>Alabama</MenuItem>
                                     <MenuItem value={"AK"}>Alaska</MenuItem>
                                     <MenuItem value={"AZ"}>Arizona</MenuItem>
@@ -256,21 +371,46 @@ const Address = () => {
                                     <MenuItem value={"WY"}>Wyoming</MenuItem>
                                 </Select>
                             </FormControl>
-                            <TextField required id="id-zip" value={zip} onChange={handleZipChange} error={Boolean(zipError != "")} helperText={Boolean(zipError != "") ? zipError : ""} label="ZipCode" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-zip" value={zip} onChange={handleZipChange} error={Boolean(zipError !== "")} helperText={Boolean(zipError !== "") ? zipError : ""} label="ZipCode" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                         </div>
-                        { successMsgFlag && <div className="address_SuccessMsg"><Typography>
+                        { role === "buyer" &&
+                        <div style={{ margin: "20px", textAlign: "left" }}>
+                            <TextField type="number" required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Mobile Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <Button variant="contained" size="large" className="add_button" onClick={updateAddress}>Submit</Button>
+                        </div>
+                        }
+                        { role === "buyer" && successMsgFlag && <div className="address_SuccessMsg"><Typography>
                             {successMsg}
                             </Typography></div>
                         }
-                        { errorMsgFlag && <div className="address_ErrorMsg"><Typography>
+                        { role === "buyer" && errorMsgFlag && <div className="address_ErrorMsg"><Typography>
                             {errorMsg}
                             </Typography></div>
                         }
+
+
+                        { role === "seller" &&
+                        <div style={{ margin: "20px", textAlign: "left" }}>
+                            <TextField type="number" required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Mobile Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField type="number" required id="id-fname" value={ein} onChange={handleEINChange} error={Boolean(einError !== "")} helperText={Boolean(einError !== "") ? einError : ""} label="EIN" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                        </div>
+                        }
+                        { role === "seller" && successMsgFlag && <div className="address_SuccessMsg"><Typography>
+                            {successMsg}
+                            </Typography></div>
+                        }
+                        { role === "seller" && errorMsgFlag && <div className="address_ErrorMsg"><Typography>
+                            {errorMsg}
+                            </Typography></div>
+                        }
+                        { role === "seller" &&
                         <div className="add_buttonmargin">
                             <Typography align='center'>
                                 <Button  variant="contained" size="large" className="add_button" onClick={updateAddress}>Submit</Button>
                             </Typography>
                         </div>
+                        }
+                        
                     </Card>
                 </Grid>
             </div>

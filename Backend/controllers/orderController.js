@@ -2,6 +2,7 @@ const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
 const ErrorHander = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const ApiFeatures = require("../utils/apifeatures");
 
 // Create new Order
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
@@ -37,7 +38,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
 exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findById(req.params.id).populate(
     "user",
-    "name email"
+    "firstname lastname email"
   );
 
   if (!order) {
@@ -50,30 +51,44 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// get logged in user  Orders
-exports.myOrders = catchAsyncErrors(async (req, res, next) => {
-  const orders = await Order.find({ user: req.user._id });
+// Get All User Orders
+exports.getAllBuyerOrders = catchAsyncErrors(async (req, res, next) => {
+  const resultsPerPage = 2;
+  const ordersCount = await Order.find({ user: req.user._id }).countDocuments();
+
+  const apiFeature = new ApiFeatures(Order.find({ user: req.user._id }).sort({createdAt: -1}), req.query)
+    .pagination(resultsPerPage);
+
+  let orders = await apiFeature.query;
+
+  let = orders.length;
 
   res.status(200).json({
     success: true,
     orders,
+    ordersCount,
+    resultsPerPage
   });
 });
 
-// get all Orders -- Admin
-exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
-  const orders = await Order.find();
 
-  let totalAmount = 0;
+// get all Orders -- Seller
+exports.getAllSellerOrders = catchAsyncErrors(async (req, res, next) => {
+  const resultsPerPage = 2;
+  const ordersCount = await Order.find({ "orderItems.seller": req.user._id } ).countDocuments();
 
-  orders.forEach((order) => {
-    totalAmount += order.totalPrice;
-  });
+  const apiFeature = new ApiFeatures(Order.find({ "orderItems.seller": req.user._id } ), req.query)
+    .pagination(resultsPerPage);
+
+  let orders = await apiFeature.query;
+  orders.forEach((order) => { order.orderItems = order.orderItems.filter((item) => item.seller.toString()  == req.user._id); });
+  let = orders.length;
 
   res.status(200).json({
     success: true,
-    totalAmount,
     orders,
+    ordersCount,
+    resultsPerPage
   });
 });
 

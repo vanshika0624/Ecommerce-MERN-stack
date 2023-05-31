@@ -6,7 +6,7 @@ import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
 import SellerSignUp from './component/SellerPages/signup.js'
 import Address from './component/UserPages/address.js';
-import ChangePassword from './component/UserPages/changePassword';
+import ChangePassword from './component/UserPages/changePassword.js';
 import Jewelry from "./component/UserPages/ProductPages/Jewelry.js";
 import Clothing from "./component/UserPages/ProductPages/Clothing.js";
 import Furniture from "./component/UserPages/ProductPages/Furniture.js";
@@ -21,6 +21,7 @@ import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
 import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
 import Dashboard from './component/SellerPages/dashboard.js'
+import ViewSingleOrder from "./component/UserPages/viewOrder.js";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path='/edit-product/:id' element={< EditProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
           <Route path='/seller-dashboard' element={< Dashboard />} />
+          <Route path='/orders/:id' element={<ViewSingleOrder/>} />
 
         </Routes>
       </div>

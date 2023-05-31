@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState }  from "react";
 import "./navigation.css";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import Tooltip from "@mui/material/Tooltip";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import Grid from "@mui/material/Grid";
 import Search from "./UserPages/ProductPages/search.js";
 
@@ -42,12 +43,16 @@ const Navigation = ({ searchBarData }) => {
         navigate("/cart");
     };
 
-    const goToProfile = () => {
+    const goToOrders = () => {
         navigate("/profile");
     };
 
     const goToHome = () => {
         navigate("/home");
+    };
+
+    const goToUserDetails=()=> {
+        navigate("/address");
     };
 
     const handleSearchResults = (results) => {
@@ -88,9 +93,10 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
                 <Grid container item xs={6} md={2} alignContent="flex-end" justifyContent="flex-end">
                     <div className="iconstyle">
-                        <HomeIcon fontSize="large" onClick={goToHome} />
-                        <ShoppingCartIcon fontSize="large" onClick={goToCart} />
-                        <PersonIcon fontSize="large" onClick={goToProfile} />
+                        <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip>
+                        <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
+                        <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
+                        <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToUserDetails}/></Tooltip>
                     </div>
                 </Grid>
             </Grid>

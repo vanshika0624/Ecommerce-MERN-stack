@@ -3,7 +3,7 @@
     top: 45%;
     padding-top: 10vh;
     padding-left: 10vh;
-    color: white;
+    color: black;
     text-align: center;
     font-size: 45px !important;
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -11,7 +11,7 @@
 
 .add_imgstyle {
     justify-content: center;
-    background: url('../../images/address.png') no-repeat center center fixed;
+    background: url('../../images/userDetails.avif') no-repeat center center fixed;
     height:100%;
     width: 100%; 
     position: absolute;
@@ -26,21 +26,21 @@
 }
 
 .psw_buttonmargin {
-    margin: 50px 10px 25px 10px !important;
+    margin: 20px 125px 25px 10px !important;
 }
 
 .address_SuccessMsg {
     color: rgb(3, 58, 3);
-    margin-left: 40px;
+    margin: 0px 0px 20px 40px;
 }
 
 .address_ErrorMsg {
     color:rgb(161, 16, 16) ;
-    margin-left: 40px;
+    margin: 0px 0px 20px 40px;
 }
    
 .add_align {
-    margin: 30%;
+    margin: 75px 50px 0px 85px;
 }
 
 .add_textbox.MuiTextField-root {
@@ -55,8 +55,11 @@
 .add_button.MuiButton-root {
     color: black;
     background-color: rgb(234, 117, 200);
-    border-radius: 30px;
-
+    border-radius: 5px;
+    margin-left: 100px;
+    align-items: center;
+    height: 50px;
+    width: 200px;
 }
 
 .add_size {

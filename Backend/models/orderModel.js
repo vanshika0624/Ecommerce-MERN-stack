@@ -16,11 +16,7 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
 
-    country: {
-      type: String,
-      required: true,
-    },
-    pinCode: {
+    zipCode: {
       type: Number,
       required: true,
     },
@@ -52,6 +48,11 @@ const orderSchema = new mongoose.Schema({
         ref: "Product",
         required: true,
       },
+      seller: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      }
     },
   ],
   user: {
