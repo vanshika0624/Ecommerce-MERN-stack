@@ -18,7 +18,7 @@ const Search = ({ onSearchResults }) => {
             );
             const searchResults = response.data;
             onSearchResults(searchResults);
-            // console.log(searchResults)
+            console.log(searchResults)
 
         } catch (error) {
             console.error("Error searching for products:", error);

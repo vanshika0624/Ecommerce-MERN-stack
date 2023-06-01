@@ -56,6 +56,7 @@ const Navigation = ({ searchBarData }) => {
     };
 
     const handleSearchResults = (results) => {
+        navigate("/search");
         setSearchResults(results);
         searchBarData(results);
         console.log(searchResults, "in navigation page");
@@ -90,6 +91,7 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
                 <Grid container item xs={6} md={3} alignContent="center" justifyContent="center">
                     <Search onSearchResults={handleSearchResults} />
+
                 </Grid>
                 <Grid container item xs={6} md={2} alignContent="flex-end" justifyContent="flex-end">
                     <div className="iconstyle">
@@ -101,19 +103,8 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
             </Grid>
 
-            {/* Display search results */}
-            {
-                searchResults > 0 && (
 
-                    <div className="search-results">
-                        <h2>Search Results</h2>
-                        <ul>
-                            {searchResults.map((result) => (
-                                <li key={result.id}>{result.name}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+
         </div>
     );
 };
