@@ -14,14 +14,14 @@ const ViewProduct = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState({});
   const [size, setSize] = React.useState('');
-  const [quantity, setQuantity] = React.useState(1);
+  const [productQuantity, setProductQuantity] = React.useState(1);
 
   const setSizeValue = (event) => {
     setSize(event.target.value);
   }
-  const setQuantityValue = (event) => {
-    setQuantity(event.target.value);
-  }
+  // const setProductQuantityValue = (event) => {
+  //   setProductQuantity(event.target.value);
+  // }
 
   // const renderQuantity =(value)=>
   // {
@@ -44,11 +44,41 @@ const ViewProduct = () => {
   const handleInputChange = (event) => {
     const inputValue = Number(event.target.value);
     1 >= inputValue ?
-      setQuantity(1) :
+      setProductQuantity(1) :
       inputValue > productDetails.Stock ?
-        setQuantity(productDetails.Stock) : setQuantity(inputValue)
+        setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
 
   };
+  const addToCart =()=>{
+
+   
+    try{
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = {
+      product: productDetails._id,
+      name: productDetails.name,
+      price: productDetails.price,
+      // image: productDetails.images[0].url,
+      stock: productDetails.Stock,
+      quantity: productQuantity
+     }
+      const updatedCart = [...existingCart, cart ];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+    catch {
+      const cart = {
+        product: productDetails._id,
+        name: productDetails.name,
+        price: productDetails.price,
+        // image: productDetails.images[0].url,
+        stock: productDetails.Stock,
+        quantity: productQuantity
+       }
+        // const updatedCart = [...existingCart, cart ];
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+  }
 
   useEffect(() => {
 
@@ -123,7 +153,7 @@ const ViewProduct = () => {
             <div  >
               {/* <Button onClick={decreaseQuantity}>-</Button> */}
               <Typography variant="h6" component="h6" className="fontStyles">
-        <span className="quantity" > Quantity :  </span>  <TextField   readOnly type="number" value={quantity} onChange={handleInputChange} />
+        <span className="quantity" > Quantity :  </span>  <TextField   readOnly type="number" value={productQuantity} onChange={handleInputChange} />
         </Typography>
               {/* <Button onClick={increaseQuantity}>+</Button> */}
             </div>
