@@ -115,7 +115,7 @@ const Navigation = ({ searchBarData }) => {
                     <Search onSearchResults={handleSearchResults} />
 
                 </Grid>
-                <Grid container item xs={4} alignContent="flex-end" justifyContent="flex-end">
+                <Grid container item  xs={4} alignContent="flex-end"  justifyContent="flex-end">
                     <div className="iconstyleNav">
                         {/* <HomeIcon fontSize="large" onClick={goToHome} /> */}
                         <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
