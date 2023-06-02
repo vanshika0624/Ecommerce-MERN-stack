@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import "./address";
+import "./address.css";
+import Navigation from "../navigation.js";
+import SellerNavBar from "../SellerPages/sellerNavBar.js";
 import { TextField } from "@mui/material";
+import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import axios from "axios";
+
 const ChangePassword = () => {
+    
+    const { role } = useParams();
     const [oPsw, setOldPsw] = useState('');
     const [nPsw, setNewPsw] = useState('');
     const [cPsw, setConfPsw] = useState('');
@@ -92,6 +98,14 @@ const ChangePassword = () => {
 
   
     return (<div className="add_imgstyle">
+        { 
+        role === 'buyer' &&
+        <Navigation/>
+        }
+        { 
+        role === 'seller' && 
+        <SellerNavBar/>
+        }
         <Grid container direction="row" >
             <Grid item xs={4}  >
                 <div className="add_align">
@@ -104,7 +118,7 @@ const ChangePassword = () => {
 
             </Grid>
             <div>
-                <Grid item xs={8} style={{ margin: '50px 100px 0px 400px' }} >
+                <Grid item xs={8} style={{ margin: '25px 100px 0px 400px'}} >
                     <Card variant="outlined" className="add_cardStyle" sx={{ minWidth: 450 }}>
                         <CardContent>
                             <Typography fontSize="40px" color="black" align="center">

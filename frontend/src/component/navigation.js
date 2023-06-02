@@ -8,9 +8,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
 import InventoryIcon from "@mui/icons-material/Inventory";
+import LogoutIcon from '@mui/icons-material/Logout';
 import Grid from "@mui/material/Grid";
 import Search from "./UserPages/ProductPages/search.js";
 import NavLogo from "../images/nav_logo.png";
+import axios from "axios";
 
 const Navigation = ({ searchBarData }) => {
     const navigate = useNavigate();
@@ -63,14 +65,28 @@ const Navigation = ({ searchBarData }) => {
         console.log(searchResults, "in navigation page");
     };
 
+    const logOut=()=>
+    {
+        axios
+        .get(`http://localhost:2000/user/logout/`,{ withCredentials: true })
+        .then((res) => {
+            // console.log(res)
+        })
+        .catch((err) => {
+            console.log('Error while logging out');
+        });
+        navigate('/')
+    };
+
     return (
         <div>
-            <Grid container alignContent="flex-start">
+            <Grid container alignContent="flex-start" className='nav-id'>
+                <Grid container  item xs={7} >
                 <Grid item xs={1}  >
                     <div><img src={NavLogo} onClick={goToHome} className="nav_logo_style" /> </div>
                 </Grid>
-                <Grid item xs={11} md={6.5}>
-                    <div className="navbar">
+                <Grid item xs={11} md={7}>
+                    <div className="navbarMain">
                         <Typography>
                             <Button size="large" className="buttonstyle" onClick={goToJewelry}>
                                 Jewelry
@@ -93,17 +109,21 @@ const Navigation = ({ searchBarData }) => {
                         </Typography>
                     </div>
                 </Grid>
-                <Grid container item xs={6} md={3} alignContent="center" justifyContent="center">
+                </Grid>
+                <Grid container  item xs={5} >
+                <Grid container item xs={8} alignContent="center" justifyContent="center">
                     <Search onSearchResults={handleSearchResults} />
 
                 </Grid>
-                <Grid container item xs={6} md={1.5} justifyContent="flex-end">
-                    <div className="iconstyle">
-                        {/* <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip> */}
+                <Grid container item  xs={4} alignContent="flex-end"  justifyContent="flex-end">
+                    <div className="iconstyleNav">
+                        {/* <HomeIcon fontSize="large" onClick={goToHome} /> */}
                         <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
                         <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
                         <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToUserDetails}/></Tooltip>
+                        <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
                     </div>
+                </Grid>
                 </Grid>
             </Grid>
 

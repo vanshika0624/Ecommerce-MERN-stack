@@ -49,13 +49,14 @@
 
 }
 
-.imgContainer.MuiGrid-root {
-    width: 50px;
-    height: 150px;
-    overflow: hidden;
-}
-
-.imgContainer.MuiGrid-root img {
+.imgContainerOrder {
     width: 100%;
-    height: auto;
-}
+    overflow: auto;
+  }
+  
+  .imgContainerOrder img {
+    width: 15vmax;
+    height: 20vmax;
+    margin: 0 0 0 30vmax;
+  }
+  

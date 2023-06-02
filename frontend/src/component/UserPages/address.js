@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./address.css";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Navigation from "../navigation.js";
+import SellerNavBar from "../SellerPages/sellerNavBar.js";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -11,12 +13,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import Tooltip from '@mui/material/Tooltip';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import LogoutIcon from '@mui/icons-material/Logout';
 import axios from "axios";
 const Address = () => {
     const navigate = useNavigate();
@@ -164,38 +160,8 @@ const Address = () => {
         }
     }
 
-
-    const goToProfile = () => {
-        navigate('/profile')
-    }
-    
-    const goToCart = () => {
-        navigate('/cart')
-    }
-    
-    const goToHome=()=> {
-        navigate('/home')
-    }
-
-    const goToOrders =()=> {
-        navigate('/profile')
-    }
-
     const goToChangePassword =()=> {
-        navigate('/changePassword')
-    }
-
-    const logOut=()=>
-    {
-        axios
-        .get(`http://localhost:2000/user/logout/`,{ withCredentials: true })
-        .then((res) => {
-            // console.log(res)
-        })
-        .catch((err) => {
-            console.log('Error while logging out');
-        });
-        navigate('/')
+        navigate('/changePassword/'+ role)
     }
 
     useEffect(() => {
@@ -265,25 +231,14 @@ const Address = () => {
     }
   
     return (<div className="add_imgstyle">
-        
-        <Grid container direction="row">
-            <Grid item xs={8}  > 
-                <Typography fontSize="40px" color="black" marginLeft={3}>
-                </Typography>
-            </Grid>
-            <Grid item xs={4}  > 
-                <div className="buttonmargin">
-                    <Typography align="right">
-                        <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip>
-                        <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
-                        <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
-                        <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToProfile}/></Tooltip>
-                        <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
-                    </Typography>
-                </div>
-            </Grid>
-        </Grid>
-
+        { 
+        role === 'buyer' &&
+        <Navigation/>
+        }
+        { 
+        role === 'seller' && 
+        <SellerNavBar/>
+        }
         <Grid container direction="row" >
             <Grid item xs={3}  >
                 <div className="add_align">

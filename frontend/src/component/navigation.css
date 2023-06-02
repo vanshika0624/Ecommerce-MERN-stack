@@ -1,8 +1,10 @@
-.navbar {
+.navbarMain {
     border-radius: 20px;
     background-color: #C4AD88;
     color: #0000;
-    margin: 20px;
+    margin: 20px 10px 0px 0px;
+    height: 45px;
+    width: 750px;
 }
 
 .buttonstyle.MuiButton-root {
@@ -11,8 +13,9 @@
     border-radius: 25px;
 }
 
-.iconstyle {
-    margin-left: 20px;
+.iconstyleNav {    
+    margin-right: 20px;
+    margin-bottom: 22px;
 }
 
 .buttonstyle.MuiButton-root:hover {
@@ -22,8 +25,15 @@
 }
 
 .nav_logo_style {
-    margin-left: 10px;
-    width: 80%;
+    width: 90%;
     height: 100%;
+    margin: 10px 0px 0px 5px;
+}
 
+.searchBox {
+    height: 45px !important;
+}
+
+.nav-id .MuiGrid-root {
+    height: 85px;
 }

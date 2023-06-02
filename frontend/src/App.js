@@ -23,6 +23,7 @@ import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
 import Dashboard from './component/SellerPages/dashboard.js'
 import ViewSingleOrder from "./component/UserPages/viewOrder.js";
+import SellerOrders from './component/SellerPages/sellerOrders.js'
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/seller-signup' element={<SellerSignUp />} />
           <Route path='/address' element={<Address />} />
-          <Route path='/changePassword' element={<ChangePassword />} />
+          <Route path='/changePassword/:role' element={<ChangePassword />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='/jewelry' element={<Jewelry />} />
           <Route path='/furniture' element={<Furniture />} />
@@ -53,6 +54,7 @@ function App() {
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
           <Route path='/seller-dashboard' element={< Dashboard />} />
           <Route path='/orders/:id' element={<ViewSingleOrder/>} />
+          <Route path='/seller-orders' element={<SellerOrders/>} />
 
         </Routes>
       </div>

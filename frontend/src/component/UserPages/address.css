@@ -11,8 +11,8 @@
 
 .add_imgstyle {
     justify-content: center;
-    background: url('../../images/userDetails.avif') no-repeat center center fixed;
-    height:100%;
+    background: url('../../images/userDetails.png') no-repeat center center fixed;
+    height: -webkit-fill-available;
     width: 100%; 
     position: absolute;
     -webkit-background-size: cover;
