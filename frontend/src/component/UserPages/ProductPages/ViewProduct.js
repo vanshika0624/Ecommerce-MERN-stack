@@ -122,7 +122,9 @@ const ViewProduct = () => {
             // </Select>
             <div  >
               {/* <Button onClick={decreaseQuantity}>-</Button> */}
-              <div className="quantity">Quantity</div><TextField style={{ margin: "10px" }} readOnly type="number" value={quantity} onChange={handleInputChange} />
+              <Typography variant="h6" component="h6" className="fontStyles">
+        <span className="quantity" > Quantity :  </span>  <TextField   readOnly type="number" value={quantity} onChange={handleInputChange} />
+        </Typography>
               {/* <Button onClick={increaseQuantity}>+</Button> */}
             </div>
             :

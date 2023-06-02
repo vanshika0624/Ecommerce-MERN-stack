@@ -4,8 +4,10 @@
 
 .homePage_card.MuiCard-root {
     background-color: #FAF2E9;
+     /* #fae9f5; */
     margin: 20px 10px 10px 20px;
     padding: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(228, 166, 184, 0.2), 10px 10px 10px 10px rgba(233, 133, 133, 0.1), 10px 10px 10px 10px rgba(163, 195, 231, 0.1)
 
 }
 
