@@ -8,6 +8,10 @@
     margin: 20px 10px 10px 20px;
     padding: 5px;
     box-shadow: 10px 10px 10px 10px rgba(228, 166, 184, 0.2), 10px 10px 10px 10px rgba(233, 133, 133, 0.1), 10px 10px 10px 10px rgba(163, 195, 231, 0.1)
+    /* width: 320px;
+    height: 415px; */
+    /* justify-content: center; */
+    /* width: auto; */
 
 }
 
@@ -23,13 +27,14 @@
     margin-bottom: 10px;
 
 }
+
 .displayProductFormImage {
     width: 100%;
     overflow: auto;
-  }
-  
-  .displayProductFormImage>img {
+}
+
+.displayProductFormImage>img {
     /* width: 15vmax; */
-    width:85%;
+    width: 100px;
     margin: 10px 30px;
 }
