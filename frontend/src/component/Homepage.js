@@ -17,19 +17,20 @@ const HomePage = () => {
   const [toyProducts, setToyProducts] = useState([]);
   const [clothProducts, setClothProducts] = useState([]);
   const [paintingProducts, setPaintingProducts] = useState([]);
-  const [searchBarData, setSearchBarData] = useState([]);
+  // const [searchBarData, setSearchBarData] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearchResults = (results) => {
-    setSearchBarData(results);
-    console.log(searchBarData, "in homepage");
-  };
+  // const handleSearchResults = (results) => {
+  //   setSearchBarData(results);
+  //   console.log(searchBarData, "in homepage");
+  // };
 
   useEffect(() => {
     axios
       .get('http://localhost:2000/product/getProducts?category=Furniture', { withCredentials: true })
       .then((res) => {
         setFurnitureProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -40,7 +41,7 @@ const HomePage = () => {
       .get('http://localhost:2000/product/getProducts?category=Jewelry', { withCredentials: true })
       .then((res) => {
         setJewelryProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -52,7 +53,7 @@ const HomePage = () => {
       .get('http://localhost:2000/product/getProducts?category=Paintings', { withCredentials: true })
       .then((res) => {
         setPaintingProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -64,7 +65,7 @@ const HomePage = () => {
       .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
       .then((res) => {
         setClothProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -76,7 +77,7 @@ const HomePage = () => {
       .get('http://localhost:2000/product/getProducts?category=Home-Decor', { withCredentials: true })
       .then((res) => {
         setDecorProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -88,7 +89,7 @@ const HomePage = () => {
       .get('http://localhost:2000/product/getProducts?category=Toys', { withCredentials: true })
       .then((res) => {
         setToyProducts(res.data.products);
-        console.log(res.data.products);
+        // console.log(res.data.products);
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -152,7 +153,8 @@ const HomePage = () => {
 
   return (
     <div className="bg">
-      <Navigation searchBarData={handleSearchResults} />
+      <Navigation />
+
       <div>
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Jewelry

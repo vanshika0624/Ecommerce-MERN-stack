@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import Grid from "@mui/material/Grid";
 import Search from "./UserPages/ProductPages/search.js";
+import NavLogo from "../images/nav_logo.png";
 
 const Navigation = ({ searchBarData }) => {
     const navigate = useNavigate();
@@ -56,6 +57,7 @@ const Navigation = ({ searchBarData }) => {
     };
 
     const handleSearchResults = (results) => {
+        navigate("/search");
         setSearchResults(results);
         searchBarData(results);
         console.log(searchResults, "in navigation page");
@@ -64,7 +66,10 @@ const Navigation = ({ searchBarData }) => {
     return (
         <div>
             <Grid container alignContent="flex-start">
-                <Grid item xs={12} md={7}>
+                <Grid item xs={1}  >
+                    <div><img src={NavLogo} onClick={goToHome} className="nav_logo_style" /> </div>
+                </Grid>
+                <Grid item xs={11} md={6.5}>
                     <div className="navbar">
                         <Typography>
                             <Button size="large" className="buttonstyle" onClick={goToJewelry}>
@@ -90,10 +95,11 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
                 <Grid container item xs={6} md={3} alignContent="center" justifyContent="center">
                     <Search onSearchResults={handleSearchResults} />
+
                 </Grid>
-                <Grid container item xs={6} md={2} alignContent="flex-end" justifyContent="flex-end">
+                <Grid container item xs={6} md={1.5} justifyContent="flex-end">
                     <div className="iconstyle">
-                        <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip>
+                        {/* <Tooltip title="Home"><HomeIcon fontSize="large" onClick={goToHome}/></Tooltip> */}
                         <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
                         <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
                         <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToUserDetails}/></Tooltip>
@@ -101,19 +107,8 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
             </Grid>
 
-            {/* Display search results */}
-            {
-                searchResults > 0 && (
 
-                    <div className="search-results">
-                        <h2>Search Results</h2>
-                        <ul>
-                            {searchResults.map((result) => (
-                                <li key={result.id}>{result.name}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+
         </div>
     );
 };
