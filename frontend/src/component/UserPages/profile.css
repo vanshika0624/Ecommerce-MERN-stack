@@ -1,7 +1,7 @@
-.imgstyle{
+.profileimgstyle{
     justify-content: center;
     background: url('../../images/profilePage.png') no-repeat center center fixed;
-    height:100%;
+    height: auto;
     width: 100%; 
     position: absolute;
     -webkit-background-size: cover;
@@ -56,15 +56,18 @@
 
 }
 
-.imgContainer.MuiGrid-root {
-    width: 50px;
-    height: 150px;
-    overflow: hidden;
+.orderContentDiv {
+  margin-top: 1vmax;
 }
 
-.imgContainer.MuiGrid-root img {
-    width: 100%;
-    height: auto;
+.imgContainer {
+  width: 100%;
+  overflow: auto;
+}
+
+.imgContainer img {
+  width: 7vmax;
+  margin: 0 0 0 7vmax;
 }
 
 .paginationBox {

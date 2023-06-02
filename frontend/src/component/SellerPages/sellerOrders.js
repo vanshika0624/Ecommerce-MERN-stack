@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import  "./profile.css"
-import Navigation from "../navigation.js";
+import SellerNavBar from "./sellerNavBar.js";
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Pagination from "react-js-pagination";
 import axios from "axios";
-const Profile = () => {
+const SellerOrders = () => {
+
     const [orders, setOrders] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNumOrders, setTotalNumofOrders] = useState();
@@ -20,7 +20,7 @@ const Profile = () => {
     const getOrders = (page) => {
         setCurrentPage(page);
         axios
-        .get('http://localhost:2000/mart/getAllMyOrders?page='+ page, { withCredentials: true })
+        .get('http://localhost:2000/mart/seller/getAllMyOrders?page='+ page, { withCredentials: true })
         .then((res) => {
             if(res.data.orders.length > 0) {
                 setOrders(res.data.orders);
@@ -39,8 +39,9 @@ const Profile = () => {
         
     };
 
-    return <div className="profileimgstyle">
-    <Navigation/>
+    return (<div >
+
+    <SellerNavBar/>
     <div>
         <Card variant="outlined" className="profileOuterCard" sx={{ minWidth: 450, minHeight: 585 }}>
             <CardContent>
@@ -72,7 +73,7 @@ const Profile = () => {
                                     Ordered on: {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(card.orderDate))}
                                 </Typography>
                                 <Typography variant="h6"component="h6" color="#3b2f28">
-                                    <Link style={{ color: "#3b2f28", fontSize: 15 }} to={`/viewSellerOrders/${card._id}`}>View Details</Link>
+                                    <Link style={{ color: "#3b2f28", fontSize: 15 }} to={`/orders/${card._id}`}>View Details</Link>
                                 </Typography>
                             </div>
 
@@ -113,7 +114,10 @@ const Profile = () => {
         </Card>
                
     </div>
+
+
     </div>
+    )
 };
 
-export default Profile;
+export default SellerOrders;

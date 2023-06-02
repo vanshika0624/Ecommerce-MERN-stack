@@ -1,29 +1,12 @@
 const mongoose = require("mongoose");
+const { v1: uuidv1 } = require('uuid');
 
 const orderSchema = new mongoose.Schema({
-  shippingInfo: {
-    address: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-
-    state: {
-      type: String,
-      required: true,
-    },
-
-    zipCode: {
-      type: Number,
-      required: true,
-    },
-    phoneNo: {
-      type: Number,
-      required: true,
-    },
+  orderNumber: {
+    type: String,
+    default: function genUUID() {
+      return uuidv1()
+    }
   },
   orderItems: [
     {
@@ -52,6 +35,14 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
         required: true,
+      },
+      orderStatus: {
+        type: String,
+        default: "Processing",
+      },
+      refNumber: {
+        type: Number,
+        default: 1
       }
     },
   ],
@@ -59,6 +50,28 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
+  },
+  shippingInfo: {
+    address: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    zipCode: {
+      type: Number,
+      required: true,
+    },
+    phoneNo: {
+      type: Number,
+      required: true,
+    },
   },
   paymentInfo: {
     id: {
@@ -70,7 +83,7 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
   },
-  paidAt: {
+  orderDate: {
     type: Date,
     required: true,
   },
@@ -80,6 +93,11 @@ const orderSchema = new mongoose.Schema({
     default: 0,
   },
   taxPrice: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  servicePrice: {
     type: Number,
     required: true,
     default: 0,
@@ -94,9 +112,8 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  orderStatus: {
+  overallOrderStatus: {
     type: String,
-    required: true,
     default: "Processing",
   },
   deliveredAt: Date,
@@ -105,5 +122,24 @@ const orderSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+
+orderSchema.pre("save", async function (next) {
+  const order = this;
+  const IsShipped = order.orderItems.every(item => item.orderStatus === 'Shipped'); 
+  const IsDelivered = order.orderItems.every(item => item.orderStatus === 'Delivered'); 
+
+  if (IsShipped) {
+    order.overallOrderStatus = 'Shipped';
+  }
+  else if (IsDelivered) {
+    order.overallOrderStatus = 'Delivered';
+  }
+  else {
+      order.overallOrderStatus = 'Processing';
+  }
+  next();
+});
+
 
 module.exports = mongoose.model("Order", orderSchema);

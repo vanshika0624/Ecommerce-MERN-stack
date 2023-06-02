@@ -12,6 +12,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     paymentInfo,
     itemsPrice,
     taxPrice,
+    servicePrice,
     shippingPrice,
     totalPrice,
   } = req.body;
@@ -22,9 +23,10 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     paymentInfo,
     itemsPrice,
     taxPrice,
+    servicePrice,
     shippingPrice,
     totalPrice,
-    paidAt: Date.now(),
+    orderDate: Date.now(),
     user: req.user._id,
   });
 
