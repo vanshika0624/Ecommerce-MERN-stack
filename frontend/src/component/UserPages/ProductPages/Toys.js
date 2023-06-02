@@ -34,7 +34,7 @@ const Clothing = () => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={4} >
+                    <Grid item xs={3} >
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -47,7 +47,7 @@ const Clothing = () => {
                             }
                             <CardContent>
                                 <Typography color="#848D62" variant="h6" component="h6">
-                                    {card.name},
+                                    {card.name}
                                 </Typography>
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
@@ -68,7 +68,7 @@ const Clothing = () => {
     return (
         <div className="bg">
             <Navigation />
-            <div>
+            <div className="alignment">
                 {disaplyCards(toyProducts)}
             </div>
             <Footer />
