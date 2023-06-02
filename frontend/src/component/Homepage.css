@@ -6,6 +6,10 @@
     background-color: #FAF2E9;
     margin: 20px 10px 10px 20px;
     padding: 5px;
+    /* width: 320px;
+    height: 415px; */
+    /* justify-content: center; */
+    /* width: auto; */
 
 }
 
@@ -21,13 +25,14 @@
     margin-bottom: 10px;
 
 }
+
 .displayProductFormImage {
     width: 100%;
     overflow: auto;
-  }
-  
-  .displayProductFormImage>img {
+}
+
+.displayProductFormImage>img {
     /* width: 15vmax; */
-    width:85%;
+    width: 100px;
     margin: 10px 30px;
 }

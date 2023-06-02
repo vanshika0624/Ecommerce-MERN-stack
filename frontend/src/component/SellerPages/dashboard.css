@@ -21,13 +21,22 @@
     margin-bottom: 10px;
 
 }
+
 .displayProductFormImage {
     width: 100%;
     overflow: auto;
-  }
-  
-  .displayProductFormImage>img {
+}
+
+.displayProductFormImage>img {
     /* width: 15vmax; */
-    width:85%;
-    margin: 10px 30px;
+    /* width: 85%;
+    margin: 10px 30px; */
+    height: auto;
+    max-height: 250px;
+    width: 600px;
+    max-width: 250px;
+    aspect-ratio: 4/5;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
 }
