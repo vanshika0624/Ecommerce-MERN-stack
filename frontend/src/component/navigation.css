@@ -1,18 +1,29 @@
-.navbar{
-    border-radius:20px;
+.navbar {
+    border-radius: 20px;
     background-color: #C4AD88;
     color: #0000;
     margin: 20px;
 }
-.buttonstyle.MuiButton-root{
+
+.buttonstyle.MuiButton-root {
     margin: 0px 10px 0px 10px;
-    color:black;
+    color: black;
     border-radius: 25px;
 }
-.iconstyle{
-    margin:20px;
+
+.iconstyle {
+    margin-left: 20px;
 }
+
 .buttonstyle.MuiButton-root:hover {
     background-color: #6b614f;
     transition: 0.7s;
-    color: white}
+    color: white
+}
+
+.nav_logo_style {
+    margin-left: 10px;
+    width: 80%;
+    height: 100%;
+
+}
