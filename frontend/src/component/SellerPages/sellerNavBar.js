@@ -7,6 +7,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import Grid from '@mui/material/Grid';
 import NavLogo from "../../images/nav_logo.png"
 import axios from "axios";
@@ -34,12 +35,18 @@ const SellerNavBar = () => {
         navigate('/seller-dashboard')
     }
 
+    const goToLogin=()=> {
+        navigate("/signin");
+    }
+
     const logOut=()=>
     {
         axios
         .get(`http://localhost:2000/user/logout/`,{ withCredentials: true })
         .then((res) => {
-            // console.log(res)
+            localStorage.setItem("accessToken", "");
+            localStorage.setItem("userRole", "");
+            navigate("/");
         })
         .catch((err) => {
             console.log('Error while logging out');
@@ -67,8 +74,15 @@ const SellerNavBar = () => {
 
                 <Grid container item xs={4} alignContent="flex-end" justifyContent="flex-end" >
                     <div className="iconstyle">
-                        <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToProfile}/></Tooltip>
-                        <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
+                    {localStorage.getItem('accessToken') && 
+                    <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToProfile}/></Tooltip>
+                    }
+                    {localStorage.getItem('accessToken') && 
+                    <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
+                    }
+                    {!localStorage.getItem('accessToken') && 
+                    <Tooltip title="Sign In"><LoginIcon fontSize="large" onClick={goToLogin}/></Tooltip>
+                    }
                     </div>
                 </Grid>
             </Grid>

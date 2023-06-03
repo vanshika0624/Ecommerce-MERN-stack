@@ -18,6 +18,15 @@ const Dashboard = () => {
   const [paintingProducts, setPaintingProducts] = useState([]);
 
   useEffect(() => {
+    if(localStorage.getItem("userRole") === 'buyer') {
+      navigate('/home');
+    }
+    else if(localStorage.getItem("userRole") === ''){
+      navigate('/');
+    }
+  }, []);
+
+  useEffect(() => {
     axios
       .get('http://localhost:2000/product/seller/getProducts?category=Furniture',{ withCredentials: true })
       .then((res) => {

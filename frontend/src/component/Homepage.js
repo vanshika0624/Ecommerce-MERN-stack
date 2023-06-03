@@ -26,6 +26,16 @@ const HomePage = () => {
   // };
 
   useEffect(() => {
+    if(localStorage.getItem("userRole") === 'seller') {
+      navigate('/seller-dashboard');
+    }
+    else if(localStorage.getItem("userRole") === ''){
+      navigate('/');
+    }
+  }, []);
+
+
+  useEffect(() => {
     axios
       .get('http://localhost:2000/product/getProducts?category=Furniture', { withCredentials: true })
       .then((res) => {
