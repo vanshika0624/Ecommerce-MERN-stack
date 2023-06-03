@@ -20,7 +20,7 @@ const SellerNavBar = () => {
     }
 
     const goToCatalogue = () => {
-        // navigate('/seller-dashboard')
+        navigate('/seller/catalogue')
     }
 
     const goToOrders = () => {

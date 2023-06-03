@@ -47,7 +47,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage = 9;
+  const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(Product.find(), req.query)
@@ -84,7 +84,7 @@ exports.getSingleProductDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Products for Seller
 exports.getSellerProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage = 9;
+  const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
 
   // filtering only the products added by the seller who logged in

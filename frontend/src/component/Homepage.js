@@ -9,6 +9,7 @@ import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
 import Search from "./UserPages/ProductPages/search.js";
+// import Grid from "@mui/material/Grid";
 const HomePage = () => {
   const navigate = useNavigate();
   const [furnitureProducts, setFurnitureProducts] = useState([]);
@@ -128,9 +129,9 @@ const HomePage = () => {
 
   const disaplyCards = (cards) => {
     return (
-      <Grid container direction="row" spacing={2}  >
+      <Grid container item xs={12} direction="row" spacing={2}   >
         {cards.map((card) => (
-          <Grid item xs={4} >
+          <Grid item xs={3} >
             <Card key={card._id} className="homePage_card"  >
               {/* <CardMedia image={card.image} alt="product image" /> */}
               {
@@ -143,7 +144,7 @@ const HomePage = () => {
               }
               <CardContent>
                 <Typography variant="h6" component="h6" color="#848D62">
-                  {card.name},
+                  {card.name}
                 </Typography>
                 <Typography variant="body2" color="#848D62" component="p">
                   ${card.price}
@@ -165,49 +166,62 @@ const HomePage = () => {
     <div className="bg">
       <Navigation />
 
-      <div>
+      <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Jewelry
         </Typography>
         {disaplyCards(jewelryProducts)}
+
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
+        </Grid>
       </div>
-      <div>
+      <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Furniture
         </Typography>
         {disaplyCards(furnitureProducts)}
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
+        </Grid>
       </div>
-      <div>
+      <div className="alignment">
 
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Clothing
         </Typography>
         {disaplyCards(clothProducts)}
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
+        </Grid>
       </div>
-      <div>
+      <div className="alignment">
 
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Home Decor
         </Typography>
         {disaplyCards(decorProducts)}
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
+        </Grid>
       </div>
-      <div>
+      <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Paintings
         </Typography>
         {disaplyCards(paintingProducts)}
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToPaintings}> View All Products</Button>
+        </Grid>
       </div>
-      <div>
+      <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Toys
         </Typography>
         {disaplyCards(toyProducts)}
+        <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToToys}> View All Products</Button>
+        </Grid>
       </div>
       <Footer />
     </div>

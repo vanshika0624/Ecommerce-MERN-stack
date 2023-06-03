@@ -17,7 +17,7 @@ import axios from "axios";
 
 const Navigation = ({ searchBarData }) => {
     const navigate = useNavigate();
-    const [searchResults, setSearchResults] = useState([]);
+    // const [searchResults, setSearchResults] = useState([]);
 
     const goToJewelry = () => {
         navigate("/jewelry");
@@ -63,12 +63,14 @@ const Navigation = ({ searchBarData }) => {
         navigate("/signin");
     };
 
-    const handleSearchResults = (results) => {
-        navigate("/search");
-        setSearchResults(results);
-        searchBarData(results);
-        console.log(searchResults, "in navigation page");
-    };
+    // const handleSearchResults = (results) => {
+     
+    //     setSearchResults(results);
+    //     searchBarData(results);
+    //     // navigate("/search");
+    //   return results;
+    //     console.log(searchResults, "in navigation page");
+    // };
 
     const logOut=()=>
     {
@@ -119,7 +121,7 @@ const Navigation = ({ searchBarData }) => {
                 </Grid>
                 <Grid container  item xs={5} >
                 <Grid container item xs={8} alignContent="center" justifyContent="center">
-                    <Search onSearchResults={handleSearchResults} />
+                    <Search />
 
                 </Grid>
                 <Grid container item  xs={4} alignContent="flex-end"  justifyContent="flex-end">

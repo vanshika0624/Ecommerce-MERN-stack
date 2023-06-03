@@ -31,6 +31,7 @@ const EditProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [imageDisplayFlag , setImageDisplayFlag] = useState(false);
   const fileInputRef = useRef(null);
   const { id } = useParams();
 
@@ -48,7 +49,7 @@ const EditProduct = () => {
         setImages(res.data.product.images)
         setImagesPreview(res.data.product.images)
         setdescription(res.data.product.description)
-        // console.log(res.data.products)
+        console.log(res.data.product)
       })
       .catch((err) => {
         console.log('Error from ViewProduct');
@@ -57,7 +58,7 @@ const EditProduct = () => {
 
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
-
+    setImageDisplayFlag(true);
     setImages([]);
     setImagesPreview([]);
 
@@ -96,6 +97,7 @@ const EditProduct = () => {
       }, { withCredentials: true })
         .then((response) => {
           console.log(response);
+          navigate("/seller/catalogue");
           // if (response.status == 200) {
           // setSuccessmsg(true);
           // navigate('/home');
@@ -108,6 +110,8 @@ const EditProduct = () => {
         })
         .catch((err) => console.log(err, "err"));
     }
+
+    
     // else {
 
 
@@ -220,7 +224,7 @@ const EditProduct = () => {
                 <div className="editProduct_labelStyle">
                   <div id="createProductFormImage"  >
                     {imagesPreview.map((image, index) => (
-                      <img key={index} src={image} alt="Product Preview" />
+                      <img key={index} src={ imageDisplayFlag?  image : image.url} alt="Product Preview" />
                     ))}
                   </div>
                 </div>
