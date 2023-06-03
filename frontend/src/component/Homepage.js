@@ -30,9 +30,6 @@ const HomePage = () => {
     if(localStorage.getItem("userRole") === 'seller') {
       navigate('/seller-dashboard');
     }
-    else if(localStorage.getItem("userRole") === ''){
-      navigate('/');
-    }
   }, []);
 
 

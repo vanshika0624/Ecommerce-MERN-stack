@@ -21,9 +21,6 @@ const Dashboard = () => {
     if(localStorage.getItem("userRole") === 'buyer') {
       navigate('/home');
     }
-    else if(localStorage.getItem("userRole") === ''){
-      navigate('/');
-    }
   }, []);
 
   useEffect(() => {
