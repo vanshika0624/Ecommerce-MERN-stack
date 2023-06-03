@@ -2,7 +2,7 @@
     background-color: #FAF2E9;
 }
 
-.dashboard_card.MuiCard-root {
+.catalogue_card.MuiCard-root {
     background-color: #FAF2E9;
     margin: 20px 10px 10px 20px;
     padding: 5px;
@@ -10,13 +10,13 @@
 
 }
 
-.dashboard_typography.MuiTypography-root {
+.catalogue_typography.MuiTypography-root {
     margin-left: 20px;
     color: #848D62;
     font-weight:600
 }
 
-.dashboard_button.MuiButton-root {
+.catalogue_button.MuiButton-root {
     color: #848D62;
     text-decoration: underline;
     margin-left: 20px;

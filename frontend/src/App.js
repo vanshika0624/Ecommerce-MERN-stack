@@ -17,13 +17,16 @@ import HomePage from "./component/Homepage.js";
 import Cart from "./component/UserPages/cart.js";
 import Profile from "./component/UserPages/profile.js";
 import ViewProduct from "./component/UserPages/ProductPages/ViewProduct.js";
-import Search from "./component/UserPages/ProductPages/searchResult.js";
+// import Search from "./component/UserPages/ProductPages/searchResult.js";
 // import Navigation from "./component/navigation.js"
 import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
 import Dashboard from './component/SellerPages/dashboard.js'
 import ViewSingleOrder from "./component/UserPages/viewOrder.js";
 import SellerOrders from './component/SellerPages/sellerOrders.js'
+import SearchResults from "./component/UserPages/ProductPages/searchResult.js";
+import Catalogue from './component/SellerPages/catalogue.js'
+
 
 function App() {
   return (
@@ -48,13 +51,17 @@ function App() {
           {/* <Route path='/footer' element={<Footer />} /> */}
           <Route path='/products/:id' element={<ViewProduct />} />
           <Route path='/products/:id/:keyword' element={<ViewProduct />} />
-          <Route path='/search' element={<Search />} />
+          <Route path='/search' element={<SearchResults />} />
           <Route path='/add-product' element={< AddProduct />} />
           <Route path='/edit-product/:id' element={< EditProduct />} />
           {/* <Route path ='/navigation' element ={<Navigation/>}/> */}
           <Route path='/seller-dashboard' element={< Dashboard />} />
           <Route path='/orders/:id' element={<ViewSingleOrder/>} />
           <Route path='/seller-orders' element={<SellerOrders/>} />
+          <Route path='/search/:keyword' element={<SearchResults />} />
+          <Route path='/seller/catalogue' element={< Catalogue />} />
+
+        
 
         </Routes>
       </div>
