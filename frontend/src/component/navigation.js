@@ -59,6 +59,10 @@ const Navigation = () => {
         navigate("/address");
     };
 
+    const goToLogin=()=> {
+        navigate("/signin");
+    };
+
     // const handleSearchResults = (results) => {
      
     //     setSearchResults(results);
@@ -67,9 +71,7 @@ const Navigation = () => {
     //   return results;
     //     console.log(searchResults, "in navigation page");
     // };
-    const goToLogin=()=> {
-        navigate("/signin");
-    };
+
 
 
 
