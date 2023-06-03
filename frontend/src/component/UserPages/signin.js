@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./signin.css";
 import signinimg from "../../images/Jewelry.png";
 import { TextField } from "@mui/material";
@@ -55,8 +55,18 @@ const SignIn = () => {
         }
     }
 
+    useEffect(() => {
+        reDirectUser();
+    });
 
-
+    const reDirectUser = () => {
+        if(localStorage.getItem("userRole") === 'seller') {
+            navigate('/seller-dashboard');
+        }
+        else if(localStorage.getItem("userRole") === 'buyer'){
+              navigate('/home');
+        }
+    }
 
     const getData = (event) => {
         event.preventDefault()
@@ -69,15 +79,9 @@ const SignIn = () => {
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
-                        // setSuccessmsg(true);
-                        //console.log(response);
-                        
-                        if(response.data.userDetails.role === "buyer") {
-                            navigate('/home');
-                        }
-                        else { //if(role === "seller")
-                            navigate('/seller-dashboard');
-                        }
+                        localStorage.setItem("accessToken", response.data.token);
+                        localStorage.setItem("userRole", response.data.userDetails.role);
+                        reDirectUser();
                         console.log("success")
                     }
                     else {
