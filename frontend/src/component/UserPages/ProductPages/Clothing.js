@@ -7,24 +7,44 @@ import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Footer from "../../Footer.js";
 import axios from "axios";
+import Pagination from "react-js-pagination";
 import "./products.css"
 const Clothing = () => {
     const navigate = useNavigate();
     const [clothProducts, setClothProducts] = useState([]);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalNumClothing, setTotalNumofClothing] = useState();
+    const [resultsPerPage, setResultsPerPage] = useState(2);
+    const [errorMessage, setErrorMessage] = useState('');
 
 
     useEffect(() => {
+        getclothProducts(currentPage);
+    }, []);
+
+    const getclothProducts = (page) => {
+        setCurrentPage(page);
+        console.log(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
+            .get(`http://localhost:2000/product/getProducts?category=Clothing&page=${page}`, { withCredentials: true })
             .then((res) => {
-                setClothProducts(res.data.products);
-                console.log(res.data.products);
-            })
+                // console.log(res.data.products);
+                if (res.data.products.length > 0) {
+                    setTotalNumofClothing(res.data.productsCount);
+                    setResultsPerPage(res.data.resultsPerPage);
+                    setErrorMessage('')
+                    setClothProducts(res.data.products);
+                    // console.log(res.data.products);
+                }
+                else {
+                    setErrorMessage('No Orders to Display!')
+                }
+            }
+            )
             .catch((err) => {
                 console.log('Error from GetProducts');
             });
-    }, []);
+    };
 
 
 
@@ -73,10 +93,31 @@ const Clothing = () => {
             </div>
             <Footer />
 
+            {totalNumClothing > resultsPerPage && (
+                <div className="paginationBox">
+                    <Pagination
+                        activePage={currentPage}
+                        itemsCountPerPage={resultsPerPage}
+                        totalItemsCount={totalNumClothing}
+                        onChange={getclothProducts}
+                        firstPageText="First"
+                        lastPageText="Last"
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        activeClass="pageItemActive"
+                        activeLinkClass="pageLinkActive"
+                    />
+                </div>
+            )}
+            {errorMessage !== "" &&
+                <Typography fontSize="40px" color="black" align="center">
+                    {errorMessage}
+                </Typography>
+            }
         </div>
-        //  <div>Home</div>
 
     )
+
 };
 
 export default Clothing;
