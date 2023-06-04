@@ -11,6 +11,12 @@ import Divider from '@mui/material/Divider';
 import UploadIcon from '@mui/icons-material/Upload';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Navigation from './sellerNavBar.js';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
 
 const AddProduct = () => {
   const [prName, setprName] = useState('');
@@ -18,15 +24,20 @@ const AddProduct = () => {
   const [category, setcategory] = useState('');
   const [description, setdescription] = useState('');
   const [Stock, setStock] = useState('');
-  const [sizing, setsizing] = useState('');
+  // const [sizing, setsizing] = useState('');
   const navigate = useNavigate();
   const [successmsg, setSuccessmsg] = useState(false);
   const [errmsg, setErrmsg] = useState(false);
 
   const [images, setImages] = useState([]);
 
+
   const [imagesPreview, setImagesPreview] = useState([]);
   const fileInputRef = useRef(null);
+
+  const handleCategory = (event) => {
+    setcategory(event.target.value);
+  };
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
 
@@ -122,8 +133,27 @@ const AddProduct = () => {
                 </div>
               </Grid>
               <Grid item xs={8}>
-                <div className="labelStyle">
+                {/* <div className="labelStyle">
                   <TextField value={category} onChange={e => setcategory(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                </div> */}
+                <div className="labelStyle">
+                  <FormControl required sx={{ m: 0, minWidth: 300 }}>
+                    <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={category}
+                      label="Category"
+                      onChange={handleCategory}
+                    >
+                      <MenuItem value={"Clothing"}>Clothing</MenuItem>
+                      <MenuItem value={"Furniture"}>Furniture</MenuItem>
+                      <MenuItem value={"Toys"}>Toys</MenuItem>
+                      <MenuItem value={"Home Decor"}>Home Decor</MenuItem>
+                      <MenuItem value={"Paintings"}>Paintings</MenuItem>
+                      <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
               </Grid>
             </Grid>
@@ -139,6 +169,7 @@ const AddProduct = () => {
                   <TextField value={price} onChange={e => setprice(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
+
             </Grid>
 
             <Grid container direction="row"  >
@@ -185,7 +216,7 @@ const AddProduct = () => {
               </Grid>
             </Grid>
 
-            <Grid container direction="row"  >
+            {/* <Grid container direction="row"  >
               <Grid item xs={4}>
                 <div className="labelStyle">
                   Product  sizing:
@@ -196,7 +227,7 @@ const AddProduct = () => {
                   <TextField value={sizing} onChange={e => setsizing(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
-            </Grid>
+            </Grid> */}
 
             <Grid container direction="row"  >
               <Grid item xs={4}>

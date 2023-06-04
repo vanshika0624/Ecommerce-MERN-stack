@@ -49,20 +49,20 @@ const ViewProduct = () => {
         setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
 
   };
-  const addToCart =()=>{
+  const addToCart = () => {
 
-   
-    try{
-    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cart = {
-      product: productDetails._id,
-      name: productDetails.name,
-      price: productDetails.price,
-      // image: productDetails.images[0].url,
-      stock: productDetails.Stock,
-      quantity: productQuantity
-     }
-      const updatedCart = [...existingCart, cart ];
+
+    try {
+      const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cart = {
+        product: productDetails._id,
+        name: productDetails.name,
+        price: productDetails.price,
+        // image: productDetails.images[0].url,
+        stock: productDetails.Stock,
+        quantity: productQuantity
+      }
+      const updatedCart = [...existingCart, cart];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
     catch {
@@ -73,9 +73,9 @@ const ViewProduct = () => {
         // image: productDetails.images[0].url,
         stock: productDetails.Stock,
         quantity: productQuantity
-       }
-        // const updatedCart = [...existingCart, cart ];
-        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      // const updatedCart = [...existingCart, cart ];
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
 
   }
@@ -153,8 +153,8 @@ const ViewProduct = () => {
             <div  >
               {/* <Button onClick={decreaseQuantity}>-</Button> */}
               <Typography variant="h6" component="h6" className="fontStyles">
-        <span className="quantity" > Quantity :  </span>  <TextField   readOnly type="number" value={productQuantity} onChange={handleInputChange} />
-        </Typography>
+                <span className="quantity" > Quantity :  </span>  <TextField readOnly type="number" value={productQuantity} onChange={handleInputChange} />
+              </Typography>
               {/* <Button onClick={increaseQuantity}>+</Button> */}
             </div>
             :
@@ -164,7 +164,7 @@ const ViewProduct = () => {
           }
         </div>
         <div>
-          <Button className="viewProduct_Button" disabled={productDetails.Stock > 0 ? false : true}> Add to Cart</Button>
+          <Button className="viewProduct_Button" disabled={productDetails.Stock > 0 ? false : true} onClick={addToCart}> Add to Cart</Button>
         </div>
 
       </Grid>
