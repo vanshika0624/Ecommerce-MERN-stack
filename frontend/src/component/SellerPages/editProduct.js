@@ -15,6 +15,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
 // import Typography from "@mui/material";
 
 const EditProduct = () => {
@@ -32,10 +37,12 @@ const EditProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const [imageDisplayFlag , setImageDisplayFlag] = useState(false);
+  const [imageDisplayFlag, setImageDisplayFlag] = useState(false);
   const fileInputRef = useRef(null);
   const { id } = useParams();
-
+  const handleCategory = (event) => {
+    setcategory(event.target.value);
+  };
 
   useEffect(() => {
 
@@ -43,10 +50,11 @@ const EditProduct = () => {
       .get(`http://localhost:2000/product/getProducts/${id}`, { withCredentials: true })
       .then((res) => {
         // setProductDetails(res.data.products[0]);
+        console.log(res.data.product.category)
         setprName(res.data.product.name)
         setprice(res.data.product.price)
         setcategory(res.data.product.category)
-        setStock(res.data.product.stock)
+        setStock(res.data.product.Stock)
         setImages(res.data.product.images)
         setImagesPreview(res.data.product.images)
         setdescription(res.data.product.description)
@@ -112,7 +120,7 @@ const EditProduct = () => {
         .catch((err) => console.log(err, "err"));
     }
 
-    
+
     // else {
 
 
@@ -157,7 +165,7 @@ const EditProduct = () => {
   }
   return (
     <div>
-    <SellerNavBar/>
+      <SellerNavBar />
       <div className="editProduct_heading"> Edit Product<br /> </div>
       <Divider className="editProduct_divider" />
       <Grid container item xs={12} justifyContent="center" >
@@ -209,7 +217,7 @@ const EditProduct = () => {
                   <input
                     type="file"
                     name="avatar"
-                    accept="image/*" 
+                    accept="image/*"
                     onChange={createProductImagesChange}
                     // multiple
                     ref={fileInputRef}
@@ -226,7 +234,7 @@ const EditProduct = () => {
                 <div className="editProduct_labelStyle">
                   <div id="createProductFormImage"  >
                     {imagesPreview.map((image, index) => (
-                      <img key={index} src={ imageDisplayFlag?  image : image.url} alt="Product Preview" />
+                      <img key={index} src={imageDisplayFlag ? image : image.url} alt="Product Preview" />
                     ))}
                   </div>
                 </div>
@@ -248,13 +256,30 @@ const EditProduct = () => {
 
             <Grid container direction="row"  >
               <Grid item xs={4}>
-                <div className="editProduct_labelStyle">
-                  Product  sizing:
+                <div className="labelStyle">
+                  Product Category:
                 </div>
               </Grid>
               <Grid item xs={8}>
-                <div className="editProduct_labelStyle">
-                  <TextField value={sizing} onChange={e => setsizing(e.target.value)} required sx={{ width: 300 }} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                {/* <div className="labelStyle">
+                  <TextField value={category} onChange={e => setcategory(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                </div> */}
+                <div className="labelStyle">
+                  <FormControl required sx={{ m: 0, minWidth: 300 }}>
+                    <InputLabel>Category</InputLabel>
+                    <Select
+                      value={category}
+                      label="Category"
+                      onChange={handleCategory}
+                    >
+                      <MenuItem value={"Clothing"}>Clothing</MenuItem>
+                      <MenuItem value={"Furniture"}>Furniture</MenuItem>
+                      <MenuItem value={"Toys"}>Toys</MenuItem>
+                      <MenuItem value={"Home Decor"}>Home Decor</MenuItem>
+                      <MenuItem value={"Paintings"}>Paintings</MenuItem>
+                      <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
               </Grid>
             </Grid>

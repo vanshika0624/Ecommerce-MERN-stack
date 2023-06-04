@@ -10,7 +10,7 @@ class ApiFeatures {
         $or: [
           { name: { $regex: this.queryStr.keyword, $options: "i" } },
           { category: { $regex: this.queryStr.keyword, $options: "i" } },
-          { description: { $regex: this.queryStr.keyword, $options: "i" } }
+          // { description: { $regex: this.queryStr.keyword, $options: "i" } }
         ]
       }
       : {};
