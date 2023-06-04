@@ -230,7 +230,8 @@ const Address = () => {
         }
     }
   
-    return (<div className="add_imgstyle">
+    return (<div>
+        {/* <div className="add_imgstyle"> */}
         { 
         role === 'buyer' &&
         <Navigation/>

@@ -42,9 +42,9 @@
     margin:20px;
 }
 
-.viewOrderPage_card.MuiCard-root {
+.sellerOrderPage_card.MuiCard-root {
     background-color: #FAF2E9;;
-    margin: 20px 10px 10px 20px;
+    margin: 20px 10px 10px 0px;
     padding: 5px;
 
 }

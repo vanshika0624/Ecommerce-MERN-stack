@@ -43,7 +43,8 @@ const orderSchema = new mongoose.Schema({
       refNumber: {
         type: Number,
         default: 1
-      }
+      },
+      deliveredAt: Date
     },
   ],
   user: {
@@ -116,7 +117,7 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "Processing",
   },
-  deliveredAt: Date,
+  overallDeliveredAt: Date,
   createdAt: {
     type: Date,
     default: Date.now,
@@ -134,6 +135,7 @@ orderSchema.pre("save", async function (next) {
   }
   else if (IsDelivered) {
     order.overallOrderStatus = 'Delivered';
+    order.overallDeliveredAt = Date.now();
   }
   else {
       order.overallOrderStatus = 'Processing';

@@ -9,7 +9,8 @@ const {
   getProductReviews,
   deleteReview,
   getSellerProducts,
-  getSellerSingleProduct
+  getSellerSingleProduct,
+  getProductsForHome
 } = require("../controllers/productController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -29,6 +30,7 @@ router
   .put(isAuthenticatedUser, authorizeRoles("seller"), updateProduct)
   .delete(isAuthenticatedUser, authorizeRoles("seller"), deleteProduct);
 
+router.route("/getProductsHome").get(getProductsForHome);
 
 router.route("/getProducts").get(getAllProducts);
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./addProduct.css";
+import SellerNavBar from "./sellerNavBar.js";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
@@ -96,6 +97,7 @@ const AddProduct = () => {
   }
   return (
     <div>
+    <SellerNavBar/>
       <div className="heading">  Add Product<br /> </div>
       <Divider className="divider" />
       <Grid container item xs={12} justifyContent="center" >
