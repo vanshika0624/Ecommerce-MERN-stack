@@ -152,7 +152,7 @@ const EditProduct = () => {
   }
 
   const goToSellerCatalogue = () => {
-    navigate('/seller-dashboard')
+    navigate('/seller/catalogue')
   }
   return (
     <div>
@@ -207,7 +207,7 @@ const EditProduct = () => {
                   <input
                     type="file"
                     name="avatar"
-                    accept="image/*"
+                    accept="image/*" 
                     onChange={createProductImagesChange}
                     // multiple
                     ref={fileInputRef}
