@@ -76,50 +76,71 @@ exports.getAllBuyerOrders = catchAsyncErrors(async (req, res, next) => {
 
 // get all Orders -- Seller
 exports.getAllSellerOrders = catchAsyncErrors(async (req, res, next) => {
-  const resultsPerPage = 2;
-  const ordersCount = await Order.find({ "orderItems.seller": req.user._id } ).countDocuments();
-
-  const apiFeature = new ApiFeatures(Order.find({ "orderItems.seller": req.user._id } ), req.query)
-    .pagination(resultsPerPage);
-
-  let orders = await apiFeature.query;
+  const orders = await Order.find({ "orderItems.seller": req.user._id }).populate(
+    "user",
+    "firstname lastname email"
+  );
   orders.forEach((order) => { order.orderItems = order.orderItems.filter((item) => item.seller.toString()  == req.user._id); });
-  let = orders.length;
-
+  
+  let ordersCount = orders.length
   res.status(200).json({
     success: true,
     orders,
-    ordersCount,
-    resultsPerPage
+    ordersCount
   });
 });
 
-// update Order Status -- Admin
-exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
-  const order = await Order.findById(req.params.id);
-
+// get single Order -- Seller
+exports.getSellerSingleOrder = catchAsyncErrors(async (req, res, next) => {
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "firstname lastname email"
+  );
   if (!order) {
     return next(new ErrorHander("Order not found with this Id", 404));
   }
 
-  if (order.orderStatus === "Delivered") {
-    return next(new ErrorHander("You have already delivered this order", 400));
-  }
+  order.orderItems = order.orderItems.filter((item) => item.seller.toString()  == req.user._id); 
+ 
+  res.status(200).json({
+    success: true,
+    order,
+  });
+});
 
-  if (req.body.status === "Shipped") {
-    order.orderItems.forEach(async (o) => {
-      await updateStock(o.product, o.quantity);
-    });
-  }
-  order.orderStatus = req.body.status;
 
-  if (req.body.status === "Delivered") {
-    order.deliveredAt = Date.now();
+// update Order Status -- Seller
+exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
+  const order = await Order.findById(req.body.orderId);
+  if (!order) {
+    return next(new ErrorHander("Order not found with this Id", 404));
   }
+  
+  order.orderItems.forEach((prod) => { 
+    
+    if (prod.product.toString() === req.body.productId.toString()) {
+
+      if(prod.orderStatus.toString() === "Delivered") {
+        return next(new ErrorHander("You have already delivered this order", 400));
+      }
+      
+      if (prod.orderStatus.toString() !== "Shipped" && req.body.status.toString() === "Shipped") {
+        updateStock(prod.product, prod.quantity);
+      }
+      
+      if (req.body.status.toString() === "Delivered") {
+        prod.deliveredAt = Date.now();
+      }
+      
+      prod.orderStatus = req.body.status;
+
+
+    }
+  });
 
   await order.save({ validateBeforeSave: false });
   res.status(200).json({
-    success: true,
+    success: true
   });
 });
 

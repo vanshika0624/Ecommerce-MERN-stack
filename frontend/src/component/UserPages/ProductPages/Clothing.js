@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
 import Navigation from "../../navigation.js"
 import Typography from '@mui/material/Typography';
 import { useNavigate, Link } from 'react-router-dom';
-import { ButtonGroup } from "@mui/material";
+import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Footer from "../../Footer.js";
 import axios from "axios";
@@ -11,22 +10,30 @@ import "./products.css"
 const Clothing = () => {
     const navigate = useNavigate();
     const [clothProducts, setClothProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalNumOrders, setTotalNumofOrders] = useState();
+    const [resultsPerPage, setResultsPerPage] = useState();
 
 
 
     useEffect(() => {
-        axios
-            .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
-            .then((res) => {
-                setClothProducts(res.data.products);
-                console.log(res.data.products);
-            })
-            .catch((err) => {
-                console.log('Error from GetProducts');
-            });
+        getClothing(currentPage);
     }, []);
 
+    const getClothing = (page) => {
+        setCurrentPage(page);
+        axios
+        .get('http://localhost:2000/product/getProducts?category=Clothing&page='+ page, { withCredentials: true })
+        .then((res) => {
+            setClothProducts(res.data.products);
+            setTotalNumofOrders(res.data.filteredProductsCount);
+            setResultsPerPage(res.data.resultPerPage);
+        })
+        .catch((err) => {
+            console.log('Error from GetProducts');
+        });
 
+    }
 
 
 
@@ -70,6 +77,22 @@ const Clothing = () => {
             <Navigation />
             <div className="alignment">
                 {disaplyCards(clothProducts)}
+                {totalNumOrders > resultsPerPage && (
+                <div className="paginationBoxProducts">
+                    <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultsPerPage}
+                    totalItemsCount={totalNumOrders}
+                    onChange={getClothing}
+                    firstPageText="First"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                    />
+                </div>
+                )}
             </div>
             <Footer />
 

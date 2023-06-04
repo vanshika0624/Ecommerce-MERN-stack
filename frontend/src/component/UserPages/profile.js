@@ -39,7 +39,8 @@ const Profile = () => {
         
     };
 
-    return <div className="profileimgstyle">
+    return <div>
+        {/* <div className="profileimgstyle"> */}
     <Navigation/>
     <div>
         <Card variant="outlined" className="profileOuterCard" sx={{ minWidth: 450, minHeight: 585 }}>
@@ -72,7 +73,7 @@ const Profile = () => {
                                     Ordered on: {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(card.orderDate))}
                                 </Typography>
                                 <Typography variant="h6"component="h6" color="#3b2f28">
-                                    <Link style={{ color: "#3b2f28", fontSize: 15 }} to={`/viewSellerOrders/${card._id}`}>View Details</Link>
+                                    <Link style={{ color: "#3b2f28", fontSize: 15 }} to={`/orders/${card._id}`}>View Details</Link>
                                 </Typography>
                             </div>
 

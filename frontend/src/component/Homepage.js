@@ -35,7 +35,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Furniture', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Furniture', { withCredentials: true })
       .then((res) => {
         setFurnitureProducts(res.data.products);
         // console.log(res.data.products);
@@ -46,7 +46,7 @@ const HomePage = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Jewelry', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Jewelry', { withCredentials: true })
       .then((res) => {
         setJewelryProducts(res.data.products);
         // console.log(res.data.products);
@@ -58,7 +58,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Paintings', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Paintings', { withCredentials: true })
       .then((res) => {
         setPaintingProducts(res.data.products);
         // console.log(res.data.products);
@@ -70,7 +70,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Clothing', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Clothing', { withCredentials: true })
       .then((res) => {
         setClothProducts(res.data.products);
         // console.log(res.data.products);
@@ -82,7 +82,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Home-Decor', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Home-Decor', { withCredentials: true })
       .then((res) => {
         setDecorProducts(res.data.products);
         // console.log(res.data.products);
@@ -94,7 +94,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/getProducts?category=Toys', { withCredentials: true })
+      .get('http://localhost:2000/product/getProductsHome?category=Toys', { withCredentials: true })
       .then((res) => {
         setToyProducts(res.data.products);
         // console.log(res.data.products);

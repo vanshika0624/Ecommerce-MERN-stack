@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./editProduct.css";
+import SellerNavBar from "./sellerNavBar.js";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
@@ -156,6 +157,7 @@ const EditProduct = () => {
   }
   return (
     <div>
+    <SellerNavBar/>
       <div className="editProduct_heading"> Edit Product<br /> </div>
       <Divider className="editProduct_divider" />
       <Grid container item xs={12} justifyContent="center" >

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
 import Navigation from "../../navigation.js"
 import Typography from '@mui/material/Typography';
 import { useNavigate, Link } from 'react-router-dom';
-import { ButtonGroup } from "@mui/material";
+import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
 import Footer from "../../Footer.js";
@@ -11,17 +10,27 @@ import "./products.css"
 const Paintings = () => {
     const navigate = useNavigate();
     const [paintingProducts, setPaintingProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalNumOrders, setTotalNumofOrders] = useState();
+    const [resultsPerPage, setResultsPerPage] = useState();
+
     useEffect(() => {
+        getPaintings(currentPage);
+    }, []);
+
+    const getPaintings = (page) => {
+        setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Paintings', { withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Paintings&page='+ page, { withCredentials: true })
             .then((res) => {
                 setPaintingProducts(res.data.products);
-                console.log(res.data.products);
+                setTotalNumofOrders(res.data.filteredProductsCount);
+                setResultsPerPage(res.data.resultPerPage);
             })
             .catch((err) => {
                 console.log('Error from GetProducts');
             });
-    }, []);
+    }
 
 
 
@@ -68,6 +77,22 @@ const Paintings = () => {
             <Navigation />
             <div className="alignment">
                 {disaplyCards(paintingProducts)}
+                {totalNumOrders > resultsPerPage && (
+                <div className="paginationBoxProducts">
+                    <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultsPerPage}
+                    totalItemsCount={totalNumOrders}
+                    onChange={getPaintings}
+                    firstPageText="First"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                    />
+                </div>
+                )}
             </div>
             <Footer />
 

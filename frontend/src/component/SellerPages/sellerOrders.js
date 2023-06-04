@@ -1,17 +1,79 @@
 import React, {useState, useEffect} from "react";
+import  "./sellerOrders.css"
 import SellerNavBar from "./sellerNavBar.js";
-import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Grid } from '@mui/material';
-import Pagination from "react-js-pagination";
+import LaunchIcon from '@mui/icons-material/Launch';
+import Button from '@mui/material/Button';
+import { DataGrid } from '@mui/x-data-grid';
+import Divider from '@mui/material/Divider';
 import axios from "axios";
 const SellerOrders = () => {
 
     const [orders, setOrders] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalNumOrders, setTotalNumofOrders] = useState();
-    const [resultsPerPage, setResultsPerPage] = useState(2);
-    const [errorMessage, setErrorMessage] = useState('');
+    const columns = [
+        { field: "id", headerName: "", maxWidth: 30, flex: 1, sortable: false },
+        { field: "orderId", headerName: "", maxWidth: 30, flex: 1, sortable: false},
+        { field: "orderNumber", headerName: "Order Number", maxWidth: 300, flex: 1 },
+        { field: "orderDate", headerName: "Order Date", maxWidth: 100, flex: 1 },
+        { field: "buyer", headerName: "Buyer Details", maxWidth: 150, flex: 1},
+        { field: "shippingDetails", headerName: "Shipping Details", maxWidth: 500, flex: 1 },
+        { field: "paymentStatus", headerName: "Payment", maxWidth: 100, flex: 1 },
+        { field: "paymentID", headerName: "Payment ID", maxWidth: 100, flex: 1 },
+        { field: "numProducts", headerName: "Products ordered", maxWidth: 125, flex: 1, align: 'right', type: "number" },
+        { field: "orderStatus", headerName: "Overall Status", maxWidth: 125, flex: 1 },
+        { field: "actions", headerName: "Actions", minWidth: 150, flex: 0.3, align: 'left', type: 'actions',
+        renderCell: (params) => {
+            return (
+              <Link to={`/seller-orders/${params.row.orderId}`}>
+                <Button size="large" style={{ color: "#3b2f28", fontWeight: 'bold'}}>Update<LaunchIcon fontSize="small"/></Button>
+              </Link>
+            );
+          },
+          
+        }
+    ]
+
+    
+    const rows = [];
+    orders &&
+    orders.forEach((item, index) => {
+        let buyer = item.user.firstname + " " + item.user.lastname;
+        let shipAddress = item.shippingInfo.address + ", " + item.shippingInfo.city + ", " + item.shippingInfo.state + ", " + item.shippingInfo.zipCode + ", Mobile: " + item.shippingInfo.phoneNo;
+        
+        let dCount = 0;
+        let sCount = 0;
+        let oStatus = "Processing";
+        item.orderItems.forEach((prod) => {
+            if(prod.orderStatus === "Delivered") {
+                dCount++;
+            }
+            else if(prod.orderStatus === "Shipped") {
+                sCount++;
+            }
+        })
+
+        if(dCount === item.orderItems.length) {
+            oStatus = "Delivered"
+        }
+
+        else if(sCount === item.orderItems.length) {
+            oStatus = "Shipped"
+        }
+
+        rows.push({
+            id: index + 1,
+            orderId: item._id,
+            orderNumber: item.orderNumber,
+            orderDate: new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(item.orderDate)),
+            buyer: buyer,
+            shippingDetails: shipAddress,
+            paymentStatus: item.paymentInfo.status,
+            paymentID: item.paymentInfo.id,
+            numProducts: item.orderItems.length,
+            orderStatus: oStatus
+        });
+    });
 
     useEffect(() => {
         getOrders(currentPage);
@@ -24,17 +86,11 @@ const SellerOrders = () => {
         .then((res) => {
             if(res.data.orders.length > 0) {
                 setOrders(res.data.orders);
-                setTotalNumofOrders(res.data.ordersCount);
-                setResultsPerPage(res.data.resultsPerPage);
-                setErrorMessage('')
-            }
-            else {
-                setErrorMessage('No Orders to Display!')
             }
         })
         .catch((err) => {
-          console.log('Error while fetching Orders');
-          setErrorMessage('No Orders to Display!')
+            console.log(err)
+            console.log('Error while fetching Orders');
         });
         
     };
@@ -42,80 +98,27 @@ const SellerOrders = () => {
     return (<div >
 
     <SellerNavBar/>
-    <div>
-        <Card variant="outlined" className="profileOuterCard" sx={{ minWidth: 450, minHeight: 585 }}>
-            <CardContent>
-                <Typography fontSize="40px" color="black" align="left">
-                    Orders
-                </Typography>
-            </CardContent>
-
-        {orders.map((card) => (
-            <Card key={card._id} className="profilePage_card"  >
-                <CardContent>
-                    <Grid container spacing={2}>
-                        <Grid item xs={10}  >
-                            <div className="orderContentDiv">
-                                <Typography variant="h5" component="h5" color="#3b2f28">
-                                    {card.orderItems.length === 1 && card.orderItems[0].name}
-                                    {card.orderItems.length > 1 && card.orderItems[0].name + " and " + (card.orderItems.length - 1) + " more.."}
-                                </Typography>
-                                <Typography variant="body2"component="p" color="#3b2f28">
-                                    Order Number: {card.orderNumber}
-                                </Typography>
-                                <Typography variant="body2"component="p" color="#3b2f28">
-                                    Price: ${card.totalPrice}
-                                </Typography>
-                                <Typography variant="body2"component="p" color="#3b2f28">
-                                    Status: {card.overallOrderStatus}
-                                </Typography>
-                                <Typography variant="body2"component="p" color="#3b2f28">
-                                    Ordered on: {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(card.orderDate))}
-                                </Typography>
-                                <Typography variant="h6"component="h6" color="#3b2f28">
-                                    <Link style={{ color: "#3b2f28", fontSize: 15 }} to={`/orders/${card._id}`}>View Details</Link>
-                                </Typography>
-                            </div>
-
-                        </Grid>
-                        <Grid item xs={2} >
-                            <div className="imgContainer">
-                                <CardMedia alt="Order Image">
-                                    <img src={card.orderItems[0].image} alt="Order Image Preview" />
-                                </CardMedia>
-                            </div>
-                        </Grid>
-                    </Grid>
-                </CardContent> 
-            </Card>
-        ))
-        }
-        {totalNumOrders > resultsPerPage && (
-        <div className="paginationBox">
-            <Pagination
-            activePage={currentPage}
-            itemsCountPerPage={resultsPerPage}
-            totalItemsCount={totalNumOrders}
-            onChange={getOrders}
-            firstPageText="First"
-            lastPageText="Last"
-            itemClass="page-item"
-            linkClass="page-link"
-            activeClass="pageItemActive"
-            activeLinkClass="pageLinkActive"
-            />
-        </div>
-        )}
-        {errorMessage !== "" &&
-        <Typography fontSize="40px" color="black" align="center">
-            {errorMessage}
-        </Typography>
-        }
-        </Card>
-               
-    </div>
-
-
+    <div className="heading">  Orders <br /> </div>
+    <Divider className="divider" />
+    <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
+        disableRowSelectionOnClick
+        className="myOrdersGrid"
+        autoHeight
+        getRowId={(row) => row.orderNumber}
+        initialState={{
+            columns: {
+                columnVisibilityModel: {
+                    orderId: false
+                },
+            },
+            pagination: { paginationModel: { pageSize: 10 } },
+        }}
+        pageSizeOptions={[10, 25, 50]}
+    />
     </div>
     )
 };

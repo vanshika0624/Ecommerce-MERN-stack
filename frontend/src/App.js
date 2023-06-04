@@ -23,6 +23,7 @@ import AddProduct from './component/SellerPages/addProduct.js'
 import EditProduct from './component/SellerPages/editProduct.js'
 import Dashboard from './component/SellerPages/dashboard.js'
 import ViewSingleOrder from "./component/UserPages/viewOrder.js";
+import ViewSellerOrder from "./component/SellerPages/viewSellerOrder.js";
 import SellerOrders from './component/SellerPages/sellerOrders.js'
 import SearchResults from "./component/UserPages/ProductPages/searchResult.js";
 import Catalogue from './component/SellerPages/catalogue.js'
@@ -58,6 +59,7 @@ function App() {
           <Route path='/seller-dashboard' element={< Dashboard />} />
           <Route path='/orders/:id' element={<ViewSingleOrder/>} />
           <Route path='/seller-orders' element={<SellerOrders/>} />
+          <Route path='/seller-orders/:id' element={<ViewSellerOrder/>} />
           <Route path='/search/:keyword' element={<SearchResults />} />
           <Route path='/seller/catalogue' element={< Catalogue />} />
 

@@ -111,7 +111,7 @@ const ViewSingleOrder = () => {
                 </Typography>
             </CardContent>
         {orderItems.map((card) => (
-            <Card key={card._id} className="profilePage_card"  >
+            <Card key={card._id} className="viewOrderPage_card"  >
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={6}  >

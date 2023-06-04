@@ -45,6 +45,19 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// Get Random Products for Home Screen
+exports.getProductsForHome = catchAsyncErrors(async (req, res, next) => {
+  const productsCount = 8;
+  const products = await Product.aggregate([ { $match : { category : req.query.category } }, { $sample: { size: productsCount } } ])
+
+  res.status(200).json({
+    success: true,
+    products,
+    productsCount
+  });
+});
+
+
 // Get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 8;
@@ -53,11 +66,16 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
+
+  let filteredProducts = await apiFeature.query
+  let filteredProductsCount = filteredProducts.length;
+
+  const apiPage = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
     .pagination(resultPerPage);
-
-  let products = await apiFeature.query;
-
-  let filteredProductsCount = products.length;
+  
+  let products = await apiPage.query;
 
   res.status(200).json({
     success: true,
