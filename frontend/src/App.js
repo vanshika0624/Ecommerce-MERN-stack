@@ -27,6 +27,7 @@ import ViewSellerOrder from "./component/SellerPages/viewSellerOrder.js";
 import SellerOrders from './component/SellerPages/sellerOrders.js'
 import SearchResults from "./component/UserPages/ProductPages/searchResult.js";
 import Catalogue from './component/SellerPages/catalogue.js'
+import AboutUs from './component/AboutUs.js'
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           <Route path='/seller-orders/:id' element={<ViewSellerOrder/>} />
           <Route path='/search/:keyword' element={<SearchResults />} />
           <Route path='/seller/catalogue' element={< Catalogue />} />
+          <Route path='/aboutUs' element={<AboutUs />} />
 
         
 
