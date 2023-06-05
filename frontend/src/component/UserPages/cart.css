@@ -31,6 +31,12 @@
     width: 280px;
 }
 
+.cart_button.MuiButton-root:hover {
+    background-color: #9c8d71;
+    transition: 0.7s;
+    color: white
+}
+
 .cart_EmptyMsg {
     font-size: 40px;
     margin: 40px;

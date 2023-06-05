@@ -4,6 +4,7 @@ import './App.css';
 import DisplayPage from "./component/DisplayPage.js";
 import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
+import OrderSuccess from './component/UserPages/OrderSuccess.js';
 import SellerSignUp from './component/SellerPages/signup.js'
 import Address from './component/UserPages/address.js';
 import ChangePassword from './component/UserPages/changePassword.js';
@@ -36,6 +37,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<DisplayPage />} />
           <Route path='/user-signup' element={<SignUp />} />
+          <Route path='/ordersuccess' element={<OrderSuccess />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/seller-signup' element={<SellerSignUp />} />
           <Route path='/address' element={<Address />} />

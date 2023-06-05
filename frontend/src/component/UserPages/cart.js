@@ -12,6 +12,7 @@ import { CardMedia, Grid, CardContent, Card, TextField } from '@mui/material';
 import axios from 'axios';
 
 import "./cart.css";
+import OrderSuccess from './OrderSuccess';
 const Cart = () => {
     const navigate = useNavigate();
 
@@ -128,16 +129,19 @@ const Cart = () => {
     const calculateItemTotal = () => {
 
         const subtotals = cartItems.map(calculateSubtotal);
-        return subtotals.reduce((accumulator, current) => accumulator + current, 0);
+        return Math.round(subtotals.reduce((accumulator, current) => accumulator + current, 0));
     };
     const calculateTotal = () => {
 
-        return calculateItemTotal() + calculateServiceCharge();
+        return Math.round(calculateItemTotal() + calculateServiceCharge());
     };
     const calculateServiceCharge = () => {
         const salesTaxRate = getStateSalesTaxRate(state);
-        return calculateItemTotal() * (salesTaxRate + 0.03);
+        return Math.round(calculateItemTotal() * (salesTaxRate + 0.03));
     };
+    const goToOrderSucces=()=>{
+navigate("/OrderSuccess")
+    }
 
     const getStateSalesTaxRate = (state) => {
         switch (state) {
@@ -321,7 +325,7 @@ const Cart = () => {
                             </Grid>
                         </Grid>
                         <div>
-                            <Button className="cart_button" variant="contained" size="large" >Checkout</Button>
+                            <Button className="cart_button" variant="contained" size="large" onClick = {goToOrderSucces}>Checkout</Button>
                         </div>
 
                     </Card>

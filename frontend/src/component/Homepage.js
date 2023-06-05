@@ -3,6 +3,7 @@ import "./Homepage.css"
 import Button from '@mui/material/Button';
 import Navigation from "./navigation.js";
 import Footer from "./Footer.js";
+import Pagination from 'react-bootstrap/Pagination';
 import Typography from '@mui/material/Typography';
 import { useNavigate, Link } from 'react-router-dom';
 import Tooltip from "@mui/material/Tooltip";
@@ -164,6 +165,28 @@ const HomePage = () => {
   return (
     <div className="bg">
       <Navigation />
+      <div className="alignment">
+
+<Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+  Home Decor
+</Typography>
+{disaplyCards(decorProducts)}
+<Grid container item xs={12} justifyContent ="center">
+<Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
+</Grid>
+</div>
+
+
+      
+      <div className="alignment">
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+          Furniture
+        </Typography>
+        {disaplyCards(furnitureProducts)}
+        <Grid container item xs={12} justifyContent ="center">
+        <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
+        </Grid>
+      </div>
 
       <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
@@ -175,15 +198,7 @@ const HomePage = () => {
         <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
         </Grid>
       </div>
-      <div className="alignment">
-        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
-          Furniture
-        </Typography>
-        {disaplyCards(furnitureProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
-        </Grid>
-      </div>
+
       <div className="alignment">
 
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
@@ -192,16 +207,6 @@ const HomePage = () => {
         {disaplyCards(clothProducts)}
         <Grid container item xs={12} justifyContent ="center">
         <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
-        </Grid>
-      </div>
-      <div className="alignment">
-
-        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
-          Home Decor
-        </Typography>
-        {disaplyCards(decorProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
         </Grid>
       </div>
       <div className="alignment">

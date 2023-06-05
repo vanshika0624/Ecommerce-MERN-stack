@@ -4,7 +4,8 @@ import Navigation from "../navigation.js";
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
-import Pagination from "react-js-pagination";
+//import Pagination from "react-js-pagination";
+import Pagination from 'react-bootstrap/Pagination';
 import axios from "axios";
 const Profile = () => {
     const [orders, setOrders] = useState([]);

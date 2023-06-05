@@ -88,7 +88,7 @@ const AddProduct = () => {
           // console.log(response);
           if (response.status == 201) {
             setSuccessmsg(true);
-            navigate('/home');
+            navigate('/seller-dashboard');
             console.log("success")
           }
           else {
