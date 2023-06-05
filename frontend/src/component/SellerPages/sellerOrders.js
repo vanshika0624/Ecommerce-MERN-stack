@@ -4,7 +4,7 @@ import SellerNavBar from "./sellerNavBar.js";
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Pagination from "react-js-pagination";
-import { Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import { LaunchIcon } from 'react';
 import { Divider } from 'react';
 import { DataGrid } from 'react';

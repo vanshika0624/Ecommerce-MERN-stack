@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import  "./DisplayPage.css"
 import landing_page from "../images/landing.png";
 import Button from '@mui/material/Button';
-import Pagination from 'react-bootstrap/Pagination';
+import Pagination from 'react-js-pagination';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 const DisplayPage = () => {

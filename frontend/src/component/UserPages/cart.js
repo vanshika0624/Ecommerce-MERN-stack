@@ -10,9 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import { CardMedia, Grid, CardContent, Card, TextField } from '@mui/material';
 import axios from 'axios';
-
 import "./cart.css";
-import OrderSuccess from './OrderSuccess';
+
 const Cart = () => {
     const navigate = useNavigate();
 
@@ -259,6 +258,9 @@ const Cart = () => {
     const goToProfile = () => {
         navigate('/address')
     }
+    const goToOrderSucces=()=>{
+        navigate("/OrderSuccess")
+            }
     return (
         <div >
 

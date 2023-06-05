@@ -3,7 +3,7 @@ import "./Homepage.css"
 import Button from '@mui/material/Button';
 import Navigation from "./navigation.js";
 import Footer from "./Footer.js";
-import Pagination from 'react-bootstrap/Pagination';
+import Pagination from 'react-js-pagination';
 import Typography from '@mui/material/Typography';
 import { useNavigate, Link } from 'react-router-dom';
 import Tooltip from "@mui/material/Tooltip";

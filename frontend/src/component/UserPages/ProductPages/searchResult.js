@@ -110,24 +110,8 @@ const SearchResult = () => {
                         Search Results
                     </Typography>
                     {displayCards(searchResults)}
-                    {totalNumOrders > resultsPerPage && (
-                        <div className="paginationBoxProducts">
-                            <Pagination
-                                activePage={currentPage}
-                                itemsCountPerPage={resultsPerPage}
-                                totalItemsCount={totalNumOrders}
-                                onChange={getSearchResults}
-                                firstPageText="First"
-                                lastPageText="Last"
-                                itemClass="page-item"
-                                linkClass="page-link"
-                                activeClass="pageItemActive"
-                                activeLinkClass="pageLinkActive"
-                            />
-                        </div>
-                    )}
                 </div>
-            ) : (
+            ) :  (
                 <div className="alignment">
                     <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
                         No search results found.
@@ -151,7 +135,6 @@ const SearchResult = () => {
                     />
                 </div>
                 )}
-
 
             <Footer />
         </div>

@@ -8,7 +8,6 @@ import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Footer from "../../Footer.js";
 import axios from "axios";
-import Pagination from "react-js-pagination";
 import "./products.css"
 const Clothing = () => {
     const [clothProducts, setClothProducts] = useState([]);
