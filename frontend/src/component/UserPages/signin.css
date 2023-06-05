@@ -79,7 +79,7 @@
     position: flex;
 }
 
-.userSignin_errmsg {
+.userSignin_errmsg.MuiTypography-root {
     color: rgb(161, 16, 16);
-    align-items: center;
+    text-align: center;
 }

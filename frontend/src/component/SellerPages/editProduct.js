@@ -34,15 +34,46 @@ const EditProduct = () => {
   const [successmsg, setSuccessmsg] = useState(false);
   const [errmsg, setErrmsg] = useState(false);
   const [open, setOpen] = useState(false);
+  const [prNameError, setprNameError] = useState('');
+  const [StockError, setStockError] = useState('');
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const [imageDisplayFlag , setImageDisplayFlag] = useState(false);
+  const [imageDisplayFlag, setImageDisplayFlag] = useState(false);
   const fileInputRef = useRef(null);
   const { id } = useParams();
   const handleCategory = (event) => {
     setcategory(event.target.value);
   };
+
+  const handleprNameChange = (e) => {
+    setprName(e.target.value)
+    if ((e.target.value.length) > 25) {
+      setprNameError('Please Enter less than 25 characters')
+
+    }
+    else {
+      setprNameError('')
+    }
+  }
+  const handleStockChange = (e) => {
+    setStock(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setStockError('Please Enter a Number')
+
+    }
+    else {
+      setStockError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
+    }
+  }
+  const validateStock = (stock) => {
+    const stockRegex = /^[0-9]+$/;
+
+    return stockRegex.test(stock)
+  }
+
 
   useEffect(() => {
 
@@ -92,15 +123,23 @@ const EditProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
+      console.log(prName);
+      console.log(description);
+      console.log(price);
+      console.log(category);
+      console.log(typeof (id));
+
       // setEmptyfields(false);
       axios.put(`http://localhost:2000/product/seller/getProducts/${id}`, {
 
-        "name": prName,
-        "description": description,
-        "price": price,
-        "category": category,
-        "images": images,
-        "Stock": Stock,
+
+        name: prName,
+        description: description,
+        price: price,
+        category: category,
+        images: images,
+        Stock: Stock
+
         // "user": "64596f0f3d0561f78b51993d"
 
       }, { withCredentials: true })
@@ -120,7 +159,7 @@ const EditProduct = () => {
         .catch((err) => console.log(err, "err"));
     }
 
-    
+
     // else {
 
 
@@ -165,7 +204,7 @@ const EditProduct = () => {
   }
   return (
     <div>
-    <SellerNavBar/>
+      <SellerNavBar />
       <div className="editProduct_heading"> Edit Product<br /> </div>
       <Divider className="editProduct_divider" />
       <Grid container item xs={12} justifyContent="center" >
@@ -193,7 +232,7 @@ const EditProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="editProduct_labelStyle">
-                  <TextField value={prName} required onChange={e => setprName(e.target.value)} sx={{ width: 300 }} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={prName} required onChange={handleprNameChange} sx={{ width: 300 }} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>
@@ -218,7 +257,7 @@ const EditProduct = () => {
                   <input
                     type="file"
                     name="avatar"
-                    accept="image/*" 
+                    accept="image/*"
                     onChange={createProductImagesChange}
                     // multiple
                     ref={fileInputRef}
@@ -235,7 +274,7 @@ const EditProduct = () => {
                 <div className="editProduct_labelStyle">
                   <div id="createProductFormImage"  >
                     {imagesPreview.map((image, index) => (
-                      <img key={index} src={ imageDisplayFlag?  image : image.url} alt="Product Preview" />
+                      <img key={index} src={imageDisplayFlag ? image : image.url} alt="Product Preview" />
                     ))}
                   </div>
                 </div>
@@ -293,7 +332,7 @@ const EditProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="editProduct_labelStyle">
-                  <TextField value={Stock} onChange={e => setStock(e.target.value)} sx={{ width: 300 }} required className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={Stock} onChange={handleStockChange} error={Boolean(StockError)} helperText={StockError} sx={{ width: 300 }} required className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>

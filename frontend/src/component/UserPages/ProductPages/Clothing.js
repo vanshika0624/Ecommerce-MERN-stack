@@ -8,6 +8,7 @@ import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Footer from "../../Footer.js";
 import axios from "axios";
+import Pagination from "react-js-pagination";
 import "./products.css"
 const Clothing = () => {
     const [clothProducts, setClothProducts] = useState([]);
@@ -115,28 +116,28 @@ const Clothing = () => {
             <div className="alignment">
                 {disaplyCards(clothProducts)}
                 {totalNumOrders > resultsPerPage && (
-                <div className="paginationBoxProducts">
-                    <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resultsPerPage}
-                    totalItemsCount={totalNumOrders}
-                    onChange={getClothing}
-                    firstPageText="First"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                    />
-                </div>
+                    <div className="paginationBoxProducts">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage={resultsPerPage}
+                            totalItemsCount={totalNumOrders}
+                            onChange={getClothing}
+                            firstPageText="First"
+                            lastPageText="Last"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="pageItemActive"
+                            activeLinkClass="pageLinkActive"
+                        />
+                    </div>
                 )}
             </div>
             <Footer />
 
         </div>
-        //  <div>Home</div>
 
     )
+
 };
 
 export default Clothing;

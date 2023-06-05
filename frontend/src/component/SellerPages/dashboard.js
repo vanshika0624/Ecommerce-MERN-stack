@@ -10,6 +10,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [furnitureProducts, setFurnitureProducts] = useState([]);
@@ -20,14 +21,14 @@ const Dashboard = () => {
   const [paintingProducts, setPaintingProducts] = useState([]);
 
   useEffect(() => {
-    if(localStorage.getItem("userRole") === 'buyer') {
+    if (localStorage.getItem("userRole") === 'buyer') {
       navigate('/home');
     }
   }, []);
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Furniture',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Furniture', { withCredentials: true })
       .then((res) => {
         setFurnitureProducts(res.data.products);
         console.log(res.data.products);
@@ -38,7 +39,7 @@ const Dashboard = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Jewelry',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Jewelry', { withCredentials: true })
       .then((res) => {
         setJewelryProducts(res.data.products);
         console.log(res.data.products);
@@ -50,7 +51,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Paintings',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Paintings', { withCredentials: true })
       .then((res) => {
         setPaintingProducts(res.data.products);
         console.log(res.data.products);
@@ -62,7 +63,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Clothing',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Clothing', { withCredentials: true })
       .then((res) => {
         setClothProducts(res.data.products);
         console.log(res.data.products);
@@ -74,7 +75,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Home-Decor',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Home-Decor', { withCredentials: true })
       .then((res) => {
         setDecorProducts(res.data.products);
         console.log(res.data.products);
@@ -86,7 +87,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:2000/product/seller/getProducts?category=Toys',{ withCredentials: true })
+      .get('http://localhost:2000/product/seller/getProducts?category=Toys', { withCredentials: true })
       .then((res) => {
         setToyProducts(res.data.products);
         console.log(res.data.products);
@@ -124,13 +125,13 @@ const Dashboard = () => {
             <Card key={card._id} className="dashboard_card"  >
               <CardMedia image={card.image} alt="product image" />
               {
-          card.images && card.images.map((image)=>(
-          //  console.log(card);
-          <CardMedia alt="product image"  className="displayProductFormImage">
-           <img  src={image.url} alt="Product Preview" />
-          </CardMedia>
-          ))
-        }
+                card.images && card.images.map((image) => (
+                  //  console.log(card);
+                  <CardMedia alt="product image" className="displayProductFormImage">
+                    <img src={image.url} alt="Product Preview" />
+                  </CardMedia>
+                ))
+              }
               <CardContent>
                 <Tooltip title={card.name}>
                   <Typography variant="h6" component="h6" color="#848D62" className="nameEllipsis">
@@ -156,7 +157,7 @@ const Dashboard = () => {
   return (
     <div className="bg">
       <SellerNavBar />
-      { jewelryProducts.length !=0 && <div className="alignment">
+      {jewelryProducts.length != 0 && <div className="alignment">
         <Typography className="dashboard_typography" variant="h4" color="textSecondary" component="div">
           Jewelry
         </Typography>
@@ -165,8 +166,8 @@ const Dashboard = () => {
           <Button className="homePage_button" onClick={goToJewelry}> View All </Button>
         </Grid>
       </div>
-}
-{ furnitureProducts.length !=0  &&    <div className="alignment">
+      }
+      {furnitureProducts.length != 0 && <div className="alignment">
         <Typography className="dashboard_typography" variant="h4" color="textSecondary" component="div">
           Furniture
         </Typography>
@@ -175,9 +176,9 @@ const Dashboard = () => {
           <Button className="homePage_button" onClick={goToFurniture}> View All </Button>
         </Grid>
       </div>
-}
-{ clothProducts.length !=0  &&
-      <div className="alignment">
+      }
+      {clothProducts.length != 0 &&
+        <div className="alignment">
 
         <Typography className="dashboard_typography" variant="h4" color="textSecondary" component="div">
           Clothing

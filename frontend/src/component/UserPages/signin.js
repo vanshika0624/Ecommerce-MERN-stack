@@ -21,7 +21,7 @@ const SignIn = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-    const [errmsg, setErrmsg] = useState(false);
+    const [errmsg, setErrmsg] = useState('');
     const [emptyfields, setEmptyfields] = useState(false);
 
     const renderErrorMessage = (name) =>{
@@ -72,11 +72,11 @@ const SignIn = () => {
     });
 
     const reDirectUser = () => {
-        if(localStorage.getItem("userRole") === 'seller') {
+        if (localStorage.getItem("userRole") === 'seller') {
             navigate('/seller-dashboard');
         }
-        else if(localStorage.getItem("userRole") === 'buyer'){
-              navigate('/home');
+        else if (localStorage.getItem("userRole") === 'buyer') {
+            navigate('/home');
         }
     }
 
@@ -98,11 +98,13 @@ const SignIn = () => {
                     }
                     else {
                         console.log("error")
-                        setErrmsg(true);
+                        setErrmsg("Invalid Email Id or Password");
                     }
                 })
-                .catch((err) => console.log(err, "err"))
-
+                .catch((err) => {
+                    console.log(err, "err");
+                    setErrmsg("Invalid Email Id or Password");
+                });
         }
         else {
 
@@ -135,13 +137,17 @@ const SignIn = () => {
                         <Button variant="contained" onClick={getData} size="large" className="userSignin_button" >Sign In</Button>
 
                     </Typography>
+                    {errmsg && (
+                        <Typography className="userSignin_errmsg">
+                            {errmsg}
+                        </Typography>)}
 
-                    {
-                    errmsg && <Typography className="userSignin_errmsg">
+                    {/* {
+                        errmsg && <Typography className="userSignin_errmsg">
                             Something went Wrong!! Please try again after sometime.
                         </Typography>
 
-                    }
+                    } */}
                     {
                     emptyfields && <div>
                             <Typography className="userSignin_errmsg">

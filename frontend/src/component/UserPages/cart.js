@@ -129,19 +129,19 @@ const Cart = () => {
     const calculateItemTotal = () => {
 
         const subtotals = cartItems.map(calculateSubtotal);
-        return Math.round(subtotals.reduce((accumulator, current) => accumulator + current, 0));
+        return subtotals.reduce((accumulator, current) => accumulator + current, 0);
     };
     const calculateTotal = () => {
 
-        return Math.round(calculateItemTotal() + calculateServiceCharge());
+        return Number((calculateItemTotal() + calculateServiceCharge() + calculateTax()).toFixed(2));
     };
     const calculateServiceCharge = () => {
-        const salesTaxRate = getStateSalesTaxRate(state);
-        return Math.round(calculateItemTotal() * (salesTaxRate + 0.03));
+        return Number((calculateItemTotal() * (0.03)).toFixed(2));
     };
-    const goToOrderSucces=()=>{
-navigate("/OrderSuccess")
-    }
+    const calculateTax = () => {
+        const salesTaxRate = getStateSalesTaxRate(state);
+        return Number((calculateItemTotal() * (salesTaxRate)).toFixed(2));
+    };
 
     const getStateSalesTaxRate = (state) => {
         switch (state) {
@@ -317,7 +317,16 @@ navigate("/OrderSuccess")
                         </Grid>
                         <Grid container direction="row"  >
                             <Grid item xs={6}>
-                                <Typography className="cart_billing">Taxes and Service Charge:</Typography>
+                                <Typography className="cart_billing">Tax:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography className="cart_billing">${calculateTax()}</Typography>
+
+                            </Grid>
+                        </Grid>
+                        <Grid container direction="row"  >
+                            <Grid item xs={6}>
+                                <Typography className="cart_billing">Service Charge:</Typography>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography className="cart_billing">${calculateServiceCharge()}</Typography>
