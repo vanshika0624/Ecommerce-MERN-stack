@@ -179,7 +179,8 @@ const EditProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="editProduct_labelStyle" style={{ marginTop: "40px" }}>
-                  <TextField className="editProduct_textbox" sx={{ width: 300 }} required id="outlined-basic" value={id} label="" variant="outlined" InputProps={{ readOnly: true, }} > </TextField>
+                  {id} 
+                  {/* <TextField className="editProduct_textbox" sx={{ width: 300 }} required id="outlined-basic" value={id} label="" variant="outlined" InputProps={{ readOnly: true, }} > </TextField> */}
                 </div>
               </Grid>
 
@@ -275,9 +276,9 @@ const EditProduct = () => {
                       <MenuItem value={"Clothing"}>Clothing</MenuItem>
                       <MenuItem value={"Furniture"}>Furniture</MenuItem>
                       <MenuItem value={"Toys"}>Toys</MenuItem>
-                      <MenuItem value={"Home Decor"}>Home Decor</MenuItem>
+                      <MenuItem value={"Home-Decor"}>Home Decor</MenuItem>
                       <MenuItem value={"Paintings"}>Paintings</MenuItem>
-                      <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
+                      <MenuItem value={"Jewelry"}>Jewelry</MenuItem>
                     </Select>
                   </FormControl>
                 </div>

@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "./products.css";
-import Button from '@mui/material/Button';
-// import Navigation from "./navigation.js";
 import Navigation from "../../navigation.js"
 import Footer from "../../Footer.js";
 import Typography from '@mui/material/Typography';
-import { useNavigate, Link, useParams  } from 'react-router-dom';
-import { ButtonGroup } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+import { Link, useParams  } from 'react-router-dom';
+import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
-// import Search from "./UserPages/ProductPages/search.js";
 
 const SearchResult = () => {
 
-    // const [searchBarData, setSearchBarData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const { keyword } = useParams();
-    // const handleSearchResults = (results) => {
-    //     setSearchBarData(results);
-    //      setSearchResults(results.products);
-    //     console.log(searchResults, "in Search Results1");
-    // };
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalNumOrders, setTotalNumofOrders] = useState();
+    const [resultsPerPage, setResultsPerPage] = useState();
 
     useEffect( () => {
-        console.log(keyword,"in search results")
-    axios
-            .get(`http://localhost:2000/product/getProducts?keyword=${keyword}`, { withCredentials: true })
+        getSearch(currentPage, keyword);
+    }, [keyword]);
+
+    const getSearch = (page) => {
+        setCurrentPage(page);
+        axios
+            .get('http://localhost:2000/product/getProducts?page='+ page + '&keyword=' + keyword, { withCredentials: true })
             .then((res) => {
                 setSearchResults(res.data.products);
-                console.log(res.data.products);
+                setTotalNumofOrders(res.data.filteredProductsCount);
+                setResultsPerPage(res.data.resultPerPage);
             })
             .catch((err) => {
                 console.log('Error searching for products');
             });
-
-}, [keyword]);
+    }
 
     const displayCards = (cards) => {
         return (
@@ -48,9 +47,11 @@ const SearchResult = () => {
                                 </CardMedia>
                             ))}
                             <CardContent>
-                                <Typography variant="h6" component="h6" color="#848D62">
-                                    {card.name}
-                                </Typography>
+                                <Tooltip title={card.name}>
+                                    <Typography variant="h6" component="h6" color="#848D62" className="nameEllipsis">
+                                        {card.name}
+                                    </Typography>
+                                </Tooltip>
                                 <Typography variant="body2" color="#848D62" component="p">
                                     ${card.price}
                                 </Typography>
@@ -83,6 +84,23 @@ const SearchResult = () => {
                     </Typography>
                 </div>
             )}
+            
+            {totalNumOrders > resultsPerPage && (
+                <div className="paginationBoxProducts">
+                    <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultsPerPage}
+                    totalItemsCount={totalNumOrders}
+                    onChange={getSearch}
+                    firstPageText="First"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                    />
+                </div>
+                )}
 
             <Footer />
         </div>

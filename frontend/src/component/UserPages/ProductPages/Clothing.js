@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../../navigation.js"
 import Typography from '@mui/material/Typography';
+import Tooltip from "@mui/material/Tooltip";
 import { useNavigate, Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
@@ -53,9 +54,11 @@ const Clothing = () => {
                                 ))
                             }
                             <CardContent>
-                                <Typography color="#848D62" variant="h6" component="h6">
-                                    {card.name}
-                                </Typography>
+                                <Tooltip title={card.name}>
+                                    <Typography variant="h6" component="h6" color="#848D62" className="nameEllipsis">
+                                        {card.name}
+                                    </Typography>
+                                </Tooltip>
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>

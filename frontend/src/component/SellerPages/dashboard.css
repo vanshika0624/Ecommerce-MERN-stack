@@ -46,3 +46,10 @@
 {
     margin: 2vw;
 }
+
+.nameEllipsis {
+    white-space: nowrap;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import SellerNavBar from "./sellerNavBar.js";
 import Footer from "../Footer.js";
 import Typography from '@mui/material/Typography';
+import Tooltip from "@mui/material/Tooltip";
 import { useNavigate, Link } from 'react-router-dom';
 import { ButtonGroup } from "@mui/material";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
@@ -130,13 +131,15 @@ const Dashboard = () => {
           ))
         }
               <CardContent>
-                <Typography variant="h6" component="h6" color="#848D62">
-                  {card.name},
-                </Typography>
+                <Tooltip title={card.name}>
+                  <Typography variant="h6" component="h6" color="#848D62" className="nameEllipsis">
+                    {card.name}
+                  </Typography>
+                </Tooltip>
                 <Typography variant="body2" color="#848D62" component="p">
                   ${card.price}
                 </Typography>
-                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}> edit</Link>
+                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
               </CardContent>
             </Card>
           </Grid>
