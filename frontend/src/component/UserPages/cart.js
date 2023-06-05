@@ -49,29 +49,73 @@ const Cart = () => {
             });
     }, []);
     useEffect(() => {
-        const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(cartData);
-    }, []);
+        // const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    axios.get(`http://localhost:2000/cart/details`,{ withCredentials: true })
+    .then((res)=>
+       { setCartItems(res.data.cart.cartItems);
+        // console.log(res.data.cart.cartItems);
+       })
+       .catch((err) => {
+        console.log('Error from getcart details',err);
+       })
+    }, [cartItems]);
+    
     const removeFromCart = (productId) => {
-        const updatedCart = cartItems.filter((item) => item.product !== productId);
-        setCartItems(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        // const updatedCart = cartItems.filter((item) => item.product !== productId);
+    axios.delete(`http://localhost:2000/cart/removeproduct/${productId}`,{ withCredentials: true })
+.then((res) =>{
+        setCartItems(res.data.cart.cartItems);
+        // console.log(res.data.cart.cartItems);
+}).catch((err) => {
+    console.log('Error from delete product from cart',err);
+   })
+        // localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
+
 
     const updateQuantity = (productId, newQuantity) => {
         const itemToUpdate = cartItems.find((item) => item.product === productId);
-        const maxQuantityAvailable = itemToUpdate.stock;
-
+        const maxQuantityAvailable = itemToUpdate.Stock;
+      console.log(itemToUpdate,maxQuantityAvailable , "in update quantity")
         if (newQuantity > 0 && newQuantity <= maxQuantityAvailable) {
-            const updatedCart = cartItems.map((item) =>
-                item.product === productId ? { ...item, quantity: newQuantity } : item
-            );
-            setCartItems(updatedCart);
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        } else {
-            // Show an error or notification for invalid quantity
-            console.log('Invalid quantity');
-        }
+
+        //     const updatedCart = cartItems.map((item) =>
+        //         item.product === productId ? { ...item, quantity: newQuantity } : item
+        //     );
+        //     setCartItems(updatedCart);
+        //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+        // } else {
+        //     // Show an error or notification for invalid quantity
+        //     console.log('Invalid quantity');
+        // }
+           axios.put(`http://localhost:2000/cart/addproduct`,{
+    
+          
+        //   name: productDetails.name,
+        //   price: productDetails.price,
+        //   image: productDetails.images[0].url,
+        //   seller: productDetails.user,
+          product: productId,
+          // stock: productDetails.Stock,
+          quantity: newQuantity,
+        //   stock: productDetails.Stock,
+          // seller: productDetails.user
+          }
+
+     ,{ withCredentials: true })
+     .then((res)=> {
+      console.log(res.data);
+      setCartItems(res.data.cart.cartItems);
+     })
+     .catch((err) => {
+      console.log('Error from updatecart',err);})
+  
+        
+    }
+    else{
+        // snackbar to be added
+    }
+
     };
 
     const calculateSubtotal = (item) => {

@@ -21,14 +21,16 @@ exports.addCartProduct = catchAsyncErrors(async (req, res, next) => {
   {
     const cartitem = await cart.cartItems.find((item)=> item.product.toString() === req.body.cartItems[0].product );
     if(cartitem)     
-    {
-      cartitem.quantity = cartitem.quantity + req.body.cartItems[0].quantity;
+    { if(cartitem.quantity + req.body.cartItems[0].quantity <=  req.body.cartItems[0].stock)
+      { cartitem.quantity = cartitem.quantity + req.body.cartItems[0].quantity;
        await cart. save();
 
       return res.status(200).json({
       success: true,
        cart,
     });
+  }
+  return next(new ErrorHander("Quantity has extented the stock limit", 404)); 
   }
   }
     // const updatedcart = await Cart.findByIdAndUpdate({
@@ -51,7 +53,6 @@ exports.updateCartProduct = catchAsyncErrors(async (req, res, next) => {
    const cartitem = await cart.cartItems.find((item)=> item.product.toString() === req.body.product );
     if(!cartitem)  
     return next(new ErrorHander("Item not found in Cart", 404));
-    
     cartitem.quantity = req.body.quantity;
     await cart. save();
 
@@ -69,7 +70,7 @@ exports.deleteCartProduct = catchAsyncErrors(async (req, res, next) => {
      
 
   console.log(req.params,"params")
-  const productIndex = await cart.cartItems.findIndex( (item) => item._id.toString() === req.params.id);
+  const productIndex = await cart.cartItems.findIndex( (item) => item.product.toString() === req.params.id);
   
   if (productIndex === -1) {
     return next(new ErrorHander("Item not found in Cart", 404));

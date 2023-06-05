@@ -19,65 +19,66 @@ const ViewProduct = () => {
   const setSizeValue = (event) => {
     setSize(event.target.value);
   }
-  // const setProductQuantityValue = (event) => {
-  //   setProductQuantity(event.target.value);
-  // }
-
-  // const renderQuantity =(value)=>
-  // {
-  //     {for(let i=1 ; i<= productDetails.Stock; i++)
-  //         <MenuItem value={i}>i</MenuItem>
-  // }
-
-  // }
-  // const increaseQuantity = () => {
-  //   if (productDetails.Stock <= quantity) return;
-  //   const qty = quantity + 1;
-  //   setQuantity(qty);
-  // };
-
-  // const decreaseQuantity = () => {
-  //   if (1 >= quantity) return;
-  //   const qty = quantity - 1;
-  //   setQuantity(qty);
-  // };
+ 
   const handleInputChange = (event) => {
+
     const inputValue = Number(event.target.value);
+    console.log(" in input change",inputValue)
     1 >= inputValue ?
       setProductQuantity(1) :
       inputValue > productDetails.Stock ?
         setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
+        console.log(productQuantity)
 
   };
   const addToCart = () => {
 
+    // try {
+    //   const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    //   const cart = {
+    //     product: productDetails._id,
+    //     name: productDetails.name,
+    //     price: productDetails.price,
+    //     // image: productDetails.images[0].url,
+    //     stock: productDetails.Stock,
+    //     quantity: productQuantity
+    //   }
+    //   const updatedCart = [...existingCart, cart];
+    //   localStorage.setItem('cart', JSON.stringify(updatedCart));
+    // }
+    // catch {
+    //   const cart = {
+    //     product: productDetails._id,
+    //     name: productDetails.name,
+    //     price: productDetails.price,
+    //     // image: productDetails.images[0].url,
+    //     stock: productDetails.Stock,
+    //     quantity: productQuantity
+    //   }
+    //   // const updatedCart = [...existingCart, cart ];
+    //   localStorage.setItem('cart', JSON.stringify(cart));
+    // }
 
-    try {
-      const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cart = {
-        product: productDetails._id,
-        name: productDetails.name,
-        price: productDetails.price,
-        // image: productDetails.images[0].url,
-        stock: productDetails.Stock,
-        quantity: productQuantity
-      }
-      const updatedCart = [...existingCart, cart];
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-    }
-    catch {
-      const cart = {
-        product: productDetails._id,
-        name: productDetails.name,
-        price: productDetails.price,
-        // image: productDetails.images[0].url,
-        stock: productDetails.Stock,
-        quantity: productQuantity
-      }
-      // const updatedCart = [...existingCart, cart ];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
+     axios.post(`http://localhost:2000/cart/addproduct`,{
+     cartItems:[
+          {
+          name: productDetails.name,
+          price: productDetails.price,
+          image: productDetails.images[0].url,
+          seller: productDetails.user,
+          product: productDetails._id,
+          // stock: productDetails.Stock,
+          quantity: productQuantity,
+          Stock: productDetails.Stock,
+          // seller: productDetails.user
+          }
 
+     ]},{ withCredentials: true })
+     .then((res)=> {
+      console.log(res.data);
+     })
+     .catch((err) => {
+      console.log('Error from addtocart',err);})
   }
 
   useEffect(() => {
@@ -94,18 +95,13 @@ const ViewProduct = () => {
       });
   }, [id]);
 
-  // const menuItems = Array.from(Array(productDetails.Stock), (_, index) => (
-  //   <MenuItem key={index} value={index + 1}>
-  //     {index + 1}
-  //   </MenuItem>
-  // ));
+
   return (<div className="bg" >
     <Navigation />
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
       <Grid container item xs={6} >
         {
           productDetails.images && productDetails.images.map((image) => (
-            //  console.log(card);
             <CardMedia align="center" alt="product image" className="createProductFormImage">
               <img src={image.url} alt="Product Preview" />
             </CardMedia>
@@ -124,38 +120,12 @@ const ViewProduct = () => {
           Price: ${productDetails.price}
         </Typography>
         <div>
-          {/* <Typography className="fontStyles" >
-            OneSize
-          </Typography> */}
-          {/* <Select
-              labelId="product_size_label"
-              id="product_size"
-              value={size}
-              defaultValue="OneSize"
-              label="Size"
-              onChange={setSizeValue}
-            >
-              <MenuItem value={"OneSize"}>OneSize</MenuItem>
-            </Select> */}
           {productDetails && productDetails.Stock > 0 ?
-            // <Select
-            //   labelId="product_quantity_label"
-            //   id="product_quantity"
-            //   value={quantity}
-            //   label="Quantity"
-            //   onChange={setQuantityValue}
-            // >
-            //     {menuItems}
-
-            //   {/* <MenuItem value={i}>i</MenuItem> */}
-
-            // </Select>
+           
             <div  >
-              {/* <Button onClick={decreaseQuantity}>-</Button> */}
               <Typography variant="h6" component="h6" className="fontStyles">
                 <span className="quantity" > Quantity :  </span>  <TextField readOnly type="number" value={productQuantity} onChange={handleInputChange} />
               </Typography>
-              {/* <Button onClick={increaseQuantity}>+</Button> */}
             </div>
             :
             <Typography variant="h4" component="h4" >
