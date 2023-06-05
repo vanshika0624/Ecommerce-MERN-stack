@@ -1,0 +1,62 @@
+.style{
+    justify-content: center;
+    position: relative;
+    top:30%;
+    color:rgb(49,51,69);
+    text-align: center;
+    /* color: black; */
+    font-size: 65px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    position: relative;
+   
+}
+
+.buttonmargin{
+    margin:10px;
+    
+}
+.buttonStyle.MuiButton-root{
+    background-color: rgb(49,51,69);
+    color: beige;
+}
+
+.buttonstyleP {
+    font-size: 30px !important;
+    background-color: #848D62 !important;
+    color: beige !important;
+}
+
+.profileOuterCard.MuiCard-root  {
+    background-color: #C4AD88;
+    border-radius: 20px;
+    margin:20px;
+}
+
+.cardPadding.MuiCardContent-root {
+    padding-left:25px;
+}
+
+.profileInnerCard.MuiCard-root {
+    background-color: #848D62;
+    border-radius: 20px;
+    margin:20px;
+}
+
+.viewOrderPage_card.MuiCard-root {
+    background-color: #FAF2E9;;
+    margin: 20px 10px 10px 20px;
+    padding: 5px;
+
+}
+
+.imgContainerOrder {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .imgContainerOrder img {
+    width: 15vmax;
+    height: 20vmax;
+    margin: 0 0 0 30vmax;
+  }
+  

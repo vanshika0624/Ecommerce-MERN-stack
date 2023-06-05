@@ -1,0 +1,31 @@
+.navbar {
+    border-radius: 20px;
+    background-color: #C4AD88;
+    color: #0000;
+    margin: 20px 10px 0px 0px;
+    width: 425px;
+}
+
+.buttonstyle.MuiButton-root {
+    margin: 0px 10px 0px 10px;
+    color: black;
+}
+
+.iconstyle {
+    margin-right: 20px;
+    margin-bottom: 22px;
+}
+
+
+.nav_logo_seller {
+    width: 50%;
+    height: 100%;
+    margin: 10px 0px 0px 5px;
+    cursor: pointer;
+}
+
+
+
+.nav-id-s .MuiGrid-root {
+    height: 85px;
+}

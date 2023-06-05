@@ -1,0 +1,48 @@
+.bg {
+    background-color: #FAF2E9;
+}
+
+.catalogue_card.MuiCard-root {
+    background-color: #FAF2E9;
+    margin: 20px 10px 10px 20px;
+    padding: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(228, 166, 184, 0.2), 10px 10px 10px 10px rgba(233, 133, 133, 0.1), 10px 10px 10px 10px rgba(163, 195, 231, 0.1)
+
+}
+
+.catalogue_typography.MuiTypography-root {
+    margin-left: 20px;
+    color: #848D62;
+    font-weight:600
+}
+
+.catalogue_button.MuiButton-root {
+    color: #848D62;
+    text-decoration: underline;
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+}
+
+.displayProductFormImage {
+    width: 100%;
+    overflow: auto;
+}
+
+.displayProductFormImage>img {
+    /* width: 15vmax; */
+    /* width: 85%;
+    margin: 10px 30px; */
+    height: auto;
+    max-height: 250px;
+    width: 600px;
+    max-width: 250px;
+    aspect-ratio: 4/5;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+.alignment
+{
+    margin: 2vw;
+}

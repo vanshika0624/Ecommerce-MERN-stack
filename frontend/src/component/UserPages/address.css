@@ -1,0 +1,78 @@
+.add_style {
+    position: relative;
+    top: 45%;
+    padding-top: 10vh;
+    padding-left: 10vh;
+    color: black;
+    text-align: center;
+    font-size: 45px !important;
+    font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.add_imgstyle {
+    justify-content: center;
+    background: url('../../images/userDetails.png') no-repeat center center fixed;
+    height: -webkit-fill-available;
+    width: 100%; 
+    position: absolute;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.add_buttonmargin {
+    margin: 10px 10px 30px 10px;
+}
+
+.psw_buttonmargin {
+    margin: 20px 125px 25px 10px !important;
+}
+
+.address_SuccessMsg {
+    color: rgb(3, 58, 3);
+    margin: 0px 0px 20px 40px;
+}
+
+.address_ErrorMsg {
+    color:rgb(161, 16, 16) ;
+    margin: 0px 0px 20px 40px;
+}
+   
+.add_align {
+    margin: 75px 50px 0px 85px;
+}
+
+.add_textbox.MuiTextField-root {
+    margin-left: 10px;
+    background: white;
+    font-family: 'Seasons', 'Calibri', 'Arial';
+    height: 80px;
+    width: 380px;
+
+}
+
+.add_button.MuiButton-root {
+    color: black;
+    background-color: rgb(234, 117, 200);
+    border-radius: 5px;
+    margin-left: 100px;
+    align-items: center;
+    height: 50px;
+    width: 200px;
+}
+
+.add_size {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+@media (max-width: 1000px) {
+    .add_hide {
+        display: none;
+    }
+}
+
+.add_cardStyle {
+    display: inline-block;
+}

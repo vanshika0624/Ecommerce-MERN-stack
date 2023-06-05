@@ -1,0 +1,73 @@
+.cart_Item {
+    color: #848D62;
+    font-family: "DM Sans", "Calibiri", "Arial";
+    margin: 10px;
+}
+
+.cart_cardStyle.MuiCard-root {
+    background-color: #C4AD88;
+    margin-top: 40px;
+    margin-right: 50px;
+    border-radius: 20px;
+}
+
+.cart_divider.MuiDivider-root {
+    color: #423F32;
+    border-width: 2px;
+}
+
+.cart_billing {
+    color: #423F32;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+}
+
+.cart_button.MuiButton-root {
+    background-color: #684F3E;
+    color: white;
+    border-radius: 30px;
+    margin: 10px;
+    padding: 10px;
+    width: 280px;
+}
+
+.cart_EmptyMsg {
+    font-size: 40px;
+    margin: 40px;
+    color: #848D62;
+    padding: 20px;
+
+}
+
+.cart_quantity {
+
+    margin-top: 10px;
+    display: inline-flex;
+    font-family: 'Cambria', 'Calibiri', 'Arial';
+    /* border: 0; */
+    box-sizing: content-box;
+    background: none;
+    height: 1.4375em;
+    margin: 0;
+    /* -webkit-tap-highlight-color: transparent; */
+    /* display: block; */
+    min-width: 0;
+    /* width: 100%; */
+    padding: 16.5px 14px;
+    border-color: rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.cart_textbox.MuiTypography-root {
+    font-family: 'Cambria', 'Calibiri', 'Arial';
+}
+
+.cart_AddressCardStyle.MuiCard-root {
+    background-color: #C4AD88;
+    margin-top: 40px;
+    margin-right: 50px;
+
+    border-radius: 20px;
+
+}

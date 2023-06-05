@@ -1,5 +1,5 @@
-.style {
-    justify-content: left;
+.userSignup_style {
+    justify-content: center;
     margin-bottom: 55px;
     /* position: relative;
     top:30%; */
@@ -10,16 +10,20 @@
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /* background-color: #C4AD88; */
     /* position: relative; */
-
 }
 
-.buttonmargin {
+.userSignup_buttonmargin {
     margin: 10px;
-    /* margin-top: 55px; */
+    justify-content: center;
 
 }
 
-/* .width{
+.userSignup_button:hover{
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
+/* .userSignup_width{
  MuiButton:{
     root:
     min-width: 200px;
@@ -29,18 +33,19 @@
     font-size: 14px;
     margin: 10px;
     text-align: left;
+    color: #6b614f;
 }
 
-.bgcolor {
+/* .userSignup_bgcolor {
 
     background: linear-gradient(0.45turn, #e1a578, #c9cacb, #eeba89);
-}
+} */
 
-.align {
+.userSignup_align {
     margin: 15%;
 }
 
-.textbox.MuiTextField-root {
+.userSignup_textbox.MuiTextField-root {
     margin-left: 10px;
     background: transparent;
     font-family: 'Seasons', 'Calibri', 'Arial';
@@ -49,28 +54,42 @@
    
 
 }
+.userSignup_button.MuiButton-root{
+    color: white;
+    background-color: black;
+    margin: 5px;
+}
+.userSignup_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
 
-.button.MuiButton-root {
+/*.userSignup_button{
     color: white;
     background: black;
     border-radius: 30px;
 
 }
-
-.size {
+*/
+.userSignup_size {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
 
-.errmsg {
+.userSignup_errmsg {
  color:rgb(161, 16, 16) ;
 }
 
-.successmsg {
+.userSignup_successmsg {
  color: rgb(3, 58, 3);
 }
 @media (max-width: 1000px) {
-    .hide {
+    .userSignup_hide {
         display: none;
     }
+}
+.userSignup_bgcolor {
+
+    background: linear-gradient(0.45turn, #e1a578, #c9cacb, #eeba89);
 }

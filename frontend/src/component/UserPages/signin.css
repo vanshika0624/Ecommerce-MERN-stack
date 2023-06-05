@@ -1,4 +1,4 @@
-.style {
+.userSignin_style {
     justify-content: center;
     /* position: relative;
     top:30%; */
@@ -12,7 +12,7 @@
 
 }
 
-.buttonmargin {
+.userSignin_buttonmargin {
     margin: 10px;
 }
 
@@ -22,43 +22,64 @@
     min-width: 200px;
 }
 } */
-.link {
+.userSignin_link {
     font-size: 14px;
     margin: 10px;
+    color: #C4AD88;
+    display: flex;
+    justify-content: center;
 }
 
-.bgcolor {
+.userSignin_bgcolor {
 
     background-color: #1B201E;
 }
 
-.align {
+.userSignin_align {
     margin: 15%
 }
 
-.textbox {
+.userSignin_textbox {
     background-color: #C4AD88;
     color: #FFFFFF;
     font-family: 'Seasons', 'Calibri', 'Arial';
     border-radius: 15px;
-    height: 80px;
-    width: 280px;
+    /* padding: 20px; */
+    /* height: 80px;
+    width: 280px; */
 }
 
-.button.MuiButton-root {
-    color: #1F1347;
+.userSignin_button.MuiButton-root {
     background-color: #C4AD88;
     border-radius: 30px;
-
+    margin: 10px;
+    /* width: 200px; */
+    font-size: 15px;
 }
 
-.size {
+.userSignin_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
+
+.userSignin_size {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
 }
 
 @media (max-width: 1000px) {
-    .hide {
+    .userSignin_hide {
         display: none;
     }
+}
+
+.userSignin_successmsg {
+    color: white;
+    position: flex;
+}
+
+.userSignin_errmsg {
+    color: rgb(161, 16, 16);
+    align-items: center;
 }

@@ -41,12 +41,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     // },
   });
 
- // sendToken(user, 201, res);
-  res.status(201).json({
-    success: true,
-    message: "User Added Successfully",
-    //user,
-  });
+ sendToken(user, 201, res);
 });
 
 // Login User
@@ -71,12 +66,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  //sendToken(user, 200, res);
-  res.status(200).json({
-    success: true,
-    message: "User Added Successfully",
-    user,
-  });
+  sendToken(user, 200, res);
 });
 
 // Logout User
@@ -95,7 +85,6 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 // Forgot Password
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-
   if (!user) {
     return next(new ErrorHandler("User not found", 404));
   }
@@ -107,14 +96,14 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   const resetPasswordUrl = `${req.protocol}://${req.get(
     "host"
-  )}/password/reset/${resetToken}`;
+  )}/user/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
   try {
     await sendEmail({
       email: user.email,
-      subject: `Ecommerce Password Recovery`,
+      subject: `Maker's Mart Password Recovery`,
       message,
     });
 
@@ -201,9 +190,13 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 // update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
     email: req.body.email,
     phone: req.body.phone,
+    EIN: req.body.EIN,
+    dob: req.body.dob
   };
 
 //   if (req.body.avatar !== "") {
@@ -235,6 +228,18 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+// to get all seller details - can be used for filtering products
+exports.getAllSellers = catchAsyncErrors(async (req, res) => {
+  var query = { role: "seller" };
+  const users = await User.find(query, {_id: 1, firstname: 1, lastname: 1});
+
+  res.status(200).json({
+    sucess: true,
+    users
+  });
+
+}); 
 
 // Get all users(admin)
 exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
