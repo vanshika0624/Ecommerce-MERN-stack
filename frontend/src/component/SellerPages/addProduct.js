@@ -18,26 +18,57 @@ import InputLabel from '@mui/material/InputLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 
+
 const AddProduct = () => {
+  const [prNameError, setprNameError] = useState('');
   const [prName, setprName] = useState('');
   const [price, setprice] = useState('');
   const [category, setcategory] = useState('');
   const [description, setdescription] = useState('');
   const [Stock, setStock] = useState('');
+  const [StockError, setStockError] = useState('');
   // const [sizing, setsizing] = useState('');
   const navigate = useNavigate();
   const [successmsg, setSuccessmsg] = useState(false);
   const [errmsg, setErrmsg] = useState(false);
-
   const [images, setImages] = useState([]);
 
 
   const [imagesPreview, setImagesPreview] = useState([]);
   const fileInputRef = useRef(null);
+  const handleprNameChange = (e) => {
+    // setprName(e.target.value)
+    if ((e.target.value.length) > 25) {
+      setprNameError('Please Enter less than 25 characters')
+
+    }
+    else {
+      setprNameError('')
+      setprName(e.target.value)
+    }
+  }
+  const handleStockChange = (e) => {
+    setStock(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setStockError('Please Enter a Number')
+
+    }
+    else {
+      setStockError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
+    }
+  }
+  const validateStock = (stock) => {
+    const stockRegex = /^[0-9]+$/;
+
+    return stockRegex.test(stock)
+  }
 
   const handleCategory = (event) => {
     setcategory(event.target.value);
   };
+
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
 
@@ -122,7 +153,7 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={prName} onChange={e => setprName(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={prName} onChange={handleprNameChange} error={Boolean(prNameError)} helperText={prNameError} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>
@@ -237,7 +268,7 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={Stock} onChange={e => setStock(e.target.value)} sx={{ width: 300 }} required className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={Stock} onChange={handleStockChange} error={Boolean(StockError)} helperText={StockError} sx={{ width: 300 }} required className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>

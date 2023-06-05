@@ -15,6 +15,7 @@ const ViewProduct = () => {
   const [productDetails, setProductDetails] = useState({});
   const [size, setSize] = React.useState('');
   const [productQuantity, setProductQuantity] = React.useState(1);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const setSizeValue = (event) => {
     setSize(event.target.value);
@@ -64,6 +65,7 @@ const ViewProduct = () => {
       }
       const updatedCart = [...existingCart, cart];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
+      setSuccessMessage('Product added to cart successfully!');
     }
     catch {
       const cart = {
@@ -76,6 +78,7 @@ const ViewProduct = () => {
       }
       // const updatedCart = [...existingCart, cart ];
       localStorage.setItem('cart', JSON.stringify(cart));
+      setSuccessMessage('Product added to cart successfully!');
     }
 
   }
@@ -165,6 +168,11 @@ const ViewProduct = () => {
         </div>
         <div>
           <Button className="viewProduct_Button" disabled={productDetails.Stock > 0 ? false : true} onClick={addToCart}> Add to Cart</Button>
+          {successMessage && (
+            <Typography variant="h6" component="h6" className="fontStyles">
+              {successMessage}
+            </Typography>
+          )}
         </div>
 
       </Grid>
