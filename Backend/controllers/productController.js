@@ -4,7 +4,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 const cloudinary = require("cloudinary");
 
-// Create Product -- Admin
+// Create Product -- Seller
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
   
@@ -111,11 +111,16 @@ exports.getSellerProducts = catchAsyncErrors(async (req, res, next) => {
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
+
+  let filteredProducts = await apiFeature.query
+  let filteredProductsCount = filteredProducts.length;
+  
+  const apiPage = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
     .pagination(resultPerPage);
 
-  let products = await apiFeature.query;
-
-  let filteredProductsCount = products.length;
+  let products = await apiPage.query;
 
   res.status(200).json({
     success: true,

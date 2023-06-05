@@ -133,7 +133,7 @@ const Catalogue = () => {
                 <Typography variant="body2" color="#848D62" component="p">
                   ${card.price}
                 </Typography>
-                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}> edit</Link>
+                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
               </CardContent>
             </Card>
           </Grid>
@@ -156,7 +156,9 @@ const Catalogue = () => {
           Jewelry
         </Typography>
         {disaplyCards(jewelryProducts)}
-        {/* <Button className="catalogue_button" onClick={goToJewelry}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToJewelry}> View All </Button>
+        </Grid>
       </div>
 }
 { furnitureProducts.length !=0  &&    <div className="alignment">
@@ -164,7 +166,9 @@ const Catalogue = () => {
           Furniture
         </Typography>
         {disaplyCards(furnitureProducts)}
-        {/* <Button className="catalogue_button" onClick={goToFurniture}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToFurniture}> View All </Button>
+        </Grid>
       </div>
 }
 { clothProducts.length !=0  &&
@@ -174,7 +178,9 @@ const Catalogue = () => {
           Clothing
         </Typography>
         {disaplyCards(clothProducts)}
-        {/* <Button className="catalogue_button" onClick={goToClothing}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToClothing}> View All </Button>
+        </Grid>
       </div>
 }
 { decorProducts.length !=0  &&
@@ -184,7 +190,9 @@ const Catalogue = () => {
           Home Decor
         </Typography>
         {disaplyCards(decorProducts)}
-        {/* <Button className="catalogue_button" onClick={goToHomeDecor}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToHomeDecor}> View All </Button>
+        </Grid>
       </div>
 }
 { paintingProducts.length !=0  &&
@@ -193,7 +201,9 @@ const Catalogue = () => {
           Paintings
         </Typography>
         {disaplyCards(paintingProducts)}
-        {/* <Button className="catalogue_button" onClick={goToPaintings}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToPaintings}> View All </Button>
+        </Grid>
       </div>
 }
 { toyProducts.length !=0 && 
@@ -202,7 +212,9 @@ const Catalogue = () => {
           Toys
         </Typography>
         {disaplyCards(toyProducts)}
-        {/* <Button className="catalogue_button" onClick={goToToys}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToToys}> View All </Button>
+        </Grid>
       </div>
 }
       <Footer />

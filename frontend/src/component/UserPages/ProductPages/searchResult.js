@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./products.css";
 import Navigation from "../../navigation.js"
+import SellerNavBar from "../../SellerPages/sellerNavBar.js";
 import Footer from "../../Footer.js";
 import Typography from '@mui/material/Typography';
 import Tooltip from "@mui/material/Tooltip";
@@ -16,15 +17,39 @@ const SearchResult = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNumOrders, setTotalNumofOrders] = useState();
     const [resultsPerPage, setResultsPerPage] = useState();
+    const role = localStorage.getItem("userRole");
 
     useEffect( () => {
         getSearch(currentPage, keyword);
     }, [keyword]);
 
     const getSearch = (page) => {
+        if(role === 'buyer'){
+            getSearchBuyer(page);
+        }
+        else { //if(role === 'seller') {
+            getSearchSeller(page);
+        }
+    }
+
+    const getSearchBuyer = (page) => {
         setCurrentPage(page);
         axios
             .get('http://localhost:2000/product/getProducts?page='+ page + '&keyword=' + keyword, { withCredentials: true })
+            .then((res) => {
+                setSearchResults(res.data.products);
+                setTotalNumofOrders(res.data.filteredProductsCount);
+                setResultsPerPage(res.data.resultPerPage);
+            })
+            .catch((err) => {
+                console.log('Error searching for products');
+            });
+    }
+
+    const getSearchSeller = (page) => {
+        setCurrentPage(page);
+        axios
+            .get('http://localhost:2000/product/seller/getProducts?page='+ page + '&keyword=' + keyword, { withCredentials: true })
             .then((res) => {
                 setSearchResults(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -55,9 +80,12 @@ const SearchResult = () => {
                                 <Typography variant="body2" color="#848D62" component="p">
                                     ${card.price}
                                 </Typography>
-                                <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}>
-                                    Details
-                                </Link>
+                                {role === 'buyer' &&
+                                <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
+                                }
+                                {role === 'seller' &&
+                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                }
                             </CardContent>
                         </Card>
                     </Grid>
@@ -68,8 +96,14 @@ const SearchResult = () => {
 
     return (
         <div className="bg">
-            <Navigation  />
-
+            { 
+            role === 'buyer' &&
+            <Navigation/>
+            }
+            { 
+            role === 'seller' && 
+            <SellerNavBar/>
+            }
             {searchResults.length > 0 ? (
                 <div className="alignment">
                     <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">

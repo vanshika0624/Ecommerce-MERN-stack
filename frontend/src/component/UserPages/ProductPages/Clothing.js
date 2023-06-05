@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../../navigation.js"
+import SellerNavBar from "../../SellerPages/sellerNavBar.js";
 import Typography from '@mui/material/Typography';
 import Tooltip from "@mui/material/Tooltip";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import Footer from "../../Footer.js";
 import axios from "axios";
 import "./products.css"
 const Clothing = () => {
-    const navigate = useNavigate();
     const [clothProducts, setClothProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNumOrders, setTotalNumofOrders] = useState();
     const [resultsPerPage, setResultsPerPage] = useState();
-
+    const role = localStorage.getItem("userRole");
 
 
     useEffect(() => {
@@ -22,6 +22,15 @@ const Clothing = () => {
     }, []);
 
     const getClothing = (page) => {
+        if(role === 'buyer') {
+            getClothingBuyer(page);
+        }
+        else { //if(role === 'seller'){
+            getClothingSeller(page);
+        }
+    }
+
+    const getClothingBuyer = (page) => {
         setCurrentPage(page);
         axios
         .get('http://localhost:2000/product/getProducts?category=Clothing&page='+ page, { withCredentials: true })
@@ -33,9 +42,22 @@ const Clothing = () => {
         .catch((err) => {
             console.log('Error from GetProducts');
         });
-
     }
 
+
+    const getClothingSeller = (page) => {
+        setCurrentPage(page);
+        axios
+        .get('http://localhost:2000/product/seller/getProducts?category=Clothing&page='+ page, { withCredentials: true })
+        .then((res) => {
+            setClothProducts(res.data.products);
+            setTotalNumofOrders(res.data.filteredProductsCount);
+            setResultsPerPage(res.data.resultPerPage);
+        })
+        .catch((err) => {
+            console.log('Error from GetProducts');
+        });
+    }
 
 
     const disaplyCards = (cards) => {
@@ -62,7 +84,12 @@ const Clothing = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
+                                {role === 'buyer' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
+                                }
+                                {role === 'seller' &&
+                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                }
                             </CardContent>
                         </Card>
                     </Grid>
@@ -77,7 +104,14 @@ const Clothing = () => {
 
     return (
         <div className="bg">
-            <Navigation />
+            { 
+            role === 'buyer' &&
+            <Navigation/>
+            }
+            { 
+            role === 'seller' && 
+            <SellerNavBar/>
+            }
             <div className="alignment">
                 {disaplyCards(clothProducts)}
                 {totalNumOrders > resultsPerPage && (

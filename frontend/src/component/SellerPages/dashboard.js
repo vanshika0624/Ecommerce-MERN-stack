@@ -160,7 +160,9 @@ const Dashboard = () => {
           Jewelry
         </Typography>
         {disaplyCards(jewelryProducts)}
-        {/* <Button className="dashboard_button" onClick={goToJewelry}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToJewelry}> View All </Button>
+        </Grid>
       </div>
 }
 { furnitureProducts.length !=0  &&    <div className="alignment">
@@ -168,7 +170,9 @@ const Dashboard = () => {
           Furniture
         </Typography>
         {disaplyCards(furnitureProducts)}
-        {/* <Button className="dashboard_button" onClick={goToFurniture}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToFurniture}> View All </Button>
+        </Grid>
       </div>
 }
 { clothProducts.length !=0  &&
@@ -178,7 +182,9 @@ const Dashboard = () => {
           Clothing
         </Typography>
         {disaplyCards(clothProducts)}
-        {/* <Button className="dashboard_button" onClick={goToClothing}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToClothing}> View All </Button>
+        </Grid>
       </div>
 }
 { decorProducts.length !=0  &&
@@ -188,16 +194,20 @@ const Dashboard = () => {
           Home Decor
         </Typography>
         {disaplyCards(decorProducts)}
-        {/* <Button className="dashboard_button" onClick={goToHomeDecor}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToHomeDecor}> View All </Button>
+        </Grid>
       </div>
 }
-{ decorProducts.length !=0  &&
+{ paintingProducts.length !=0  &&
       <div className="alignment">
         <Typography className="dashboard_typography" variant="h4" color="textSecondary" component="div">
           Paintings
         </Typography>
         {disaplyCards(paintingProducts)}
-        {/* <Button className="dashboard_button" onClick={goToPaintings}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToPaintings}> View All </Button>
+        </Grid>
       </div>
 }
 { toyProducts.length !=0 && 
@@ -206,7 +216,9 @@ const Dashboard = () => {
           Toys
         </Typography>
         {disaplyCards(toyProducts)}
-        {/* <Button className="dashboard_button" onClick={goToToys}> View All Products</Button> */}
+        <Grid container item xs={12} justifyContent ="center">
+          <Button className="homePage_button" onClick={goToToys}> View All </Button>
+        </Grid>
       </div>
 }
       <Footer />
