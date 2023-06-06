@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./address.css";
+import Footer from "../Footer.js";
 import Navigation from "../navigation.js";
 import SellerNavBar from "../SellerPages/sellerNavBar.js";
 import { TextField } from "@mui/material";
@@ -108,7 +109,7 @@ const ChangePassword = () => {
         <SellerNavBar/>
         }
         <Grid container direction="row" >
-            <Grid item xs={4}  >
+            <Grid item xs={12} md={3}  >
                 <div className="add_align">
                     <div >
                         <Typography align="center" className="add_style" >
@@ -119,7 +120,7 @@ const ChangePassword = () => {
 
             </Grid>
             <div>
-                <Grid item xs={8} style={{ margin: '25px 100px 0px 400px'}} >
+                <Grid item xs={12} md={9} style={{ margin: '25px 100px 0px 400px'}} >
                     <Card variant="outlined" className="add_cardStyle" sx={{ minWidth: 450 }}>
                         <CardContent>
                             <Typography fontSize="40px" color="black" align="center">
@@ -146,7 +147,7 @@ const ChangePassword = () => {
                         }
                         <div className="psw_buttonmargin">
                             <Typography align='center'>
-                                <Button  variant="contained" size="large" className="add_button" onClick={updatePassword}>Submit</Button>
+                                <Button  variant="contained"  size="large" className="add_button" onClick={updatePassword}>Submit</Button>
                             </Typography>
                         </div>
                     </Card>
@@ -154,6 +155,7 @@ const ChangePassword = () => {
             </div>
 
         </Grid>
+        
     </div>)
 };
 

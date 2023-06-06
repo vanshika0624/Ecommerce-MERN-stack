@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import  "./DisplayPage.css"
 // import bg from "../images/bg.jpg";
 import Button from '@mui/material/Button';
+import Footer from "../Footer.js";
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
@@ -413,7 +414,9 @@ const Cart = () => {
 
                 </Grid>
             </Grid>
+            <Footer/>
         </div >
+       
     )
 };
 

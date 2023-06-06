@@ -40,8 +40,9 @@
 
 .searchBox>input[type="submit"]:hover {
     background-color: #6b614f;
-    transition:0.7s;
+    transition: 0.7s;
     color: white
+
     /* border-radius: 30px; */
 }
 

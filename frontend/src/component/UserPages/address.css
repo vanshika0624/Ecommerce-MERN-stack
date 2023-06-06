@@ -27,6 +27,7 @@
 
 .psw_buttonmargin {
     margin: 20px 125px 25px 10px !important;
+    display: inline;
 }
 
 .address_SuccessMsg {
