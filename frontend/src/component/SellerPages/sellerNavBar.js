@@ -81,7 +81,9 @@ const SellerNavBar = () => {
                     <Tooltip title="Sign Out"><LogoutIcon fontSize="large" onClick={logOut}/></Tooltip>
                     }
                     {!localStorage.getItem('accessToken') && 
-                    <Tooltip title="Sign In"><LoginIcon fontSize="large" onClick={goToLogin}/></Tooltip>
+                    <Typography align="right">
+                      <Button variant="outlined" size="large" color="inherit" onClick={goToLogin}> Sign In</Button>
+                    </Typography>
                     }
                     </div>
                 </Grid>

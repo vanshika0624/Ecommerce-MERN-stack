@@ -174,7 +174,7 @@ setPasswordError("Format Error! Check the tooltip for details");
     const handlePnoChange = (e) => {
         setpno(e.target.value)
         if (!validatePno(e.target.value)) {
-            setPnoError('Format: +1 (111)-(222)-(3333)')
+            setPnoError('Format: +1 111-222-3333 or +1 (111)-222-3333')
 
         }
 
