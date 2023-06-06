@@ -173,7 +173,7 @@ const SellerSignUp = () => {
     const handlePnoChange = (e) => {
         setpno(e.target.value)
         if (!validatePno(e.target.value)) {
-            setPnoError('Please Enter Valid Phone')
+            setPnoError('Format: +1 111-222-3333 or +1 (111)-222-3333')
 
         }
 

@@ -49,7 +49,7 @@ const Address = () => {
     }
 
     const validatePhone = (pno) => {
-        const pnoRegex = /^\d{10}$/;
+        const pnoRegex = /^(\+\d{1,2}\s)\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
         return pnoRegex.test(pno)
     }
 
@@ -139,7 +139,7 @@ const Address = () => {
             setPhoneError('Required')
         }
         else if (!validatePhone(e.target.value)) {
-            setPhoneError('Please Enter Valid Phone')
+            setPhoneError('Format: +1 111-222-3333 or +1 (111)-222-3333')
         }
         else {
             setPhoneError('')
@@ -347,7 +347,7 @@ const Address = () => {
 
                         { role === "seller" &&
                         <div style={{ margin: "20px", textAlign: "left" }}>
-                            <TextField type="number" required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Mobile Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Phone Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                             <TextField type="number" required id="id-fname" value={ein} onChange={handleEINChange} error={Boolean(einError !== "")} helperText={Boolean(einError !== "") ? einError : ""} label="EIN" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                         </div>
                         }
