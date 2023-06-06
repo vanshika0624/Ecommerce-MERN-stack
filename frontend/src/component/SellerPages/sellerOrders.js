@@ -2,12 +2,10 @@ import React, {useState, useEffect} from "react";
 import  "./sellerOrders.css"
 import SellerNavBar from "./sellerNavBar.js";
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Grid } from '@mui/material';
-import Pagination from "react-js-pagination";
+import LaunchIcon from '@mui/icons-material/Launch';
 import Button from '@mui/material/Button';
-import { LaunchIcon } from 'react';
-import { Divider } from 'react';
-import { DataGrid } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import Divider from '@mui/material/Divider';
 import axios from "axios";
 const SellerOrders = () => {
 
