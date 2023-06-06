@@ -39,6 +39,7 @@ const EditProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [imageString , setImageString ] =useState();
   const [imageDisplayFlag, setImageDisplayFlag] = useState(false);
   const fileInputRef = useRef(null);
   const { id } = useParams();
@@ -107,6 +108,7 @@ const EditProduct = () => {
 
       reader.onload = () => {
         if (reader.readyState === 2) {
+          setImageString(reader.result)
           setImagesPreview((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
         }
@@ -123,11 +125,6 @@ const EditProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
-      console.log(prName);
-      console.log(description);
-      console.log(price);
-      console.log(category);
-      console.log(typeof (id));
 
       // setEmptyfields(false);
       axios.put(`http://localhost:2000/product/seller/getProducts/${id}`, {
@@ -137,8 +134,9 @@ const EditProduct = () => {
         description: description,
         price: price,
         category: category,
-        images: images,
-        Stock: Stock
+        Stock: Stock,
+        images: imageDisplayFlag ? imageString : images
+        
 
         // "user": "64596f0f3d0561f78b51993d"
 

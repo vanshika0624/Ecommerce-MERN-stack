@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import "./navigation.css";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -55,16 +55,16 @@ const Navigation = ({ searchBarData }) => {
         navigate("/home");
     };
 
-    const goToUserDetails=()=> {
+    const goToUserDetails = () => {
         navigate("/address");
     };
 
-    const goToLogin=()=> {
+    const goToLogin = () => {
         navigate("/signin");
     };
 
     // const handleSearchResults = (results) => {
-     
+
     //     setSearchResults(results);
     //     searchBarData(results);
     //     // navigate("/search");
@@ -73,56 +73,55 @@ const Navigation = ({ searchBarData }) => {
     // };
 
 
-    const logOut=()=>
-    {
+    const logOut = () => {
         axios
-        .get(`http://localhost:2000/user/logout/`,{ withCredentials: true })
-        .then((res) => {
-            localStorage.setItem("accessToken", "");
-            localStorage.setItem("userRole", "");
-            navigate("/");
-        })
-        .catch((err) => {
-            console.log('Error while logging out');
-        });
+            .get(`http://localhost:2000/user/logout/`, { withCredentials: true })
+            .then((res) => {
+                localStorage.setItem("accessToken", "");
+                localStorage.setItem("userRole", "");
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log('Error while logging out');
+            });
         navigate('/')
     };
 
     return (
         <div>
             <Grid container alignContent="flex-start" className='nav-id'>
-                <Grid container  item xs={7} >
-                <Grid item xs={1}  >
-                    <div><img src={NavLogo} onClick={goToHome} className="nav_logo_style" /> </div>
+                <Grid container item xs={12} md={12} lg={7} >
+                    <Grid item xs={1} md={1} lg={1} >
+                        <div><img src={NavLogo} onClick={goToHome} className="nav_logo_style" /> </div>
+                    </Grid>
+                    <Grid item xs={11} md={11} lg={11}>
+                        <div className="navbarMain">
+                            <Typography>
+                                <Button size="large" className="buttonstyle" onClick={goToJewelry}>
+                                    Jewelry
+                                </Button>
+                                <Button size="large" className="buttonstyle" onClick={goToFurniture}>
+                                    Furniture
+                                </Button>
+                                <Button size="large" className="buttonstyle" onClick={goToClothing}>
+                                    Clothing
+                                </Button>
+                                <Button size="large" className="buttonstyle" onClick={goToHomeDecor}>
+                                    Home Decor
+                                </Button>
+                                <Button size="large" className="buttonstyle" onClick={goToPaintings}>
+                                    Paintings
+                                </Button>
+                                <Button size="large" className="buttonstyle" onClick={goToToys}>
+                                    Toys
+                                </Button>
+                            </Typography>
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid item xs={11} md={7}>
-                    <div className="navbarMain">
-                        <Typography>
-                            <Button size="large" className="buttonstyle" onClick={goToJewelry}>
-                                Jewelry
-                            </Button>
-                            <Button size="large" className="buttonstyle" onClick={goToFurniture}>
-                                Furniture
-                            </Button>
-                            <Button size="large" className="buttonstyle" onClick={goToClothing}>
-                                Clothing
-                            </Button>
-                            <Button size="large" className="buttonstyle" onClick={goToHomeDecor}>
-                                Home Decor
-                            </Button>
-                            <Button size="large" className="buttonstyle" onClick={goToPaintings}>
-                                Paintings
-                            </Button>
-                            <Button size="large" className="buttonstyle" onClick={goToToys}>
-                                Toys
-                            </Button>
-                        </Typography>
-                    </div>
-                </Grid>
-                </Grid>
-                <Grid container  item xs={5} >
-                <Grid container item xs={8} alignContent="center" justifyContent="center">
-                    <Search />
+                <Grid container item xs={12} md={12} lg={5} >
+                    <Grid container item xs={8} md={6} lg={8} alignContent="center" justifyContent="center">
+                        <Search />
 
                 </Grid>
                 <Grid container item  xs={4} alignContent="flex-end"  justifyContent="flex-end">
@@ -131,7 +130,9 @@ const Navigation = ({ searchBarData }) => {
                         {localStorage.getItem('accessToken') && 
                         <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
                         }
+                        {localStorage.getItem('accessToken') && 
                         <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
+                        }
                         {localStorage.getItem('accessToken') && 
                         <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToUserDetails}/></Tooltip>
                         }

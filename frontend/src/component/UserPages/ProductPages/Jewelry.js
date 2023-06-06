@@ -3,7 +3,7 @@ import Navigation from "../../navigation.js"
 import SellerNavBar from "../../SellerPages/sellerNavBar.js";
 import Typography from '@mui/material/Typography';
 import Tooltip from "@mui/material/Tooltip";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 import axios from "axios";
@@ -22,18 +22,18 @@ const Jewelry = () => {
 
 
     const getJewelry = (page) => {
-        if(role === 'buyer'){
-            getJewelryBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getJewelrySeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getJewelryBuyer(page);
         }
     }
 
     const getJewelryBuyer = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Jewelry&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Jewelry&page=' + page, { withCredentials: true })
             .then((res) => {
                 setJewelryProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -47,7 +47,7 @@ const Jewelry = () => {
     const getJewelrySeller = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/seller/getProducts?category=Jewelry&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/seller/getProducts?category=Jewelry&page=' + page, { withCredentials: true })
             .then((res) => {
                 setJewelryProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -62,7 +62,7 @@ const Jewelry = () => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={3} >
+                    <Grid item xs={6} md={3} >
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -82,11 +82,11 @@ const Jewelry = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
-                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
                                 }
                             </CardContent>
                         </Card>
@@ -103,30 +103,33 @@ const Jewelry = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
-            { 
-            role === 'seller' && 
-            <SellerNavBar/>
+            {
+                role === 'seller' &&
+                <SellerNavBar />
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                    Jewelry
+                </Typography>
                 {disaplyCards(jewelryProducts)}
                 {totalNumOrders > resultsPerPage && (
-                <div className="paginationBoxProducts">
-                    <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resultsPerPage}
-                    totalItemsCount={totalNumOrders}
-                    onChange={getJewelry}
-                    firstPageText="First"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                    />
-                </div>
+                    <div className="paginationBoxProducts">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage={resultsPerPage}
+                            totalItemsCount={totalNumOrders}
+                            onChange={getJewelry}
+                            firstPageText="First"
+                            lastPageText="Last"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="pageItemActive"
+                            activeLinkClass="pageLinkActive"
+                        />
+                    </div>
                 )}
             </div>
             <Footer />

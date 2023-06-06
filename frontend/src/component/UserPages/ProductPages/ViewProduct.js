@@ -6,6 +6,10 @@ import Typography from '@mui/material/Typography';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CardMedia, Grid, MenuItem, TextField } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import axios from "axios";
 import Navigation from "../../navigation.js"
 import Footer from "../../Footer.js"
@@ -16,20 +20,25 @@ const ViewProduct = () => {
   const [size, setSize] = React.useState('');
   const [productQuantity, setProductQuantity] = React.useState(1);
   const [successMessage, setSuccessMessage] = useState('');
+  const [openDialog, setOpenDialog] = useState(false);
 
   const setSizeValue = (event) => {
     setSize(event.target.value);
   }
  
+  const goToSignIn=()=> {
+      navigate('/signin')
+  }
+
   const handleInputChange = (event) => {
 
     const inputValue = Number(event.target.value);
-    console.log(" in input change",inputValue)
+    console.log(" in input change", inputValue)
     1 >= inputValue ?
       setProductQuantity(1) :
       inputValue > productDetails.Stock ?
         setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
-        console.log(productQuantity)
+    console.log(productQuantity)
 
   };
   const addToCart = () => {
@@ -60,26 +69,32 @@ const ViewProduct = () => {
     //   localStorage.setItem('cart', JSON.stringify(cart));
     // }
 
-     axios.post(`http://localhost:2000/cart/addproduct`,{
-     cartItems:[
-          {
-          name: productDetails.name,
-          price: productDetails.price,
-          image: productDetails.images[0].url,
-          seller: productDetails.user,
-          product: productDetails._id,
-          // stock: productDetails.Stock,
-          quantity: productQuantity,
-          Stock: productDetails.Stock,
-          // seller: productDetails.user
-          }
 
-     ]},{ withCredentials: true })
-     .then((res)=> {
-      console.log(res.data);
-     })
-     .catch((err) => {
-      console.log('Error from addtocart',err);})
+    if (!localStorage.getItem("accessToken")) {
+      setOpenDialog(true);
+    }
+    else {
+      axios.post(`http://localhost:2000/cart/addproduct`,{
+      cartItems:[
+            {
+            name: productDetails.name,
+            price: productDetails.price,
+            image: productDetails.images[0].url,
+            seller: productDetails.user,
+            product: productDetails._id,
+            // stock: productDetails.Stock,
+            quantity: productQuantity,
+            Stock: productDetails.Stock,
+            // seller: productDetails.user
+            }
+
+      ]},{ withCredentials: true })
+      .then((res)=> {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from addtocart',err);})
+    }
   }
 
   useEffect(() => {
@@ -100,7 +115,7 @@ const ViewProduct = () => {
   return (<div className="bg" >
     <Navigation />
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
-      <Grid container item xs={6} >
+      <Grid container item xs={12} md={6} >
         {
           productDetails.images && productDetails.images.map((image) => (
             <CardMedia align="center" alt="product image" className="createProductFormImage">
@@ -110,7 +125,7 @@ const ViewProduct = () => {
         }
 
       </Grid>
-      <Grid item xs={4} >
+      <Grid item xs={12} md={6} >
         <Typography variant="h4" component="h4" className="fontStyles"  >
           {productDetails.name}
         </Typography>
@@ -122,7 +137,7 @@ const ViewProduct = () => {
         </Typography>
         <div>
           {productDetails && productDetails.Stock > 0 ?
-           
+
             <div  >
               <Typography variant="h6" component="h6" className="fontStyles">
                 <span className="quantity" > Quantity :  </span>  <TextField readOnly type="number" value={productQuantity} onChange={handleInputChange} />
@@ -144,6 +159,18 @@ const ViewProduct = () => {
         </div>
 
       </Grid>
+      <Dialog open={openDialog}>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <Typography variant="h4" color="textSecondary" component="div">
+              Please sign in to add items to your cart. <br/>
+            </Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={goToSignIn}>Click here to Sign in</Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
     <Footer />
   </div >

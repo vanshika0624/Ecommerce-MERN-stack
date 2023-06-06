@@ -3,8 +3,8 @@
     background-color: #C4AD88;
     color: #0000;
     margin: 20px 10px 0px 0px;
-    height: 45px;
-    width: 750px;
+    /* height: 45px; */
+    /* width: 750px; */
 }
 
 .buttonstyle.MuiButton-root {
@@ -13,9 +13,10 @@
     border-radius: 25px;
 }
 
-.iconstyleNav {    
-    margin-right: 20px;
-    margin-bottom: 22px;
+.iconstyleNav {
+    margin: 20px;
+    /* margin-bottom: 22px; */
+    /* display: inline-block; */
 }
 
 .buttonstyle.MuiButton-root:hover {
@@ -31,10 +32,10 @@
     cursor: pointer;
 }
 
-.searchBox {
-    height: 45px !important;
-}
+/* .searchBox {
+    height: 35px !important;
+} */
 
-.nav-id .MuiGrid-root {
+/* .nav-id .MuiGrid-root {
     height: 85px;
-}
+} */

@@ -4,13 +4,14 @@
 }
 
 .createProductFormImage>img {
-  width: 30vmax;
+  width: 30vw;
   margin: 0 0.5vmax;
 
 }
 
 .fontStyles.MuiTypography-root {
-  text-align: justify;
+  /* text-align: justify; */
+  padding-left: 10px;
   margin: 10px;
   margin-top: 15px;
   font-family: 'Cambria', 'Calibiri', 'Arial';
@@ -19,7 +20,7 @@
 .quantity {
 
   margin-top: 10px;
-  display: inline-flex ;
+  display: inline-flex;
 
   font-family: 'Cambria', 'Calibiri', 'Arial';
 }
@@ -30,9 +31,11 @@
   border-radius: 30px;
   margin: 10px;
   margin-top: 20px;
+  margin-left: 10px;
   height: 40px;
   width: 180px;
   font-size: 15px;
+
 }
 
 .createProductFormImage.MuiCardMedia-root {
