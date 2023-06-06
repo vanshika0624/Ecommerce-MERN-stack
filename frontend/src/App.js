@@ -38,7 +38,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<DisplayPage />} />
           <Route path='/user-signup' element={<SignUp />} />
-          <Route path='/ordersuccess' element={<OrderSuccess />} />
+          <Route path='/ordersuccess/:id' element={<OrderSuccess />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/seller-signup' element={<SellerSignUp />} />
           <Route path='/address' element={<Address />} />

@@ -131,7 +131,9 @@ const Navigation = ({ searchBarData }) => {
                         {localStorage.getItem('accessToken') && 
                         <Tooltip title="Orders"><InventoryIcon fontSize="large" onClick={goToOrders}/></Tooltip>
                         }
+                        {localStorage.getItem('accessToken') && 
                         <Tooltip title="Cart"><ShoppingCartIcon fontSize="large" onClick={goToCart}/></Tooltip>
+                        }
                         {localStorage.getItem('accessToken') && 
                         <Tooltip title="Account"><PersonIcon fontSize="large" onClick={goToUserDetails}/></Tooltip>
                         }

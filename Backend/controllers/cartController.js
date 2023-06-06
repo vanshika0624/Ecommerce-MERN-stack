@@ -70,7 +70,6 @@ exports.deleteCartProduct = catchAsyncErrors(async (req, res, next) => {
      return next(new ErrorHandler (" No items in the Cart",404));
      
 
-  console.log(req.params,"params")
   const productIndex = await cart.cartItems.findIndex( (item) => item.product.toString() === req.params.id);
   
   if (productIndex === -1) {
