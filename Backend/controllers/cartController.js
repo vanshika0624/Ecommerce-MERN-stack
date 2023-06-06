@@ -94,3 +94,29 @@ exports.myCart = catchAsyncErrors(async (req, res, next) => {
 
 });
 
+exports.emptyCart = catchAsyncErrors(async (req, res, next) => {
+
+
+  const cart = await Cart.findOne({ user: req.user._id });
+
+  if (!cart) {
+    return next(new ErrorHandler("No items in the Cart", 404));
+  }
+
+  cart.cartItems = [];
+  await cart.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Cart has been emptied successfully",
+  });
+});
+
+
+
+
+
+
+
+
+

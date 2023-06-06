@@ -4,6 +4,7 @@ const express = require("express");
   updateCartProduct,
   deleteCartProduct,
   myCart,
+  emptyCart
 } = require("../controllers/cartController");
 const router = express.Router();
 
@@ -14,6 +15,7 @@ router.route("/addproduct")
 .put(isAuthenticatedUser, authorizeRoles("buyer"), updateCartProduct);
 
 router.route("/removeproduct/:id").delete(isAuthenticatedUser, authorizeRoles("buyer"),deleteCartProduct);
+router.route("/emptycart").get(isAuthenticatedUser,authorizeRoles("buyer"),emptyCart)
 
 router.route("/details").get(isAuthenticatedUser,authorizeRoles("buyer"), myCart);
 
