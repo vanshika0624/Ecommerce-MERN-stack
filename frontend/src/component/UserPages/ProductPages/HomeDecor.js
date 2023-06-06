@@ -21,11 +21,11 @@ const HomeDecor = () => {
     }, []);
 
     const getHomeDecor = (page) => {
-        if(role === 'buyer'){
-            getHomeDecorBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getHomeDecorSeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getHomeDecorBuyer(page);
         }
     }
 
@@ -81,7 +81,7 @@ const HomeDecor = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
@@ -102,7 +102,7 @@ const HomeDecor = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 
@@ -110,6 +110,9 @@ const HomeDecor = () => {
             <SellerNavBar/>
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                Home Decor
+                </Typography>
                 {disaplyCards(decorProducts)}
                 {totalNumOrders > resultsPerPage && (
                 <div className="paginationBoxProducts">

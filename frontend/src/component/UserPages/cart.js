@@ -21,6 +21,7 @@ const Cart = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [phone, setPhone] = useState('');
     const [einError, setEINError] = useState('');
     const [successMsgFlag, setSuccessMsgFlag] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
@@ -37,6 +38,7 @@ const Cart = () => {
                     setCity(res.data.user.address[0].city);
                     setState(res.data.user.address[0].state);
                     setZip(res.data.user.address[0].zipcode);
+                    setPhone(res.data.user.phone);
                 }
                 setSuccessMsgFlag(true);
                 setErrorMsgFlag(false);
@@ -258,9 +260,54 @@ const Cart = () => {
     const goToProfile = () => {
         navigate('/address')
     }
-    const goToOrderSucces=()=>{
-        navigate("/OrderSuccess")
-            }
+
+    const goToOrderSucces = (orderID)=>{
+        navigate("/OrderSuccess/" + orderID);
+    }
+
+    const emptyCart = () => {
+        axios.get(`http://localhost:2000/cart/emptycart/`,{ withCredentials: true })
+        .then((res) =>{
+            console.log("success");
+            console.log(res);
+        }).catch((err) => {
+            console.log('Error while empyting the products from cart', err);
+        })
+    }
+
+    const postOrder = (event) => {
+        let shippingInfo = {
+            address : street,
+            city : city,
+            state : state,
+            zipCode: zip,
+            phoneNo: phone
+        }
+
+        event.preventDefault()
+        {
+          axios.post("http://localhost:2000/mart/order/new", {
+            "orderItems": cartItems,
+            "shippingInfo": shippingInfo,
+            "itemsPrice": calculateItemTotal(),
+            "taxPrice": calculateTax(),
+            "servicePrice": calculateServiceCharge(),
+            "totalPrice": calculateTotal()
+          }, { withCredentials: true })
+            .then((response) => {
+                if (response.status == 201) {
+                    emptyCart();
+                    goToOrderSucces(response.data.order._id);
+                    console.log("success")
+                }
+                else {
+                    console.log("error")
+                }
+            })
+            .catch((err) => console.log(err, "err"));
+        }
+    }
+            
     return (
         <div >
 
@@ -336,14 +383,15 @@ const Cart = () => {
                             </Grid>
                         </Grid>
                         <div>
-                            <Button className="cart_button" variant="contained" size="large" onClick = {goToOrderSucces}>Checkout</Button>
+                            <Button className="cart_button" variant="contained" size="large" onClick = {postOrder}>Checkout</Button>
                         </div>
 
                     </Card>
                     <Card variant="outlined" align="center" className="cart_AddressCardStyle" sx={{ minWidth: 550 }} >
 
                         <h2 className="cart_billing" fontSize="25px" color="black" align="center">
-                            Address: {street}, {city}<br />{state}-{zip}
+                            Address: {street}, {city}<br />{state}-{zip}<br />
+                            Mobile: {phone}
                         </h2>
 
                         {/* <Divider className="cart_divider" />

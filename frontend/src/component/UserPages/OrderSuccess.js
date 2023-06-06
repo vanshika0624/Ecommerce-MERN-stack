@@ -9,9 +9,11 @@ import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 //import CardActions from "@material-ui/core/CardActions";
 
 
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const OrderSuccess = () => {
+  const { id } = useParams();
+
   return (
     <div>
     <Navigation/>
@@ -35,7 +37,7 @@ const OrderSuccess = () => {
                 >
                     Thank you so much for buying from us !
                 </Typography>
-                <Link to="/viewOrder">View Orders</Link>
+                <Link to={`/orders/${id}`}>View Order</Link>
             </CardContent>
         </Card>
         </div>

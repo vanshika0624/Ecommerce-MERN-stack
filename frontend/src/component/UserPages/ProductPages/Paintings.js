@@ -21,11 +21,11 @@ const Paintings = () => {
     }, []);
 
     const getPaintings = (page) => {
-        if(role === 'buyer'){
-            getPaintingsBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getPaintingsSeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getPaintingsBuyer(page);
         }
     }
 
@@ -81,7 +81,7 @@ const Paintings = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
@@ -102,7 +102,7 @@ const Paintings = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 
@@ -110,6 +110,9 @@ const Paintings = () => {
             <SellerNavBar/>
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                    Paintings
+                </Typography>
                 {disaplyCards(paintingProducts)}
                 {totalNumOrders > resultsPerPage && (
                 <div className="paginationBoxProducts">

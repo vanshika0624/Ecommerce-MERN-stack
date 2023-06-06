@@ -23,11 +23,11 @@ const Furniture = () => {
 
 
     const getFurnitutre = (page) => {   
-        if(role === 'buyer'){
-            getFurnitutreBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getFurnitutreSeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getFurnitutreBuyer(page);
         }
     }
 
@@ -83,7 +83,7 @@ const Furniture = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
@@ -104,7 +104,7 @@ const Furniture = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 
@@ -112,6 +112,9 @@ const Furniture = () => {
             <SellerNavBar/>
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                    Furniture
+                </Typography>
                 {disaplyCards(furnitureProducts)}
                 {totalNumOrders > resultsPerPage && (
                 <div className="paginationBoxProducts">
