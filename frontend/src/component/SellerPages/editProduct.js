@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+
 // import Typography from "@mui/material";
 
 const EditProduct = () => {
@@ -36,10 +37,11 @@ const EditProduct = () => {
   const [open, setOpen] = useState(false);
   const [prNameError, setprNameError] = useState('');
   const [StockError, setStockError] = useState('');
+  const [PriceError, setPriceError] = useState('');
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const [imageString , setImageString ] =useState();
+  const [imageString, setImageString] = useState();
   const [imageDisplayFlag, setImageDisplayFlag] = useState(false);
   const fileInputRef = useRef(null);
   const { id } = useParams();
@@ -55,6 +57,19 @@ const EditProduct = () => {
     }
     else {
       setprNameError('')
+    }
+  }
+
+  const handlePrice = (e) => {
+    setprice(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setPriceError('Please Enter a Number')
+
+    }
+    else {
+      setPriceError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
     }
   }
   const handleStockChange = (e) => {
@@ -136,7 +151,7 @@ const EditProduct = () => {
         category: category,
         Stock: Stock,
         images: imageDisplayFlag ? imageString : images
-        
+
 
         // "user": "64596f0f3d0561f78b51993d"
 
@@ -216,7 +231,7 @@ const EditProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="editProduct_labelStyle" style={{ marginTop: "40px" }}>
-                  {id} 
+                  {id}
                   {/* <TextField className="editProduct_textbox" sx={{ width: 300 }} required id="outlined-basic" value={id} label="" variant="outlined" InputProps={{ readOnly: true, }} > </TextField> */}
                 </div>
               </Grid>
@@ -243,7 +258,7 @@ const EditProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="editProduct_labelStyle">
-                  <TextField value={price} onChange={e => setprice(e.target.value)} required sx={{ width: 300 }} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={price} onChange={handlePrice} error={Boolean(PriceError)} helperText={PriceError} required sx={{ width: 300 }} className="editProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>
