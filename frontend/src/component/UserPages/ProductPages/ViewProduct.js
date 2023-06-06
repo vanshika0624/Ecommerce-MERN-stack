@@ -103,7 +103,7 @@ const ViewProduct = () => {
   return (<div className="bg" >
     <Navigation />
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
-      <Grid container item xs={6} >
+      <Grid container item xs={12} md={6} >
         {
           productDetails.images && productDetails.images.map((image) => (
             <CardMedia align="center" alt="product image" className="createProductFormImage">
@@ -113,7 +113,7 @@ const ViewProduct = () => {
         }
 
       </Grid>
-      <Grid item xs={4} >
+      <Grid item xs={12} md={6} >
         <Typography variant="h4" component="h4" className="fontStyles"  >
           {productDetails.name}
         </Typography>

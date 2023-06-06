@@ -50,25 +50,25 @@ const Cart = () => {
     }, []);
     useEffect(() => {
         // const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    axios.get(`http://localhost:2000/cart/details`,{ withCredentials: true })
-    .then((res)=>
-       { setCartItems(res.data.cart.cartItems);
-        // console.log(res.data.cart.cartItems);
-       })
-       .catch((err) => {
-        console.log('Error from getcart details',err);
-       })
+        axios.get(`http://localhost:2000/cart/details`, { withCredentials: true })
+            .then((res) => {
+                setCartItems(res.data.cart.cartItems);
+                // console.log(res.data.cart.cartItems);
+            })
+            .catch((err) => {
+                console.log('Error from getcart details', err);
+            })
     }, [cartItems]);
-    
+
     const removeFromCart = (productId) => {
         // const updatedCart = cartItems.filter((item) => item.product !== productId);
-    axios.delete(`http://localhost:2000/cart/removeproduct/${productId}`,{ withCredentials: true })
-.then((res) =>{
-        setCartItems(res.data.cart.cartItems);
-        // console.log(res.data.cart.cartItems);
-}).catch((err) => {
-    console.log('Error from delete product from cart',err);
-   })
+        axios.delete(`http://localhost:2000/cart/removeproduct/${productId}`, { withCredentials: true })
+            .then((res) => {
+                setCartItems(res.data.cart.cartItems);
+                // console.log(res.data.cart.cartItems);
+            }).catch((err) => {
+                console.log('Error from delete product from cart', err);
+            })
         // localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
@@ -76,45 +76,46 @@ const Cart = () => {
     const updateQuantity = (productId, newQuantity) => {
         const itemToUpdate = cartItems.find((item) => item.product === productId);
         const maxQuantityAvailable = itemToUpdate.Stock;
-      console.log(itemToUpdate,maxQuantityAvailable , "in update quantity")
+        console.log(itemToUpdate, maxQuantityAvailable, "in update quantity")
         if (newQuantity > 0 && newQuantity <= maxQuantityAvailable) {
 
-        //     const updatedCart = cartItems.map((item) =>
-        //         item.product === productId ? { ...item, quantity: newQuantity } : item
-        //     );
-        //     setCartItems(updatedCart);
-        //     localStorage.setItem('cart', JSON.stringify(updatedCart));
-        // } else {
-        //     // Show an error or notification for invalid quantity
-        //     console.log('Invalid quantity');
-        // }
-           axios.put(`http://localhost:2000/cart/addproduct`,{
-    
-          
-        //   name: productDetails.name,
-        //   price: productDetails.price,
-        //   image: productDetails.images[0].url,
-        //   seller: productDetails.user,
-          product: productId,
-          // stock: productDetails.Stock,
-          quantity: newQuantity,
-        //   stock: productDetails.Stock,
-          // seller: productDetails.user
-          }
+            //     const updatedCart = cartItems.map((item) =>
+            //         item.product === productId ? { ...item, quantity: newQuantity } : item
+            //     );
+            //     setCartItems(updatedCart);
+            //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+            // } else {
+            //     // Show an error or notification for invalid quantity
+            //     console.log('Invalid quantity');
+            // }
+            axios.put(`http://localhost:2000/cart/addproduct`, {
 
-     ,{ withCredentials: true })
-     .then((res)=> {
-      console.log(res.data);
-      setCartItems(res.data.cart.cartItems);
-     })
-     .catch((err) => {
-      console.log('Error from updatecart',err);})
-  
-        
-    }
-    else{
-        // snackbar to be added
-    }
+
+                //   name: productDetails.name,
+                //   price: productDetails.price,
+                //   image: productDetails.images[0].url,
+                //   seller: productDetails.user,
+                product: productId,
+                // stock: productDetails.Stock,
+                quantity: newQuantity,
+                //   stock: productDetails.Stock,
+                // seller: productDetails.user
+            }
+
+                , { withCredentials: true })
+                .then((res) => {
+                    console.log(res.data);
+                    setCartItems(res.data.cart.cartItems);
+                })
+                .catch((err) => {
+                    console.log('Error from updatecart', err);
+                })
+
+
+        }
+        else {
+            // snackbar to be added
+        }
 
     };
 
@@ -258,9 +259,9 @@ const Cart = () => {
     const goToProfile = () => {
         navigate('/address')
     }
-    const goToOrderSucces=()=>{
+    const goToOrderSucces = () => {
         navigate("/OrderSuccess")
-            }
+    }
     return (
         <div >
 
@@ -268,7 +269,7 @@ const Cart = () => {
             <div className="heading">  My Bag<br /> </div>
             <Divider className="divider" />
             <Grid style={{ alignItems: "flex-start" }} container direction="row" spacing={2}  >
-                <Grid container item xs={7} >
+                <Grid container item xs={12} md={6} >
                     {cartItems.length === 0 ? (
                         <p className="cart_EmptyMsg">Your cart is empty.</p>
                     ) : (
@@ -297,8 +298,8 @@ const Cart = () => {
                     )}
 
                 </Grid>
-                <Grid container item xs={5} >
-                    <Card variant="outlined" align="center" className="cart_cardStyle" sx={{ minWidth: 550 }}>
+                <Grid container justifyContent="center" item xs={12} md={6} >
+                    <Card variant="outlined" align="center" className="cart_cardStyle" sx={{ width: "40vw" }}>
                         <Grid container direction="row"  >
                             <Grid item xs={6}>
                                 <h2 className="cart_billing">Total:</h2>
@@ -336,11 +337,11 @@ const Cart = () => {
                             </Grid>
                         </Grid>
                         <div>
-                            <Button className="cart_button" variant="contained" size="large" onClick = {goToOrderSucces}>Checkout</Button>
+                            <Button className="cart_button" variant="contained" size="large" onClick={goToOrderSucces}>Checkout</Button>
                         </div>
 
                     </Card>
-                    <Card variant="outlined" align="center" className="cart_AddressCardStyle" sx={{ minWidth: 550 }} >
+                    <Card variant="outlined" align="center" className="cart_AddressCardStyle" sx={{ minWidth: "40vw" }} >
 
                         <h2 className="cart_billing" fontSize="25px" color="black" align="center">
                             Address: {street}, {city}<br />{state}-{zip}

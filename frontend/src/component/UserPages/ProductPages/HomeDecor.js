@@ -21,7 +21,7 @@ const HomeDecor = () => {
     }, []);
 
     const getHomeDecor = (page) => {
-        if(role === 'buyer'){
+        if (role === 'buyer') {
             getHomeDecorBuyer(page);
         }
         else { //if(role === 'seller') {
@@ -32,7 +32,7 @@ const HomeDecor = () => {
     const getHomeDecorBuyer = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Home-Decor&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Home-Decor&page=' + page, { withCredentials: true })
             .then((res) => {
                 setDecorProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -46,7 +46,7 @@ const HomeDecor = () => {
     const getHomeDecorSeller = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/seller/getProducts?category=Home-Decor&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/seller/getProducts?category=Home-Decor&page=' + page, { withCredentials: true })
             .then((res) => {
                 setDecorProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -61,7 +61,7 @@ const HomeDecor = () => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={3} >
+                    <Grid item xs={6} md={3} >
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -82,10 +82,10 @@ const HomeDecor = () => {
                                     ${card.price}
                                 </Typography>
                                 {role === 'buyer' &&
-                                <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
-                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
                                 }
                             </CardContent>
                         </Card>
@@ -101,31 +101,31 @@ const HomeDecor = () => {
 
     return (
         <div className="bg">
-            { 
-            role === 'buyer' &&
-            <Navigation/>
+            {
+                role === 'buyer' &&
+                <Navigation />
             }
-            { 
-            role === 'seller' && 
-            <SellerNavBar/>
+            {
+                role === 'seller' &&
+                <SellerNavBar />
             }
             <div className="alignment">
                 {disaplyCards(decorProducts)}
                 {totalNumOrders > resultsPerPage && (
-                <div className="paginationBoxProducts">
-                    <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resultsPerPage}
-                    totalItemsCount={totalNumOrders}
-                    onChange={getHomeDecor}
-                    firstPageText="First"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                    />
-                </div>
+                    <div className="paginationBoxProducts">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage={resultsPerPage}
+                            totalItemsCount={totalNumOrders}
+                            onChange={getHomeDecor}
+                            firstPageText="First"
+                            lastPageText="Last"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="pageItemActive"
+                            activeLinkClass="pageLinkActive"
+                        />
+                    </div>
                 )}
             </div>
             <Footer />

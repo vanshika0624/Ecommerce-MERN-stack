@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useTheme } from '@mui/material/styles';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -118,8 +119,9 @@ const SignIn = () => {
     const goToUserSignup = () => {
         navigate('/user-signup')
     }
+    const theme = useTheme();
     return (<Grid container direction="row" className="userSignin_bgcolor">
-        <Grid item xs={8} md={8}  >
+        <Grid item xs={12} md={8}  >
             <div className="userSignin_align">
                 <div >
                     <Typography align="center" className="userSignin_style" >
@@ -127,10 +129,10 @@ const SignIn = () => {
                     </Typography>
                 </div>
                 <div style={{ margin: "10px", textAlign: "center" }}>
-                    <TextField id="filled-basic" name="username" sx={{ width: 300 }} value={user} onChange={handleUserChange} error={Boolean(userError)} helperText={!user ? "" : ""} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} /> {renderErrorMessage("username")}
+                    <TextField sx={{ width: "20vw" }} id="filled-basic" name="username" value={user} onChange={handleUserChange} error={Boolean(userError)} helperText={!user ? "" : ""} label="Username" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} /> {renderErrorMessage("username")}
                 </div>
                 <div style={{ margin: "10px", textAlign: "center" }}>
-                    <TextField type='password' sx={{ width: 300 }} value={pass} name="password" onChange={handlePassChange} error={Boolean(passError)} helperText={!pass ? "" : ""} id="filled-psw" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} /> {renderErrorMessage("password")}
+                    <TextField type='password' sx={{ width: "20vw" }} value={pass} name="password" onChange={handlePassChange} error={Boolean(passError)} helperText={!pass ? "" : ""} id="filled-psw" label="Password" variant="filled" className="userSignin_textbox" InputLabelProps={{ style: { color: 'white' } }} /> {renderErrorMessage("password")}
                 </div>
 
                 <div className="userSignin_buttonmargin">
@@ -168,7 +170,7 @@ const SignIn = () => {
             </div>
 
         </Grid>
-        <Grid item xs={4} md={4} className="userSignin_hide">
+        <Grid item xs={0} md={4} className="userSignin_hide">
             <img src={signinimg} alt="Background" className="userSignin_size" />
         </Grid>
     </Grid>)
