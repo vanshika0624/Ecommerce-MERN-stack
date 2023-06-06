@@ -90,6 +90,7 @@ const ViewProduct = () => {
 
       ]},{ withCredentials: true })
       .then((res)=> {
+        setSuccessMessage('Product added to cart successfully!');
         console.log(res.data);
       })
       .catch((err) => {
