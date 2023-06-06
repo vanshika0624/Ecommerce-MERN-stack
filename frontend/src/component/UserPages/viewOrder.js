@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import  "./viewOrder.css"
+import Footer from "../Footer.js";
 import Navigation from "../navigation.js";
 import Typography from '@mui/material/Typography';
 import { useParams, Link } from 'react-router-dom';
@@ -152,6 +153,7 @@ const ViewSingleOrder = () => {
         }
         </Card>
     </div>
+    <Footer/>
     </div>
 };
 

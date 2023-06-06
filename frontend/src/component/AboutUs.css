@@ -1,0 +1,24 @@
+.aboutus {
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 3 px;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    column-count: 1;
+    column-gap: 0;
+
+  }
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+
+

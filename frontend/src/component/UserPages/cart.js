@@ -261,54 +261,53 @@ const Cart = () => {
     const goToProfile = () => {
         navigate('/address')
     }
-
-    const goToOrderSucces = (orderID)=>{
-        navigate("/OrderSuccess/" + orderID);
-    }
-
-    const emptyCart = () => {
-        axios.get(`http://localhost:2000/cart/emptycart/`,{ withCredentials: true })
-        .then((res) =>{
-            console.log("success");
-            console.log(res);
-        }).catch((err) => {
-            console.log('Error while empyting the products from cart', err);
-        })
-    }
-
-    const postOrder = (event) => {
-        let shippingInfo = {
-            address : street,
-            city : city,
-            state : state,
-            zipCode: zip,
-            phoneNo: phone
-        }
-
-        event.preventDefault()
-        {
-          axios.post("http://localhost:2000/mart/order/new", {
-            "orderItems": cartItems,
-            "shippingInfo": shippingInfo,
-            "itemsPrice": calculateItemTotal(),
-            "taxPrice": calculateTax(),
-            "servicePrice": calculateServiceCharge(),
-            "totalPrice": calculateTotal()
-          }, { withCredentials: true })
-            .then((response) => {
-                if (response.status == 201) {
-                    emptyCart();
-                    goToOrderSucces(response.data.order._id);
-                    console.log("success")
+            const goToOrderSucces = (orderID)=>{
+                navigate("/OrderSuccess/" + orderID);
+            }
+        
+            const emptyCart = () => {
+                axios.get(`http://localhost:2000/cart/emptycart/`,{ withCredentials: true })
+                .then((res) =>{
+                    console.log("success");
+                    console.log(res);
+                }).catch((err) => {
+                    console.log('Error while empyting the products from cart', err);
+                })
+            }
+        
+            const postOrder = (event) => {
+                let shippingInfo = {
+                    address : street,
+                    city : city,
+                    state : state,
+                    zipCode: zip,
+                    phoneNo: phone
                 }
-                else {
-                    console.log("error")
+        
+                event.preventDefault()
+                {
+                  axios.post("http://localhost:2000/mart/order/new", {
+                    "orderItems": cartItems,
+                    "shippingInfo": shippingInfo,
+                    "itemsPrice": calculateItemTotal(),
+                    "taxPrice": calculateTax(),
+                    "servicePrice": calculateServiceCharge(),
+                    "totalPrice": calculateTotal()
+                  }, { withCredentials: true })
+                    .then((response) => {
+                        if (response.status == 201) {
+                            emptyCart();
+                            goToOrderSucces(response.data.order._id);
+                            console.log("success")
+                        }
+                        else {
+                            console.log("error")
+                        }
+                    })
+                    .catch((err) => console.log(err, "err"));
                 }
-            })
-            .catch((err) => console.log(err, "err"));
-        }
-    }
-            
+            }
+                    
     return (
         <div >
 
