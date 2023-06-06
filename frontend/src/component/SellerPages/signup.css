@@ -62,3 +62,9 @@
         display: none;
     }
 }
+
+.iconalignment{
+ 
+    /* justify-content: center; */
+    margin-top: 20px
+}

@@ -96,11 +96,7 @@ const AddProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
-      console.log(prName);
-      console.log(price);
-      console.log(Stock);
-      console.log(description);
-      console.log(category);
+    
       // setEmptyfields(false);
       axios.post("http://localhost:2000/product/seller/createProduct", {
 
@@ -273,7 +269,7 @@ const AddProduct = () => {
 
             <div>
               <Typography align='center'>
-                <Button className="addProduct_button" variant="contained" size="large" onClick={postData} >Add Product</Button>
+                <Button className="addProduct_button" disabled={ (prName && price && category && images.length!=0 && description && Stock) ? false: true } variant="contained" size="large" onClick={postData} >Add Product</Button>
                 {/* <Button className="addProduct_button" variant="contained"  size="large" >Delete Product</Button> */}
               </Typography>
             </div>

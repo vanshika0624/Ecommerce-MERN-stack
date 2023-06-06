@@ -257,12 +257,13 @@ setPasswordError("Format Error! Check the tooltip for details");
                         <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={lname} label="Last Name" onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
-                    <div style={{ margin: "5px", textAlign: "center" }}>
+                    <div style={{ margin: "5px", textAlign: "center", marginLeft:"20px" }}>
                         <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} type="password" />
-                        <Tooltip title="Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character">
-                             <InfoIcon fontSize="small" /> 
+                        <Tooltip title="Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character" >
+                             <InfoIcon fontSize="small" className="iconalignment" /> 
                              </Tooltip>
+                             
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         <TextField required id="outlined-basic" value={street} onChange={handleStreetChange} error={Boolean(streetError)} helperText={streetError} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
