@@ -3,6 +3,7 @@ import  "./sellerOrders.css"
 import SellerNavBar from "./sellerNavBar.js";
 import { Link } from 'react-router-dom';
 import LaunchIcon from '@mui/icons-material/Launch';
+import Footer from "../Footer.js";
 import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import Divider from '@mui/material/Divider';
@@ -119,6 +120,7 @@ const SellerOrders = () => {
         }}
         pageSizeOptions={[10, 25, 50]}
     />
+    <Footer/>
     </div>
     )
 };

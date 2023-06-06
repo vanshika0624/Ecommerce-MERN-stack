@@ -25,9 +25,9 @@ const ViewProduct = () => {
   const setSizeValue = (event) => {
     setSize(event.target.value);
   }
- 
-  const goToSignIn=()=> {
-      navigate('/signin')
+
+  const goToSignIn = () => {
+    navigate('/signin')
   }
 
   const handleInputChange = (event) => {
@@ -74,9 +74,9 @@ const ViewProduct = () => {
       setOpenDialog(true);
     }
     else {
-      axios.post(`http://localhost:2000/cart/addproduct`,{
-      cartItems:[
-            {
+      axios.post(`http://localhost:2000/cart/addproduct`, {
+        cartItems: [
+          {
             name: productDetails.name,
             price: productDetails.price,
             image: productDetails.images[0].url,
@@ -86,14 +86,17 @@ const ViewProduct = () => {
             quantity: productQuantity,
             Stock: productDetails.Stock,
             // seller: productDetails.user
-            }
+          }
 
-      ]},{ withCredentials: true })
-      .then((res)=> {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from addtocart',err);})
+        ]
+      }, { withCredentials: true })
+        .then((res) => {
+          setSuccessMessage('Product added to cart successfully!');
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log('Error from addtocart', err);
+        })
     }
   }
 
@@ -163,7 +166,7 @@ const ViewProduct = () => {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <Typography variant="h4" color="textSecondary" component="div">
-              Please sign in to add items to your cart. <br/>
+              Please sign in to add items to your cart. <br />
             </Typography>
           </DialogContentText>
         </DialogContent>

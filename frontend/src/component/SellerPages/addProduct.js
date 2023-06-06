@@ -26,6 +26,7 @@ const AddProduct = () => {
   const [description, setdescription] = useState('');
   const [Stock, setStock] = useState('');
   const [StockError, setStockError] = useState('');
+  const [PriceError, setPriceError] = useState('');
   // const [sizing, setsizing] = useState('');
   const navigate = useNavigate();
   const [successmsg, setSuccessmsg] = useState(false);
@@ -58,6 +59,19 @@ const AddProduct = () => {
       // setprName(e.target.value)
     }
   }
+  const handlePrice = (e) => {
+    setprice(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setPriceError('Please Enter a Number')
+
+    }
+    else {
+      setPriceError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
+    }
+  }
+
   const validateStock = (stock) => {
     const stockRegex = /^[0-9]+$/;
 
@@ -96,11 +110,7 @@ const AddProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
-      console.log(prName);
-      console.log(price);
-      console.log(Stock);
-      console.log(description);
-      console.log(category);
+    
       // setEmptyfields(false);
       axios.post("http://localhost:2000/product/seller/createProduct", {
 
@@ -195,7 +205,7 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={price} onChange={e => setprice(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={price} onChange={handlePrice} error={Boolean(PriceError)} helperText={PriceError} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
 
@@ -273,7 +283,7 @@ const AddProduct = () => {
 
             <div>
               <Typography align='center'>
-                <Button className="addProduct_button" variant="contained" size="large" onClick={postData} >Add Product</Button>
+                <Button className="addProduct_button" disabled={ (prName && price && category && images.length!=0 && description && Stock) ? false: true } variant="contained" size="large" onClick={postData} >Add Product</Button>
                 {/* <Button className="addProduct_button" variant="contained"  size="large" >Delete Product</Button> */}
               </Typography>
             </div>
