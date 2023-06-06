@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./orderSuccess.css";
 import Footer from "../Footer.js";
+import axios from "axios";
+import { useNavigate, useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
 import Navigation from "../navigation.js";
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
 // import Button from "@mui/material/Button";
 //import CardActions from "@material-ui/core/CardActions";
 
 
-import { useParams, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
 const OrderSuccess = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const OrderSuccess = () => {
                 >
                     Thank you so much for buying from us !
                 </Typography>
-                <Link to={`/orders/${id}`}>View Order</Link>
+                <Link to={`/orders/${id}`}>View you order</Link>
             </CardContent>
         </Card>
         </div>
