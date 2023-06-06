@@ -22,11 +22,11 @@ const Clothing = () => {
     }, []);
 
     const getClothing = (page) => {
-        if(role === 'buyer') {
-            getClothingBuyer(page);
-        }
-        else { //if(role === 'seller'){
+        if(role === 'seller'){
             getClothingSeller(page);
+        }
+        else { //if(role === 'buyer') {
+            getClothingBuyer(page);
         }
     }
 
@@ -84,7 +84,7 @@ const Clothing = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
@@ -105,7 +105,7 @@ const Clothing = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 
@@ -113,6 +113,9 @@ const Clothing = () => {
             <SellerNavBar/>
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                    Clothing
+                </Typography>
                 {disaplyCards(clothProducts)}
                 {totalNumOrders > resultsPerPage && (
                     <div className="paginationBoxProducts">
