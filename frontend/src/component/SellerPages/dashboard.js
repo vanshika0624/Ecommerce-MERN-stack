@@ -13,8 +13,13 @@ import axios from "axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [orders, setOrders] = useState();
-
+ 
+  const [productsSold, setProductsSold] = useState(0);
+  const [deliveredCount, setDeliveredCount] = useState(0);
+  const [shippedCount, setShippedCount] = useState(0);
+  const [unshippedCount, setUnshippedCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+  const [earnings, setEarnings] = useState(0);
   useEffect(() => {
     if (localStorage.getItem("userRole") === 'buyer') {
       navigate('/home');
@@ -22,11 +27,22 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    axios
+     axios
       .get('http://localhost:2000/mart/seller/getAllMyOrders', { withCredentials: true })
       .then((res) => {
-        setOrders(res.data);
-        console.log(res.data);
+        const orders = res.data.orders
+        getStatisticsData(orders);
+      
+      })
+      .catch((err) => {
+        console.log('Error from get all Orders',err);
+      });
+
+      axios
+      .get('http://localhost:2000/product/seller/getProducts',{ withCredentials: true })
+      .then((res) => {
+        setProductsCount(res.data.filteredProductsCount);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log('Error from GetProducts');
@@ -34,7 +50,58 @@ const Dashboard = () => {
   }, []);
 
 
+ const getStatisticsData= (orders)=>{
+  let soldCount = 0;
+  orders.forEach((order) => {
+    order.orderItems.forEach((item) => {
+      soldCount += item.quantity;
+    });
+  });
+  setProductsSold(soldCount);
 
+  // Current Total Revenue
+  let revenue = 0;
+  orders.forEach((order) => {
+    order.orderItems.forEach((item) => {
+    revenue += (item.price *item.quantity) ;
+  });
+  });
+  setEarnings(revenue);
+
+  // Number of Unshipped products
+  let unshipped = 0;
+  orders.forEach((order) => { 
+      order.orderItems.forEach((item) => {
+        if (item.orderStatus === 'Processing')
+        unshipped += item.quantity;
+      });
+    
+  });
+  setUnshippedCount(unshipped);
+
+  // Number of Shipped products
+  let shipped = 0;
+  orders.forEach((order) => {
+  
+      order.orderItems.forEach((item) => {
+        if (item.orderStatus === 'Shipped') 
+        shipped += item.quantity;
+      });
+  });
+  setShippedCount(shipped);
+
+  // Number of Delivered products
+  let delivered = 0;
+  orders.forEach((order) => {
+      order.orderItems.forEach((item) => {
+        if (item.orderStatus === 'Delivered') 
+        delivered += item.quantity;
+      });
+    
+  });
+  setDeliveredCount(delivered);
+
+ }
 
 
 
@@ -56,7 +123,7 @@ const Dashboard = () => {
                    Total Products
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                    mockdata
+               {productsCount}
                   </Typography>
               </CardContent>
             </Card>
@@ -70,7 +137,7 @@ const Dashboard = () => {
                      Total Products Sold
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                
+                 {productsSold}
                   </Typography>
               </CardContent>
             </Card>
@@ -84,7 +151,7 @@ const Dashboard = () => {
                      Current Total Revenue
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                    mockdata
+                    {earnings}
                   </Typography>
               </CardContent>
             </Card>
@@ -98,7 +165,7 @@ const Dashboard = () => {
                    Unshipped Orders
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                    mockdata
+                    {unshippedCount}
                   </Typography>
               </CardContent>
             </Card>
@@ -113,7 +180,7 @@ const Dashboard = () => {
                      Delivered Orders
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                    mockdata
+                    {deliveredCount}
                   </Typography>
               </CardContent>
             </Card>
@@ -127,7 +194,7 @@ const Dashboard = () => {
                     Shipped Orders
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
-                    mockdata
+                    {shippedCount}
                   </Typography>
               </CardContent>
             </Card>

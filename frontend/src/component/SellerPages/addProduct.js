@@ -109,7 +109,7 @@ const AddProduct = () => {
         "price": price,
         "category": category,
         "images": images,
-        "stock": Stock,
+        "Stock": Stock,
         // "user": "64596f0f3d0561f78b51993d"
 
       }, { withCredentials: true })
@@ -178,7 +178,7 @@ const AddProduct = () => {
                       <MenuItem value={"Clothing"}>Clothing</MenuItem>
                       <MenuItem value={"Furniture"}>Furniture</MenuItem>
                       <MenuItem value={"Toys"}>Toys</MenuItem>
-                      <MenuItem value={"Home Decor"}>Home Decor</MenuItem>
+                      <MenuItem value={"Home-Decor"}>Home Decor</MenuItem>
                       <MenuItem value={"Paintings"}>Paintings</MenuItem>
                       <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
                     </Select>
