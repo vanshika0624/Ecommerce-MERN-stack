@@ -29,6 +29,7 @@ const Search = () => {
     };
 
     return (
+
         <form className="searchBox" onSubmit={handleSearch}>
             <input
                 type="text"
@@ -38,6 +39,7 @@ const Search = () => {
             />
             <input type="submit" value="Search" />
         </form>
+
 
     );
 };

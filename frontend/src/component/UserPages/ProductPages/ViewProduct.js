@@ -20,16 +20,16 @@ const ViewProduct = () => {
   const setSizeValue = (event) => {
     setSize(event.target.value);
   }
- 
+
   const handleInputChange = (event) => {
 
     const inputValue = Number(event.target.value);
-    console.log(" in input change",inputValue)
+    console.log(" in input change", inputValue)
     1 >= inputValue ?
       setProductQuantity(1) :
       inputValue > productDetails.Stock ?
         setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
-        console.log(productQuantity)
+    console.log(productQuantity)
 
   };
   const addToCart = () => {
@@ -60,9 +60,9 @@ const ViewProduct = () => {
     //   localStorage.setItem('cart', JSON.stringify(cart));
     // }
 
-     axios.post(`http://localhost:2000/cart/addproduct`,{
-     cartItems:[
-          {
+    axios.post(`http://localhost:2000/cart/addproduct`, {
+      cartItems: [
+        {
           name: productDetails.name,
           price: productDetails.price,
           image: productDetails.images[0].url,
@@ -72,14 +72,17 @@ const ViewProduct = () => {
           quantity: productQuantity,
           Stock: productDetails.Stock,
           // seller: productDetails.user
-          }
+        }
 
-     ]},{ withCredentials: true })
-     .then((res)=> {
-      console.log(res.data);
-     })
-     .catch((err) => {
-      console.log('Error from addtocart',err);})
+      ]
+    }, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+        setSuccessMessage('Product added to cart successfully!');
+      })
+      .catch((err) => {
+        console.log('Error from addtocart', err);
+      })
   }
 
   useEffect(() => {
@@ -122,7 +125,7 @@ const ViewProduct = () => {
         </Typography>
         <div>
           {productDetails && productDetails.Stock > 0 ?
-           
+
             <div  >
               <Typography variant="h6" component="h6" className="fontStyles">
                 <span className="quantity" > Quantity :  </span>  <TextField readOnly type="number" value={productQuantity} onChange={handleInputChange} />

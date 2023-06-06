@@ -28,7 +28,7 @@ const HomePage = () => {
   // };
 
   useEffect(() => {
-    if(localStorage.getItem("userRole") === 'seller') {
+    if (localStorage.getItem("userRole") === 'seller') {
       navigate('/seller-dashboard');
     }
   }, []);
@@ -129,7 +129,7 @@ const HomePage = () => {
     return (
       <Grid container item xs={12} direction="row" spacing={2}   >
         {cards.map((card) => (
-          <Grid item xs={3} >
+          <Grid item xs={6} md={3}  >
             <Card key={card._id} className="homePage_card"  >
               {/* <CardMedia image={card.image} alt="product image" /> */}
               {
@@ -167,24 +167,24 @@ const HomePage = () => {
       <Navigation />
       <div className="alignment">
 
-<Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
-  Home Decor
-</Typography>
-{disaplyCards(decorProducts)}
-<Grid container item xs={12} justifyContent ="center">
-<Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
-</Grid>
-</div>
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+          Home Decor
+        </Typography>
+        {disaplyCards(decorProducts)}
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
+        </Grid>
+      </div>
 
 
-      
+
       <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Furniture
         </Typography>
         {disaplyCards(furnitureProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToFurniture}> View All Products</Button>
         </Grid>
       </div>
 
@@ -194,8 +194,8 @@ const HomePage = () => {
         </Typography>
         {disaplyCards(jewelryProducts)}
 
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
         </Grid>
       </div>
 
@@ -205,8 +205,8 @@ const HomePage = () => {
           Clothing
         </Typography>
         {disaplyCards(clothProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
         </Grid>
       </div>
       <div className="alignment">
@@ -214,8 +214,8 @@ const HomePage = () => {
           Paintings
         </Typography>
         {disaplyCards(paintingProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToPaintings}> View All Products</Button>
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToPaintings}> View All Products</Button>
         </Grid>
       </div>
       <div className="alignment">
@@ -223,8 +223,8 @@ const HomePage = () => {
           Toys
         </Typography>
         {disaplyCards(toyProducts)}
-        <Grid container item xs={12} justifyContent ="center">
-        <Button className="homePage_button" onClick={goToToys}> View All Products</Button>
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToToys}> View All Products</Button>
         </Grid>
       </div>
       <Footer />
