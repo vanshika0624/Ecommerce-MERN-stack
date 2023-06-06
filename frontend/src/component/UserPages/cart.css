@@ -22,7 +22,7 @@
 }
 
 .cart_button.MuiButton-root {
-    background-color: #684F3E;
+    background-color: #7d5f4c;
     color: white;
     border-radius: 30px;
     margin: 10px;
@@ -31,9 +31,9 @@
 }
 
 .cart_button.MuiButton-root:hover {
-    background-color: #9c8d71;
+    background-color: #4a362c;
     transition: 0.7s;
-    color: white
+    color: white;
 }
 
 .cart_EmptyMsg {

@@ -35,7 +35,11 @@
     border-radius: 20px;
 
 }
-
+.homePage_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
 .displayProductFormImage {
     width: 100%;
     overflow: auto;

@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import DisplayPage from "./component/DisplayPage.js";
+import AboutUs from "./component/AboutUs";
 import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
 import OrderSuccess from './component/UserPages/OrderSuccess.js';
@@ -28,7 +29,6 @@ import ViewSellerOrder from "./component/SellerPages/viewSellerOrder.js";
 import SellerOrders from './component/SellerPages/sellerOrders.js'
 import SearchResults from "./component/UserPages/ProductPages/searchResult.js";
 import Catalogue from './component/SellerPages/catalogue.js'
-import AboutUs from './component/AboutUs.js'
 
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path='/' element={<DisplayPage />} />
+          <Route exact path='/aboutus' element={<AboutUs />} />
           <Route path='/user-signup' element={<SignUp />} />
           <Route path='/ordersuccess/:id' element={<OrderSuccess />} />
           <Route path='/signin' element={<SignIn />} />
@@ -65,7 +66,6 @@ function App() {
           <Route path='/seller-orders/:id' element={<ViewSellerOrder/>} />
           <Route path='/search/:keyword' element={<SearchResults />} />
           <Route path='/seller/catalogue' element={< Catalogue />} />
-          <Route path='/aboutUs' element={<AboutUs />} />
 
         
 

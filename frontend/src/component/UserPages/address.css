@@ -53,13 +53,15 @@
 }
 
 .add_button.MuiButton-root {
+    margin: 0px 10px 0px 10px;
     color: black;
-    background-color: rgb(234, 117, 200);
-    border-radius: 5px;
-    margin-left: 100px;
-    align-items: center;
-    height: 50px;
-    width: 200px;
+    background-color: #C4AD88;
+    border-radius: 25px;
+}
+.add_button.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
 }
 
 .add_size {

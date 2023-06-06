@@ -158,8 +158,8 @@ const SignIn = () => {
                             </Typography>
                         </div>
                     }
-                    <div className="link">
-                        <Typography align='center'>
+                    <div className="userSignin_link">
+                        <Typography align='center'style={{ color: 'beige' }}>
                             <Link color="inherit" onClick={goToUserSignup} >
                                 Don't have an account ?<br />
                                 Sign up here !
