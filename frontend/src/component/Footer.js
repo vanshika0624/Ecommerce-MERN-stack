@@ -9,6 +9,11 @@ const Footer = () => {
     const goToSignup = () => {
         navigate('/user-signup')
     }
+    
+    const goToAboutUs = () => {
+        navigate('/aboutUs')
+    }
+
     return (
         <div align="center" className="Footer_maindiv" >
             <div className="Footer_heading">Maker's Mart </div>
@@ -17,7 +22,7 @@ const Footer = () => {
 
             {/* <Typography align='center'> */}
             <div> <Button className="Footer_button" variant="contained" size="small" onClick={goToSignup} >Sign Up</Button> </div>
-            <div>  <Button className="Footer_button" variant="contained" size="small" >About Us</Button> </div>
+            <div>  <Button className="Footer_button" variant="contained" size="small" onClick={goToAboutUs}>About Us</Button> </div>
             {/* </Typography> */}
             <div className="Footer_about"> MAKER'S MART COMPANY<br />
                 University of California,<br />
