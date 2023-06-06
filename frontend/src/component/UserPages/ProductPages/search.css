@@ -1,16 +1,8 @@
 .searchBox {
     width: 1000px;
-    /* height: 100px; */
-    /* max-width: 900px; */
-    /* margin: 10px; */
-    /* justify-content: center;
-    align-items: center; */
-    /* background-color: rgb(231, 231, 231); */
-    /* position: fixed; */
+    margin: 10px 10px 0px 0px;
     position: relative;
     display: flex;
-
-
 
 }
 
@@ -21,9 +13,6 @@
     /* line-height: 1.5; */
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 
-    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
-    background-color: white; */
-    /* border: none; */
     color: rgba(0, 0, 0, 0.637);
     padding: 1vmax;
     /* width: 50%;
@@ -31,45 +20,28 @@
     border-radius: 30px 0 0 30px;
     /* font: 300 1.1vmax cursive; */
     box-sizing: border-box;
-    /* border-radius: 30px; */
     margin-left: 10px;
-    /* height: 8%; */
+
 }
 
 .searchBox>input[type="submit"] {
     background-color: tan;
-    /* height: 8%; */
-    /* border-radius: 0%; */
-    /* background-color: tomato; */
-    /* border: none; */
+
     padding: 1vmax;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    /* width: 10%; */
-    /* font: 300 1.1vmax "Roboto"; */
+
     cursor: pointer;
     color: black;
     border-radius: 0 30px 30px 0;
     width: 20%;
-    /* border-radius: 30px; */
-    /* transition: all 0.5s; */
+    /* line-height: normal; */
+
 }
 
 .searchBox>input[type="submit"]:hover {
-    background-color: white;
-
+    background-color: #6b614f;
+    transition:0.7s;
+    color: white
     /* border-radius: 30px; */
 }
 
-/* @media screen and (max-width: 600px) {
-    .searchBox>input[type="text"] {
-        width: 100%;
-        font: 300 4vw cursive;
-        height: 10%;
-    }
-
-    .searchBox>input[type="submit"] {
-        height: 10%;
-        width: 30%;
-        font: 300 4vw "Roboto";
-    }
-} */

@@ -33,12 +33,12 @@ const ViewProduct = () => {
   const handleInputChange = (event) => {
 
     const inputValue = Number(event.target.value);
-    console.log(" in input change",inputValue)
+    console.log(" in input change", inputValue)
     1 >= inputValue ?
       setProductQuantity(1) :
       inputValue > productDetails.Stock ?
         setProductQuantity(productDetails.Stock) : setProductQuantity(inputValue)
-        console.log(productQuantity)
+    console.log(productQuantity)
 
   };
   const addToCart = () => {
@@ -115,7 +115,7 @@ const ViewProduct = () => {
   return (<div className="bg" >
     <Navigation />
     <Grid container direction="row" spacing={2} justify="flex-end" alignItems="center" >
-      <Grid container item xs={6} >
+      <Grid container item xs={12} md={6} >
         {
           productDetails.images && productDetails.images.map((image) => (
             <CardMedia align="center" alt="product image" className="createProductFormImage">
@@ -125,7 +125,7 @@ const ViewProduct = () => {
         }
 
       </Grid>
-      <Grid item xs={4} >
+      <Grid item xs={12} md={6} >
         <Typography variant="h4" component="h4" className="fontStyles"  >
           {productDetails.name}
         </Typography>
@@ -137,7 +137,7 @@ const ViewProduct = () => {
         </Typography>
         <div>
           {productDetails && productDetails.Stock > 0 ?
-           
+
             <div  >
               <Typography variant="h6" component="h6" className="fontStyles">
                 <span className="quantity" > Quantity :  </span>  <TextField readOnly type="number" value={productQuantity} onChange={handleInputChange} />

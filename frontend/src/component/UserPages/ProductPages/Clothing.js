@@ -33,30 +33,30 @@ const Clothing = () => {
     const getClothingBuyer = (page) => {
         setCurrentPage(page);
         axios
-        .get('http://localhost:2000/product/getProducts?category=Clothing&page='+ page, { withCredentials: true })
-        .then((res) => {
-            setClothProducts(res.data.products);
-            setTotalNumofOrders(res.data.filteredProductsCount);
-            setResultsPerPage(res.data.resultPerPage);
-        })
-        .catch((err) => {
-            console.log('Error from GetProducts');
-        });
+            .get('http://localhost:2000/product/getProducts?category=Clothing&page=' + page, { withCredentials: true })
+            .then((res) => {
+                setClothProducts(res.data.products);
+                setTotalNumofOrders(res.data.filteredProductsCount);
+                setResultsPerPage(res.data.resultPerPage);
+            })
+            .catch((err) => {
+                console.log('Error from GetProducts');
+            });
     }
 
 
     const getClothingSeller = (page) => {
         setCurrentPage(page);
         axios
-        .get('http://localhost:2000/product/seller/getProducts?category=Clothing&page='+ page, { withCredentials: true })
-        .then((res) => {
-            setClothProducts(res.data.products);
-            setTotalNumofOrders(res.data.filteredProductsCount);
-            setResultsPerPage(res.data.resultPerPage);
-        })
-        .catch((err) => {
-            console.log('Error from GetProducts');
-        });
+            .get('http://localhost:2000/product/seller/getProducts?category=Clothing&page=' + page, { withCredentials: true })
+            .then((res) => {
+                setClothProducts(res.data.products);
+                setTotalNumofOrders(res.data.filteredProductsCount);
+                setResultsPerPage(res.data.resultPerPage);
+            })
+            .catch((err) => {
+                console.log('Error from GetProducts');
+            });
     }
 
 
@@ -64,7 +64,7 @@ const Clothing = () => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={3} >
+                    <Grid item xs={6} md={3} >
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -88,7 +88,7 @@ const Clothing = () => {
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
-                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
                                 }
                             </CardContent>
                         </Card>
@@ -108,9 +108,9 @@ const Clothing = () => {
             role !== 'seller' &&
             <Navigation/>
             }
-            { 
-            role === 'seller' && 
-            <SellerNavBar/>
+            {
+                role === 'seller' &&
+                <SellerNavBar />
             }
             <div className="alignment">
                 <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">

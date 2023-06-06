@@ -34,7 +34,7 @@ const Furniture = () => {
     const getFurnitutreBuyer = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Furniture&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Furniture&page=' + page, { withCredentials: true })
             .then((res) => {
                 setFurnitureProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -48,7 +48,7 @@ const Furniture = () => {
     const getFurnitutreSeller = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/seller/getProducts?category=Furniture&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/seller/getProducts?category=Furniture&page=' + page, { withCredentials: true })
             .then((res) => {
                 setFurnitureProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -58,12 +58,12 @@ const Furniture = () => {
                 console.log('Error from GetProducts');
             });
     }
-    
+
     const disaplyCards = (cards) => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={3} >
+                    <Grid item xs={6} md={3}>
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -87,7 +87,7 @@ const Furniture = () => {
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
-                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
                                 }
                             </CardContent>
                         </Card>
@@ -107,9 +107,9 @@ const Furniture = () => {
             role !== 'seller' &&
             <Navigation/>
             }
-            { 
-            role === 'seller' && 
-            <SellerNavBar/>
+            {
+                role === 'seller' &&
+                <SellerNavBar />
             }
             <div className="alignment">
                 <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
@@ -117,20 +117,20 @@ const Furniture = () => {
                 </Typography>
                 {disaplyCards(furnitureProducts)}
                 {totalNumOrders > resultsPerPage && (
-                <div className="paginationBoxProducts">
-                    <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resultsPerPage}
-                    totalItemsCount={totalNumOrders}
-                    onChange={getFurnitutre}
-                    firstPageText="First"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                    />
-                </div>
+                    <div className="paginationBoxProducts">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage={resultsPerPage}
+                            totalItemsCount={totalNumOrders}
+                            onChange={getFurnitutre}
+                            firstPageText="First"
+                            lastPageText="Last"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="pageItemActive"
+                            activeLinkClass="pageLinkActive"
+                        />
+                    </div>
                 )}
             </div>
             <Footer />
