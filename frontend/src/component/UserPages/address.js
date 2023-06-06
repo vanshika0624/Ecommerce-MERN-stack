@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./address.css";
 import { useNavigate } from 'react-router-dom';
 import Navigation from "../navigation.js";
+import Footer from "../Footer.js";
 import SellerNavBar from "../SellerPages/sellerNavBar.js";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
@@ -230,7 +231,8 @@ const Address = () => {
         }
     }
   
-    return (<div>
+    return (
+    <div><div>
         {/* <div className="add_imgstyle"> */}
         { 
         role === 'buyer' &&
@@ -241,7 +243,7 @@ const Address = () => {
         <SellerNavBar/>
         }
         <Grid container direction="row" >
-            <Grid item xs={3}  >
+            <Grid item xs={12} md={2}  >
                 <div className="add_align">
                     <div >
                         <Typography variant="h2" component="h2" color="#3b2f28" align="center">
@@ -255,7 +257,7 @@ const Address = () => {
 
             </Grid>
             <div>
-                <Grid item xs={9} style={{ margin: '0px 100px 0px 200px' }} >
+                <Grid item xs={12} md={10} style={{ margin: '0px 100px 0px 200px' }} >
                     <Card variant="outlined" className="add_cardStyle" sx={{ minWidth: 650 }}>
                         <CardContent>
                             <Typography fontSize="40px" color="black" align="center">
@@ -372,6 +374,9 @@ const Address = () => {
             </div>
 
         </Grid>
+        
+    </div>
+    <Footer/>
     </div>)
 };
 

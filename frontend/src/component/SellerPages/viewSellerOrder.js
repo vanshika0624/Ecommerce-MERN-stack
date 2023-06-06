@@ -4,6 +4,7 @@ import SellerNavBar from "./sellerNavBar.js";
 import Typography from '@mui/material/Typography';
 import { useParams, Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Footer from "../Footer.js";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Card, CardContent, Grid } from '@mui/material';
 //import { DataGrid } from 'react';
@@ -184,6 +185,7 @@ const ViewSellerOrder = () => {
         }
         </Card>
     </div>
+    <Footer/>
     </div>
 };
 
