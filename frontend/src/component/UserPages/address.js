@@ -331,7 +331,7 @@ const Address = () => {
                         </div>
                         { role === "buyer" &&
                         <div style={{ margin: "20px", textAlign: "left" }}>
-                            <TextField type="number" required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Mobile Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                             <TextField required id="id-pno" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Phone Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                             <Button variant="contained" size="large" className="add_button" onClick={updateAddress}>Submit</Button>
                         </div>
                         }
@@ -347,7 +347,7 @@ const Address = () => {
 
                         { role === "seller" &&
                         <div style={{ margin: "20px", textAlign: "left" }}>
-                            <TextField required id="id-fname" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Phone Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
+                            <TextField required id="id-pno-s" value={phone} onChange={handlePhoneChange} error={Boolean(phoneError !== "")} helperText={Boolean(phoneError !== "") ? phoneError : ""} label="Phone Number" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                             <TextField type="number" required id="id-fname" value={ein} onChange={handleEINChange} error={Boolean(einError !== "")} helperText={Boolean(einError !== "") ? einError : ""} label="EIN" variant="filled" className="add_textbox" InputLabelProps={{ style: { color: 'black' } }} />
                         </div>
                         }
