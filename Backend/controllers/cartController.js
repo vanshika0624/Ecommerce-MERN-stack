@@ -1,5 +1,5 @@
-// const Cart = require("../models/cartModel");
-import { cartModel as Cart } from "../models/cartModel";
+const Cart = require("../models/cartModel");
+// import { cartModel as Cart } from "../models/cartModel";
 const ErrorHander = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
