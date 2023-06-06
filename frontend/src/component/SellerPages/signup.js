@@ -14,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
+
 // const axios = require('axios');
 
 
@@ -71,8 +74,8 @@ const SellerSignUp = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value)
         if (!validatePassword(e.target.value)) {
-            setPasswordError('Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character')
-
+            // setPasswordError('Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character')
+setPasswordError("Format Error! Check the tooltip for details");
         }
         else {
             setPasswordError('')
@@ -114,20 +117,18 @@ const SellerSignUp = () => {
 
     const handleStreetChange = (e) => {
         setstreet(e.target.value)
-        if (!validateStreet(e.target.value)) {
-            setStreetError('Please Enter Valid Street Name')
+        if ( (e.target.value.length)===0) {
+            setStreetError('Please Enter Street Name')
 
         }
-        else {
-            setStreetError('')
+        else if(e.target.value.length>50) {
+            setStreetError('Please enter less than 50 characters')
         }
+        
     }
 
-    const validateStreet = (address) => {
-        const streetRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
-        return streetRegex.test(address)
 
-    }
+   
     const validateAddress = (address) => {
         const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
         return cityRegex.test(address)
@@ -173,7 +174,7 @@ const SellerSignUp = () => {
     const handlePnoChange = (e) => {
         setpno(e.target.value)
         if (!validatePno(e.target.value)) {
-            setPnoError('Please Enter Valid Phone')
+            setPnoError('Format: +1 (111)-(222)-(3333)')
 
         }
 
@@ -259,10 +260,13 @@ const SellerSignUp = () => {
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} type="password" />
+                        <Tooltip title="Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character">
+                             <InfoIcon fontSize="small" /> 
+                             </Tooltip>
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField required id="outlined-basic" value={street} onChange={handleStreetChange} error={Boolean(cityError)} helperText={!street ? "" : "streetError"} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                        <TextField required id="outlined-required" value={city} onChange={handleCityChange} error={Boolean(cityError)} helperText={!city ? "" : "cityError"} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-basic" value={street} onChange={handleStreetChange} error={Boolean(streetError)} helperText={streetError} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-required" value={city} onChange={handleCityChange} error={Boolean(cityError)} helperText={ cityError } label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         {/* <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} /> */}
@@ -333,7 +337,7 @@ const SellerSignUp = () => {
 
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
-                        <TextField required id="outlined-required" value={pno} onChange={handlePnoChange} error={Boolean(pnoError)} helperText={!pnoError ? "Required" : pnoError} label="Phone Number" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-required" value={pno} onChange={handlePnoChange} error={Boolean(pnoError)} helperText={pnoError} label="Phone Number" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={ein} onChange={handleEinChange} error={Boolean(einError)} helperText={einError} label="EIN" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div className="buttonmargin style">
