@@ -70,7 +70,7 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
     phoneNo: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
@@ -127,8 +127,8 @@ const orderSchema = new mongoose.Schema({
 
 orderSchema.pre("save", async function (next) {
   const order = this;
-  const IsShipped = order.orderItems.every(item => item.orderStatus === 'Shipped'); 
-  const IsDelivered = order.orderItems.every(item => item.orderStatus === 'Delivered'); 
+  const IsShipped = order.orderItems.every(item => item.orderStatus === 'Shipped');
+  const IsDelivered = order.orderItems.every(item => item.orderStatus === 'Delivered');
 
   if (IsShipped) {
     order.overallOrderStatus = 'Shipped';
@@ -138,7 +138,7 @@ orderSchema.pre("save", async function (next) {
     order.overallDeliveredAt = Date.now();
   }
   else {
-      order.overallOrderStatus = 'Processing';
+    order.overallOrderStatus = 'Processing';
   }
   next();
 });

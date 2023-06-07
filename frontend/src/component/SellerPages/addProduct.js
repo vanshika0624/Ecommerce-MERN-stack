@@ -110,7 +110,7 @@ const AddProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
-    
+
       // setEmptyfields(false);
       axios.post("http://localhost:2000/product/seller/createProduct", {
 
@@ -127,7 +127,7 @@ const AddProduct = () => {
           // console.log(response);
           if (response.status == 201) {
             setSuccessmsg(true);
-            navigate('/seller-dashboard');
+            navigate('/seller/catalogue');
             console.log("success")
           }
           else {
@@ -283,7 +283,7 @@ const AddProduct = () => {
 
             <div>
               <Typography align='center'>
-                <Button className="addProduct_button" disabled={ (prName && price && category && images.length!=0 && description && Stock) ? false: true } variant="contained" size="large" onClick={postData} >Add Product</Button>
+                <Button className="addProduct_button" disabled={(prName && price && category && images.length != 0 && description && Stock) ? false : true} variant="contained" size="large" onClick={postData} >Add Product</Button>
                 {/* <Button className="addProduct_button" variant="contained"  size="large" >Delete Product</Button> */}
               </Typography>
             </div>

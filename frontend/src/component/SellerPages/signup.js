@@ -75,7 +75,7 @@ const SellerSignUp = () => {
         setPassword(e.target.value)
         if (!validatePassword(e.target.value)) {
             // setPasswordError('Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character')
-setPasswordError("Format Error! Check the tooltip for details");
+            setPasswordError("Format Error! Check the tooltip for details");
         }
         else {
             setPasswordError('')
@@ -117,18 +117,18 @@ setPasswordError("Format Error! Check the tooltip for details");
 
     const handleStreetChange = (e) => {
         setstreet(e.target.value)
-        if ( (e.target.value.length)===0) {
+        if ((e.target.value.length) === 0) {
             setStreetError('Please Enter Street Name')
 
         }
-        else if(e.target.value.length>50) {
+        else if (e.target.value.length > 50) {
             setStreetError('Please enter less than 50 characters')
         }
-        
+
     }
 
 
-   
+
     const validateAddress = (address) => {
         const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
         return cityRegex.test(address)
@@ -209,7 +209,7 @@ setPasswordError("Format Error! Check the tooltip for details");
 
     const sendData = (event) => {
         event.preventDefault()
-        if (lname != "" && fname != "" && email != "" && password != "" && pno != "" && ein != "" && st != "" && city != "" && street != "" && zip != "") {
+        if (lname != "" && fname != "" && email != "" && password != "" && pno != "" && ein != "" && USstate != "" && city != "" && street != "" && zip != "") {
             setEmptyfields(false);
             axios.post("http://localhost:2000/user/register", {
                 "firstname": fname,
@@ -219,7 +219,7 @@ setPasswordError("Format Error! Check the tooltip for details");
                 "address": [{
                     "street": street,
                     "city": city,
-                    "state": st,
+                    "state": USstate,
                     "zipcode": zip
                 }],
                 "phone": pno,
@@ -257,17 +257,17 @@ setPasswordError("Format Error! Check the tooltip for details");
                         <TextField id="outlined-basic" value={fname} onChange={handleFnameChange} error={Boolean(fnameError)} helperText={fnameError} label="First Name" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={lname} label="Last Name" onChange={handleLnameChange} error={Boolean(lnameError)} helperText={lnameError} variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
-                    <div style={{ margin: "5px", textAlign: "center", marginLeft:"20px" }}>
+                    <div style={{ margin: "5px", textAlign: "center", marginLeft: "20px" }}>
                         <TextField id="outlined-basic" value={email} onChange={handleEmailChange} error={Boolean(emailError)} helperText={emailError} label="Email" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                         <TextField id="outlined-basic" value={password} onChange={handlePasswordChange} error={Boolean(passwordError)} helperText={passwordError} label="Password" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} type="password" />
                         <Tooltip title="Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character" >
-                             <InfoIcon fontSize="small" className="iconalignment" /> 
-                             </Tooltip>
-                             
+                            <InfoIcon fontSize="small" className="iconalignment" />
+                        </Tooltip>
+
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         <TextField required id="outlined-basic" value={street} onChange={handleStreetChange} error={Boolean(streetError)} helperText={streetError} label="Address" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
-                        <TextField required id="outlined-required" value={city} onChange={handleCityChange} error={Boolean(cityError)} helperText={ cityError } label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
+                        <TextField required id="outlined-required" value={city} onChange={handleCityChange} error={Boolean(cityError)} helperText={cityError} label="City" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} />
                     </div>
                     <div style={{ margin: "5px", textAlign: "center" }}>
                         {/* <TextField id="outlined-basic" value={st} onChange={(e) => setst(e.target.value)} error={!st} helperText={!st ? "" : ""} label="State" variant="outlined" className=" textbox" InputLabelProps={{ style: { color: 'grey' } }} /> */}
