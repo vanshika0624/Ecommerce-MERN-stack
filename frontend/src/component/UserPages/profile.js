@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import  "./profile.css"
 import Navigation from "../navigation.js";
+import Footer from "../Footer.js";
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Grid } from '@mui/material';
-import Pagination from "react-js-pagination";
+//import Pagination from "react-js-pagination";
+import Pagination from 'react-js-pagination';
 import axios from "axios";
 const Profile = () => {
     const [orders, setOrders] = useState([]);
@@ -114,6 +116,7 @@ const Profile = () => {
         </Card>
                
     </div>
+    <Footer/>
     </div>
 };
 

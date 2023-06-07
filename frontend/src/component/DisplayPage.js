@@ -2,22 +2,12 @@ import React, { useEffect } from "react";
 import  "./DisplayPage.css"
 import landing_page from "../images/landing.png";
 import Button from '@mui/material/Button';
+import Pagination from 'react-js-pagination';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 const DisplayPage = () => {
 const navigate= useNavigate();
  
-useEffect(() => {
-    if(localStorage.getItem('accessToken')) {
-        if(localStorage.getItem('userRole') === 'seller') {
-            navigate('/seller-dashboard');
-        }
-        else if(localStorage.getItem('userRole') === 'buyer'){
-            goToHome();
-        }
-    }
-});
-
 const goToSignin=()=>
 {
     navigate('/signin')

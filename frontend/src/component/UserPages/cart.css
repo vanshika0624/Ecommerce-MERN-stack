@@ -6,8 +6,7 @@
 
 .cart_cardStyle.MuiCard-root {
     background-color: #C4AD88;
-    margin-top: 40px;
-    margin-right: 50px;
+    margin: 40px;
     border-radius: 20px;
 }
 
@@ -23,12 +22,18 @@
 }
 
 .cart_button.MuiButton-root {
-    background-color: #684F3E;
+    background-color: #7d5f4c;
     color: white;
     border-radius: 30px;
     margin: 10px;
     padding: 10px;
-    width: 280px;
+    width: 20vw;
+}
+
+.cart_button.MuiButton-root:hover {
+    background-color: #4a362c;
+    transition: 0.7s;
+    color: white;
 }
 
 .cart_EmptyMsg {
@@ -65,8 +70,8 @@
 
 .cart_AddressCardStyle.MuiCard-root {
     background-color: #C4AD88;
-    margin-top: 40px;
-    margin-right: 50px;
+    margin: 0 40px 40px 40px;
+
 
     border-radius: 20px;
 

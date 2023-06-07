@@ -3,6 +3,7 @@ import "./catalogue.css"
 import Button from '@mui/material/Button';
 import SellerNavBar from "./sellerNavBar.js";
 import Footer from "../Footer.js";
+import Pagination from 'react-js-pagination';
 import Typography from '@mui/material/Typography';
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate, Link } from 'react-router-dom';
@@ -149,8 +150,9 @@ const Catalogue = () => {
   return (
     <div className="bg">
       <SellerNavBar />
-
-      
+    
+     { (jewelryProducts.length !=0 ||furnitureProducts.length !=0 ||clothProducts.length !=0||decorProducts.length !=0|| paintingProducts.length !=0|| toyProducts.length !=0) ?
+       <div>
       { jewelryProducts.length !=0 && <div className="alignment">
         <Typography className="catalogue_typography" variant="h4" color="textSecondary" component="div">
           Jewelry
@@ -217,6 +219,14 @@ const Catalogue = () => {
         </Grid>
       </div>
 }
+     </div>
+     : 
+     <Grid container item xs={12} justifyContent ="center">
+     <Typography className="catalogue_typography" variant="h4" color="textSecondary" component="div">
+          Your Catalogue is Empty!!
+        </Typography>
+        </Grid>
+     }
       <Footer />
     </div>
     //  <div>Home</div>

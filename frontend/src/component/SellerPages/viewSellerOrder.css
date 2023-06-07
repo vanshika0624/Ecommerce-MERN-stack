@@ -19,7 +19,11 @@
     background-color: rgb(49,51,69);
     color: beige;
 }
-
+.buttonStyle.MuiButton-root:hover {
+    background-color: #6b614f;
+    transition: 0.7s;
+    color: white
+}
 .buttonstyleP {
     font-size: 30px !important;
     background-color: #848D62 !important;

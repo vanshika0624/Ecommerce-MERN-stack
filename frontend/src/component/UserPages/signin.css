@@ -25,7 +25,7 @@
 .userSignin_link {
     font-size: 14px;
     margin: 10px;
-    color: #C4AD88;
+    text-emphasis-color: #C4AD88;
     display: flex;
     justify-content: center;
 }
@@ -79,7 +79,7 @@
     position: flex;
 }
 
-.userSignin_errmsg {
+.userSignin_errmsg.MuiTypography-root {
     color: rgb(161, 16, 16);
-    align-items: center;
+    text-align: center;
 }

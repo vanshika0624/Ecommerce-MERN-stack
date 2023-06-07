@@ -1,6 +1,7 @@
 .sellerSignup_style {
     justify-content: left;
-    color: #000000;
+    
+    color: #6b614f;
     text-align: center;
     font-size: 44px !important;
     font-family: 'The Seasons', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -39,9 +40,9 @@
 }
 
 .button.MuiButton-root {
-    color: white;
-    background: black;
-    border-radius: 30px;
+    color: black;
+    background-color: #C4AD88;
+    border-radius: 25px;
     
 }
 
@@ -60,4 +61,10 @@
     .hide {
         display: none;
     }
+}
+
+.iconalignment{
+ 
+    /* justify-content: center; */
+    margin-top: 20px
 }

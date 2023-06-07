@@ -2,8 +2,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import DisplayPage from "./component/DisplayPage.js";
+import AboutUs from "./component/AboutUs";
 import SignIn from './component/UserPages/signin.js';
 import SignUp from './component/UserPages/signup.js';
+import OrderSuccess from './component/UserPages/OrderSuccess.js';
 import SellerSignUp from './component/SellerPages/signup.js'
 import Address from './component/UserPages/address.js';
 import ChangePassword from './component/UserPages/changePassword.js';
@@ -35,7 +37,9 @@ function App() {
       <div>
         <Routes>
           <Route exact path='/' element={<DisplayPage />} />
+          <Route exact path='/aboutus' element={<AboutUs />} />
           <Route path='/user-signup' element={<SignUp />} />
+          <Route path='/ordersuccess/:id' element={<OrderSuccess />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/seller-signup' element={<SellerSignUp />} />
           <Route path='/address' element={<Address />} />

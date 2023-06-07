@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import  "./DisplayPage.css"
 // import bg from "../images/bg.jpg";
 import Button from '@mui/material/Button';
+import Footer from "../Footer.js";
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
@@ -10,8 +11,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import { CardMedia, Grid, CardContent, Card, TextField } from '@mui/material';
 import axios from 'axios';
-
 import "./cart.css";
+
 const Cart = () => {
     const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ const Cart = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [phone, setPhone] = useState('');
     const [einError, setEINError] = useState('');
     const [successMsgFlag, setSuccessMsgFlag] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
@@ -37,6 +39,7 @@ const Cart = () => {
                     setCity(res.data.user.address[0].city);
                     setState(res.data.user.address[0].state);
                     setZip(res.data.user.address[0].zipcode);
+                    setPhone(res.data.user.phone);
                 }
                 setSuccessMsgFlag(true);
                 setErrorMsgFlag(false);
@@ -49,29 +52,74 @@ const Cart = () => {
             });
     }, []);
     useEffect(() => {
-        const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(cartData);
-    }, []);
+        // const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+        axios.get(`http://localhost:2000/cart/details`, { withCredentials: true })
+            .then((res) => {
+                setCartItems(res.data.cart.cartItems);
+                // console.log(res.data.cart.cartItems);
+            })
+            .catch((err) => {
+                console.log('Error from getcart details', err);
+            })
+    }, [cartItems]);
+
     const removeFromCart = (productId) => {
-        const updatedCart = cartItems.filter((item) => item.product !== productId);
-        setCartItems(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        // const updatedCart = cartItems.filter((item) => item.product !== productId);
+        axios.delete(`http://localhost:2000/cart/removeproduct/${productId}`, { withCredentials: true })
+            .then((res) => {
+                setCartItems(res.data.cart.cartItems);
+                // console.log(res.data.cart.cartItems);
+            }).catch((err) => {
+                console.log('Error from delete product from cart', err);
+            })
+        // localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
+
 
     const updateQuantity = (productId, newQuantity) => {
         const itemToUpdate = cartItems.find((item) => item.product === productId);
-        const maxQuantityAvailable = itemToUpdate.stock;
-
+        const maxQuantityAvailable = itemToUpdate.Stock;
+        console.log(itemToUpdate, maxQuantityAvailable, "in update quantity")
         if (newQuantity > 0 && newQuantity <= maxQuantityAvailable) {
-            const updatedCart = cartItems.map((item) =>
-                item.product === productId ? { ...item, quantity: newQuantity } : item
-            );
-            setCartItems(updatedCart);
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        } else {
-            // Show an error or notification for invalid quantity
-            console.log('Invalid quantity');
+
+            //     const updatedCart = cartItems.map((item) =>
+            //         item.product === productId ? { ...item, quantity: newQuantity } : item
+            //     );
+            //     setCartItems(updatedCart);
+            //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+            // } else {
+            //     // Show an error or notification for invalid quantity
+            //     console.log('Invalid quantity');
+            // }
+            axios.put(`http://localhost:2000/cart/addproduct`, {
+
+
+                //   name: productDetails.name,
+                //   price: productDetails.price,
+                //   image: productDetails.images[0].url,
+                //   seller: productDetails.user,
+                product: productId,
+                // stock: productDetails.Stock,
+                quantity: newQuantity,
+                //   stock: productDetails.Stock,
+                // seller: productDetails.user
+            }
+
+                , { withCredentials: true })
+                .then((res) => {
+                    console.log(res.data);
+                    setCartItems(res.data.cart.cartItems);
+                })
+                .catch((err) => {
+                    console.log('Error from updatecart', err);
+                })
+
+
         }
+        else {
+            // snackbar to be added
+        }
+
     };
 
     const calculateSubtotal = (item) => {
@@ -88,11 +136,14 @@ const Cart = () => {
     };
     const calculateTotal = () => {
 
-        return calculateItemTotal() + calculateServiceCharge();
+        return Number((calculateItemTotal() + calculateServiceCharge() + calculateTax()).toFixed(2));
     };
     const calculateServiceCharge = () => {
+        return Number((calculateItemTotal() * (0.03)).toFixed(2));
+    };
+    const calculateTax = () => {
         const salesTaxRate = getStateSalesTaxRate(state);
-        return calculateItemTotal() * (salesTaxRate + 0.03);
+        return Number((calculateItemTotal() * (salesTaxRate)).toFixed(2));
     };
 
     const getStateSalesTaxRate = (state) => {
@@ -211,6 +262,53 @@ const Cart = () => {
     const goToProfile = () => {
         navigate('/address')
     }
+            const goToOrderSucces = (orderID)=>{
+                navigate("/OrderSuccess/" + orderID);
+            }
+        
+            const emptyCart = () => {
+                axios.get(`http://localhost:2000/cart/emptycart/`,{ withCredentials: true })
+                .then((res) =>{
+                    console.log("success");
+                    console.log(res);
+                }).catch((err) => {
+                    console.log('Error while empyting the products from cart', err);
+                })
+            }
+        
+            const postOrder = (event) => {
+                let shippingInfo = {
+                    address : street,
+                    city : city,
+                    state : state,
+                    zipCode: zip,
+                    phoneNo: phone
+                }
+        
+                event.preventDefault()
+                {
+                  axios.post("http://localhost:2000/mart/order/new", {
+                    "orderItems": cartItems,
+                    "shippingInfo": shippingInfo,
+                    "itemsPrice": calculateItemTotal(),
+                    "taxPrice": calculateTax(),
+                    "servicePrice": calculateServiceCharge(),
+                    "totalPrice": calculateTotal()
+                  }, { withCredentials: true })
+                    .then((response) => {
+                        if (response.status == 201) {
+                            emptyCart();
+                            goToOrderSucces(response.data.order._id);
+                            console.log("success")
+                        }
+                        else {
+                            console.log("error")
+                        }
+                    })
+                    .catch((err) => console.log(err, "err"));
+                }
+            }
+                    
     return (
         <div >
 
@@ -218,7 +316,7 @@ const Cart = () => {
             <div className="heading">  My Bag<br /> </div>
             <Divider className="divider" />
             <Grid style={{ alignItems: "flex-start" }} container direction="row" spacing={2}  >
-                <Grid container item xs={7} >
+                <Grid container item xs={12} md={6} >
                     {cartItems.length === 0 ? (
                         <p className="cart_EmptyMsg">Your cart is empty.</p>
                     ) : (
@@ -247,8 +345,8 @@ const Cart = () => {
                     )}
 
                 </Grid>
-                <Grid container item xs={5} >
-                    <Card variant="outlined" align="center" className="cart_cardStyle" sx={{ minWidth: 550 }}>
+                <Grid container justifyContent="center" item xs={12} md={6} >
+                    <Card variant="outlined" align="center" className="cart_cardStyle" sx={{ width: "40vw" }}>
                         <Grid container direction="row"  >
                             <Grid item xs={6}>
                                 <h2 className="cart_billing">Total:</h2>
@@ -269,7 +367,16 @@ const Cart = () => {
                         </Grid>
                         <Grid container direction="row"  >
                             <Grid item xs={6}>
-                                <Typography className="cart_billing">Taxes and Service Charge:</Typography>
+                                <Typography className="cart_billing">Tax:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography className="cart_billing">${calculateTax()}</Typography>
+
+                            </Grid>
+                        </Grid>
+                        <Grid container direction="row"  >
+                            <Grid item xs={6}>
+                                <Typography className="cart_billing">Service Charge:</Typography>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography className="cart_billing">${calculateServiceCharge()}</Typography>
@@ -277,14 +384,15 @@ const Cart = () => {
                             </Grid>
                         </Grid>
                         <div>
-                            <Button className="cart_button" variant="contained" size="large" >Checkout</Button>
+                            <Button className="cart_button" variant="contained" size="large" onClick = {postOrder}>Checkout</Button>
                         </div>
 
                     </Card>
-                    <Card variant="outlined" align="center" className="cart_AddressCardStyle" sx={{ minWidth: 550 }} >
+                    <Card variant="outlined" align="center" className="cart_AddressCardStyle" sx={{ minWidth: "40vw" }} >
 
                         <h2 className="cart_billing" fontSize="25px" color="black" align="center">
-                            Address: {street}, {city}<br />{state}-{zip}
+                            Address: {street}, {city}<br />{state}-{zip}<br />
+                            Mobile: {phone}
                         </h2>
 
                         {/* <Divider className="cart_divider" />
@@ -306,7 +414,9 @@ const Cart = () => {
 
                 </Grid>
             </Grid>
+            <Footer/>
         </div >
+       
     )
 };
 

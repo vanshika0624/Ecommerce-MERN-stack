@@ -58,7 +58,7 @@ exports.getAllBuyerOrders = catchAsyncErrors(async (req, res, next) => {
   const resultsPerPage = 2;
   const ordersCount = await Order.find({ user: req.user._id }).countDocuments();
 
-  const apiFeature = new ApiFeatures(Order.find({ user: req.user._id }).sort({createdAt: -1}), req.query)
+  const apiFeature = new ApiFeatures(Order.find({ user: req.user._id }).sort({ createdAt: -1 }), req.query)
     .pagination(resultsPerPage);
 
   let orders = await apiFeature.query;
@@ -80,8 +80,8 @@ exports.getAllSellerOrders = catchAsyncErrors(async (req, res, next) => {
     "user",
     "firstname lastname email"
   );
-  orders.forEach((order) => { order.orderItems = order.orderItems.filter((item) => item.seller.toString()  == req.user._id); });
-  
+  orders.forEach((order) => { order.orderItems = order.orderItems.filter((item) => item.seller.toString() == req.user._id); });
+
   let ordersCount = orders.length
   res.status(200).json({
     success: true,
@@ -100,8 +100,8 @@ exports.getSellerSingleOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHander("Order not found with this Id", 404));
   }
 
-  order.orderItems = order.orderItems.filter((item) => item.seller.toString()  == req.user._id); 
- 
+  order.orderItems = order.orderItems.filter((item) => item.seller.toString() == req.user._id);
+
   res.status(200).json({
     success: true,
     order,
@@ -115,23 +115,23 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   if (!order) {
     return next(new ErrorHander("Order not found with this Id", 404));
   }
-  
-  order.orderItems.forEach((prod) => { 
-    
+
+  order.orderItems.forEach((prod) => {
+
     if (prod.product.toString() === req.body.productId.toString()) {
 
-      if(prod.orderStatus.toString() === "Delivered") {
+      if (prod.orderStatus.toString() === "Delivered") {
         return next(new ErrorHander("You have already delivered this order", 400));
       }
-      
+
       if (prod.orderStatus.toString() !== "Shipped" && req.body.status.toString() === "Shipped") {
         updateStock(prod.product, prod.quantity);
       }
-      
+
       if (req.body.status.toString() === "Delivered") {
         prod.deliveredAt = Date.now();
       }
-      
+
       prod.orderStatus = req.body.status;
 
 
@@ -147,7 +147,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
 async function updateStock(id, quantity) {
   const product = await Product.findById(id);
 
-  product.Stock -= quantity;
+  product.Stock -= (quantity / 2);
 
   await product.save({ validateBeforeSave: false });
 }

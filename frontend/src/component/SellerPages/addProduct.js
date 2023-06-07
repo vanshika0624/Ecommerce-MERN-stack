@@ -19,21 +19,64 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 
 const AddProduct = () => {
+  const [prNameError, setprNameError] = useState('');
   const [prName, setprName] = useState('');
   const [price, setprice] = useState('');
   const [category, setcategory] = useState('');
   const [description, setdescription] = useState('');
   const [Stock, setStock] = useState('');
+  const [StockError, setStockError] = useState('');
+  const [PriceError, setPriceError] = useState('');
   // const [sizing, setsizing] = useState('');
   const navigate = useNavigate();
   const [successmsg, setSuccessmsg] = useState(false);
   const [errmsg, setErrmsg] = useState(false);
-
   const [images, setImages] = useState([]);
 
 
   const [imagesPreview, setImagesPreview] = useState([]);
   const fileInputRef = useRef(null);
+  const handleprNameChange = (e) => {
+    // setprName(e.target.value)
+    if ((e.target.value.length) > 25) {
+      setprNameError('Please Enter less than 25 characters')
+
+    }
+    else {
+      setprNameError('')
+      setprName(e.target.value)
+    }
+  }
+  const handleStockChange = (e) => {
+    setStock(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setStockError('Please Enter a Number')
+
+    }
+    else {
+      setStockError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
+    }
+  }
+  const handlePrice = (e) => {
+    setprice(e.target.value)
+    if (!(validateStock(e.target.value))) {
+      setPriceError('Please Enter a Number')
+
+    }
+    else {
+      setPriceError('')
+      // setStock(e.target.value)
+      // setprName(e.target.value)
+    }
+  }
+
+  const validateStock = (stock) => {
+    const stockRegex = /^[0-9]+$/;
+
+    return stockRegex.test(stock)
+  }
 
   const handleCategory = (event) => {
     setcategory(event.target.value);
@@ -67,11 +110,7 @@ const AddProduct = () => {
     event.preventDefault()
     // if (user != "" && pass != "") 
     {
-      console.log(prName);
-      console.log(price);
-      console.log(Stock);
-      console.log(description);
-      console.log(category);
+
       // setEmptyfields(false);
       axios.post("http://localhost:2000/product/seller/createProduct", {
 
@@ -80,7 +119,7 @@ const AddProduct = () => {
         "price": price,
         "category": category,
         "images": images,
-        "stock": Stock,
+        "Stock": Stock,
         // "user": "64596f0f3d0561f78b51993d"
 
       }, { withCredentials: true })
@@ -88,7 +127,7 @@ const AddProduct = () => {
           // console.log(response);
           if (response.status == 201) {
             setSuccessmsg(true);
-            navigate('/home');
+            navigate('/seller/catalogue');
             console.log("success")
           }
           else {
@@ -108,7 +147,7 @@ const AddProduct = () => {
   }
   return (
     <div>
-    <SellerNavBar/>
+      <SellerNavBar />
       <div className="heading">  Add Product<br /> </div>
       <Divider className="divider" />
       <Grid container item xs={12} justifyContent="center" >
@@ -122,7 +161,7 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={prName} onChange={e => setprName(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={prName} onChange={handleprNameChange} error={Boolean(prNameError)} helperText={prNameError} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>
@@ -149,7 +188,7 @@ const AddProduct = () => {
                       <MenuItem value={"Clothing"}>Clothing</MenuItem>
                       <MenuItem value={"Furniture"}>Furniture</MenuItem>
                       <MenuItem value={"Toys"}>Toys</MenuItem>
-                      <MenuItem value={"Home Decor"}>Home Decor</MenuItem>
+                      <MenuItem value={"Home-Decor"}>Home Decor</MenuItem>
                       <MenuItem value={"Paintings"}>Paintings</MenuItem>
                       <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
                     </Select>
@@ -166,7 +205,7 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={price} onChange={e => setprice(e.target.value)} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={price} onChange={handlePrice} error={Boolean(PriceError)} helperText={PriceError} required sx={{ width: 300 }} className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
 
@@ -237,14 +276,14 @@ const AddProduct = () => {
               </Grid>
               <Grid item xs={8}>
                 <div className="labelStyle">
-                  <TextField value={Stock} onChange={e => setStock(e.target.value)} sx={{ width: 300 }} required className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
+                  <TextField value={Stock} onChange={handleStockChange} error={Boolean(StockError)} helperText={StockError} sx={{ width: 300 }} required className="addProduct_textbox" id="outlined-basic" label="" variant="outlined" />
                 </div>
               </Grid>
             </Grid>
 
             <div>
               <Typography align='center'>
-                <Button className="addProduct_button" variant="contained" size="large" onClick={postData} >Add Product</Button>
+                <Button className="addProduct_button" disabled={(prName && price && category && images.length != 0 && description && Stock) ? false : true} variant="contained" size="large" onClick={postData} >Add Product</Button>
                 {/* <Button className="addProduct_button" variant="contained"  size="large" >Delete Product</Button> */}
               </Typography>
             </div>

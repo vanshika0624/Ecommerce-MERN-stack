@@ -24,11 +24,11 @@ const SearchResult = () => {
     }, [keyword]);
 
     const getSearch = (page) => {
-        if(role === 'buyer'){
-            getSearchBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getSearchSeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getSearchBuyer(page);
         }
     }
 
@@ -80,7 +80,7 @@ const SearchResult = () => {
                                 <Typography variant="body2" color="#848D62" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
@@ -97,7 +97,7 @@ const SearchResult = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 

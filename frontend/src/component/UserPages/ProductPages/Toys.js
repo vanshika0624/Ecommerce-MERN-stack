@@ -21,18 +21,18 @@ const Clothing = () => {
     }, []);
 
     const getToys = (page) => {
-        if(role === 'buyer'){
-            getToysBuyer(page);
-        }
-        else { //if(role === 'seller') {
+        if(role === 'seller') {
             getToysSeller(page);
+        }
+        else { //if(role === 'buyer'){
+            getToysBuyer(page);
         }
     }
 
     const getToysBuyer = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/getProducts?category=Toys&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/getProducts?category=Toys&page=' + page, { withCredentials: true })
             .then((res) => {
                 setToyProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -46,7 +46,7 @@ const Clothing = () => {
     const getToysSeller = (page) => {
         setCurrentPage(page);
         axios
-            .get('http://localhost:2000/product/seller/getProducts?category=Toys&page='+ page, { withCredentials: true })
+            .get('http://localhost:2000/product/seller/getProducts?category=Toys&page=' + page, { withCredentials: true })
             .then((res) => {
                 setToyProducts(res.data.products);
                 setTotalNumofOrders(res.data.filteredProductsCount);
@@ -61,7 +61,7 @@ const Clothing = () => {
         return (
             <Grid container direction="row" spacing={2}  >
                 {cards.map((card) => (
-                    <Grid item xs={3} >
+                    <Grid item xs={6} md={3}>
                         <Card key={card._id} className="card"  >
                             {/* <CardMedia image={card.image} alt="product image" /> */}
                             {
@@ -81,11 +81,11 @@ const Clothing = () => {
                                 <Typography color="#848D62" variant="body2" component="p">
                                     ${card.price}
                                 </Typography>
-                                {role === 'buyer' &&
+                                {role !== 'seller' &&
                                 <Link style={{ color: "#848D62" }} to={`/products/${card._id}`}> Details</Link>
                                 }
                                 {role === 'seller' &&
-                                <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
+                                    <Link style={{ color: "#848D62" }} to={`/edit-product/${card._id}`}>Edit</Link>
                                 }
                             </CardContent>
                         </Card>
@@ -102,30 +102,33 @@ const Clothing = () => {
     return (
         <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
-            { 
-            role === 'seller' && 
-            <SellerNavBar/>
+            {
+                role === 'seller' &&
+                <SellerNavBar />
             }
             <div className="alignment">
+                <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+                    Toys
+                </Typography>
                 {disaplyCards(toyProducts)}
                 {totalNumOrders > resultsPerPage && (
-                <div className="paginationBoxProducts">
-                    <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resultsPerPage}
-                    totalItemsCount={totalNumOrders}
-                    onChange={getToys}
-                    firstPageText="First"
-                    lastPageText="Last"
-                    itemClass="page-item"
-                    linkClass="page-link"
-                    activeClass="pageItemActive"
-                    activeLinkClass="pageLinkActive"
-                    />
-                </div>
+                    <div className="paginationBoxProducts">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage={resultsPerPage}
+                            totalItemsCount={totalNumOrders}
+                            onChange={getToys}
+                            firstPageText="First"
+                            lastPageText="Last"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="pageItemActive"
+                            activeLinkClass="pageLinkActive"
+                        />
+                    </div>
                 )}
             </div>
             <Footer />
