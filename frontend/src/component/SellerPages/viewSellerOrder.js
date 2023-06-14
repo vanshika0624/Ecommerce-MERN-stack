@@ -79,7 +79,7 @@ const ViewSellerOrder = () => {
             "status": status
         }, { withCredentials: true })
         .then((res) => {
-            console.log(res)
+          //  console.log(res)
         })
         .catch((err) => {
             console.log(err);
@@ -130,7 +130,7 @@ const ViewSellerOrder = () => {
                             Payment Status: {paymentInfo.status}
                         </Typography>
                         <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
-                            Payment ID: {paymentInfo.id}
+                            Need to be delivered in: 1-2 weeks
                         </Typography>
                     </Grid>
                     <Grid item xs={6}  >

@@ -17,18 +17,16 @@ const goToHome=()=>
     navigate('/home')
 }
     return <div className="imgstyle"> 
-
-        <img src={landing_page} alt="Background" className="imgstyle"/>
+        <div className="mmBGImg"></div>
         <div className="buttonmargin">
-        <Typography align="right"  >
-        <Button className="buttonStyle" variant="outlined" size="large" color="inherit" onClick={goToSignin}> Sign In</Button>
-        </Typography>
+            <Typography align="right"  >
+                <Button className="buttonStyle" variant="outlined" size="large" color="inherit" onClick={goToSignin}> Sign In</Button>
+            </Typography>
         </div>
-        <div className='style'>
+        <div className='styleMain'>
             Maker's <br/>Mart
-        
         </div>
-        <div className="buttonmargin style">
+        <div className="buttonmargin styleMain">
         <Typography align='center'>
         <Button className="buttonStyle" variant="outlined" size="large" onClick ={goToHome}color="inherit">Shop Now</Button>
         </Typography>

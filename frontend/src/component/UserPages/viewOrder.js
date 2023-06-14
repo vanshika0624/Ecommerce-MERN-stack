@@ -19,6 +19,7 @@ const ViewSingleOrder = () => {
     const [shippingPrice, setShippingPrice] = useState('');
     const [totalPrice, setTotalPrice] = useState('');
     const [overallOrderStatus, setOverallOrderStatus] = useState('');
+    const [overallDeliveryDate, setOverallDeliveryDate] = useState('');
     const [orderDate, setOrderDate] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -38,6 +39,11 @@ const ViewSingleOrder = () => {
             setOverallOrderStatus(res.data.order.overallOrderStatus);
             const oDate = new Date(res.data.order.orderDate);
             setOrderDate(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(oDate));
+
+            if (res.data.order.overallDeliveredAt !== 'undefined' && res.data.order.overallDeliveredAt !== undefined && res.data.order.overallDeliveredAt !== '') {
+                const dDate = new Date(res.data.order.overallDeliveredAt);
+                setOverallDeliveryDate(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(dDate));
+            }
 
             setErrorMsg('')
         })
@@ -61,6 +67,9 @@ const ViewSingleOrder = () => {
                         <Typography variant="h6" component="h6" color="#3b2f28" align="left">
                             Order Number: {orderNumber}
                         </Typography>
+                        <Typography variant="h6" component="h6" color="#3b2f28" align="left">
+                            Payment Status: {paymentInfo.status}
+                        </Typography>
                         <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
                             Items Price: ${itemsPrice}
                         </Typography>
@@ -76,11 +85,14 @@ const ViewSingleOrder = () => {
                         <Typography variant="h6" component="h6" color="#3b2f28" align="left">
                             Total Price: ${totalPrice}
                         </Typography>
-                        <Typography variant="h6" component="h6" color="#3b2f28" align="left">
-                            Payment Status: {paymentInfo.status}
-                        </Typography>
                     </Grid>
                     <Grid item xs={6}  >
+                        <Typography variant="h6" component="h6" color="#3b2f28" align="left">
+                            Order Status: {overallOrderStatus}
+                        </Typography>
+                        <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
+                            Ordered on: {orderDate}
+                        </Typography> 
                         <Typography variant="h6" component="h6" color="#3b2f28">
                             Shipping Address:
                         </Typography>
@@ -88,19 +100,19 @@ const ViewSingleOrder = () => {
                             {shippingInfo.address}
                         </Typography>
                         <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
-                            {shippingInfo.city}
-                        </Typography>
-                        <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
-                            {shippingInfo.state},  {shippingInfo.zipCode}
+                            {shippingInfo.city}, {shippingInfo.state}, {shippingInfo.zipCode}
                         </Typography>
                         <Typography variant="hbody25" component="p" color="#3b2f28" align="left">
                             {shippingInfo.phoneNo}
                         </Typography>
                         <Typography variant="h6" component="h6" color="#3b2f28" align="left">
-                            Ordered on: {orderDate}
-                        </Typography> 
-                        <Typography variant="h6" component="h6" color="#3b2f28" align="left">
-                            Estmiated Delivery time: 1-2 weeks
+                            {(overallDeliveryDate === 'undefined' || overallDeliveryDate === undefined || overallDeliveryDate === '') &&
+                              'Estimated Delivery time: 1-2 weeks'
+                            }
+                            {overallDeliveryDate !== 'undefined' && overallDeliveryDate !== undefined && overallDeliveryDate !== '' &&
+                              'Delivered on: ' + overallDeliveryDate
+                            }
+
                         </Typography>
                         
                     </Grid>

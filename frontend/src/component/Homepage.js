@@ -165,16 +165,18 @@ const HomePage = () => {
   return (
     <div className="bg">
       <Navigation />
+      
       <div className="alignment">
-
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
-          Home Decor
+          Jewelry
         </Typography>
-        {disaplyCards(decorProducts)}
+        {disaplyCards(jewelryProducts)}
+
         <Grid container item xs={12} justifyContent="center">
-          <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
+          <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
         </Grid>
       </div>
+
 
 
 
@@ -189,17 +191,6 @@ const HomePage = () => {
       </div>
 
       <div className="alignment">
-        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
-          Jewelry
-        </Typography>
-        {disaplyCards(jewelryProducts)}
-
-        <Grid container item xs={12} justifyContent="center">
-          <Button className="homePage_button" onClick={goToJewelry}> View All Products</Button>
-        </Grid>
-      </div>
-
-      <div className="alignment">
 
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Clothing
@@ -209,6 +200,20 @@ const HomePage = () => {
           <Button className="homePage_button" onClick={goToClothing}> View All Products</Button>
         </Grid>
       </div>
+
+      
+      <div className="alignment">
+
+        <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
+          Home Decor
+        </Typography>
+        {disaplyCards(decorProducts)}
+        <Grid container item xs={12} justifyContent="center">
+          <Button className="homePage_button" onClick={goToHomeDecor}> View All Products</Button>
+        </Grid>
+      </div>
+
+
       <div className="alignment">
         <Typography className="homePage_typography" variant="h4" color="textSecondary" component="div">
           Paintings
