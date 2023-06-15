@@ -134,7 +134,7 @@ const Dashboard = () => {
       <Card className="dashboard_card"  >
               <CardContent>             
                   <Typography variant="h6" component="h6"  className="dashboard_typography1">
-                     Total Products Sold
+                     Total Items Sold
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
                  {productsSold}
@@ -162,7 +162,7 @@ const Dashboard = () => {
       <Card className="dashboard_card"  >
               <CardContent>             
                   <Typography variant="h6" component="h6"  className="dashboard_typography1">
-                   Unshipped Orders
+                   Unshipped Items
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
                     {unshippedCount}
@@ -177,7 +177,7 @@ const Dashboard = () => {
       <Card className="dashboard_card"  >
               <CardContent>             
                   <Typography variant="h6" component="h6"  className="dashboard_typography1">
-                     Delivered Orders
+                     Delivered Items
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
                     {deliveredCount}
@@ -191,7 +191,7 @@ const Dashboard = () => {
       <Card className="dashboard_card"  >
               <CardContent>             
                   <Typography variant="h6" component="h6"  className="dashboard_typography1">
-                    Shipped Orders
+                    Shipped Items
                   </Typography>
                   <Typography variant="h6" component="h6"  className="dashboard_typography">
                     {shippedCount}

@@ -20,7 +20,7 @@ const SellerOrders = () => {
         { field: "buyer", headerName: "Buyer Details", maxWidth: 150, flex: 1},
         { field: "shippingDetails", headerName: "Shipping Details", maxWidth: 500, flex: 1 },
         { field: "paymentStatus", headerName: "Payment", maxWidth: 100, flex: 1 },
-        { field: "paymentID", headerName: "Payment ID", maxWidth: 100, flex: 1 },
+       // { field: "paymentID", headerName: "Payment ID", maxWidth: 100, flex: 1 },
         { field: "numProducts", headerName: "Products ordered", maxWidth: 125, flex: 1, align: 'right', type: "number" },
         { field: "orderStatus", headerName: "Overall Status", maxWidth: 125, flex: 1 },
         { field: "actions", headerName: "Actions", minWidth: 150, flex: 0.3, align: 'left', type: 'actions',
@@ -70,7 +70,7 @@ const SellerOrders = () => {
             buyer: buyer,
             shippingDetails: shipAddress,
             paymentStatus: item.paymentInfo.status,
-            paymentID: item.paymentInfo.id,
+            //paymentID: item.paymentInfo.id,
             numProducts: item.orderItems.length,
             orderStatus: oStatus
         });
