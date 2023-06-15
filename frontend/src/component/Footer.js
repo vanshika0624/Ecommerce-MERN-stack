@@ -21,7 +21,9 @@ const Footer = () => {
                 Handcrafted needs. </div>
 
             {/* <Typography align='center'> */}
+            { !localStorage.getItem("accessToken") && 
             <div> <Button className="Footer_button" variant="contained" size="small" onClick={goToSignup} >Sign Up</Button> </div>
+            }
             <div>  <Button className="Footer_button" variant="contained" size="small" onClick={goToAboutUs}>About Us</Button> </div>
             {/* </Typography> */}
             <div className="Footer_about"> MAKER'S MART COMPANY<br />

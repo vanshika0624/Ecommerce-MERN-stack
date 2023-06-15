@@ -190,7 +190,7 @@ const AddProduct = () => {
                       <MenuItem value={"Toys"}>Toys</MenuItem>
                       <MenuItem value={"Home-Decor"}>Home Decor</MenuItem>
                       <MenuItem value={"Paintings"}>Paintings</MenuItem>
-                      <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
+                      <MenuItem value={"Jewelry"}>Jewelry</MenuItem>
                     </Select>
                   </FormControl>
                 </div>

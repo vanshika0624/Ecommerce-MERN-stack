@@ -15,7 +15,7 @@ const AboutUs = () => {
 
     return <div className="bg">
             { 
-            role === 'buyer' &&
+            role !== 'seller' &&
             <Navigation/>
             }
             { 
